@@ -1,4 +1,4 @@
-const CACHE = 'ward40-voter-v1';
+const CACHE = 'ward40-voter-v2';
 const ASSETS = [
   './',
   './index.html',
@@ -25,6 +25,17 @@ self.addEventListener('activate', e => {
 });
 
 self.addEventListener('fetch', e => {
+  // Don't try to cache audio in advance; cache on first successful fetch if present
+  if (e.request.url.includes('/audio/')) {
+    e.respondWith(
+      fetch(e.request).then(res => {
+        const clone = res.clone();
+        caches.open(CACHE).then(c => c.put(e.request, clone));
+        return res;
+      }).catch(() => caches.match(e.request))
+    );
+    return;
+  }
   e.respondWith(
     caches.match(e.request).then(r => r || fetch(e.request))
   );

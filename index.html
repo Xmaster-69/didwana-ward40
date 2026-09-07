@@ -3,10 +3,19 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta name="theme-color" content="#c2185b">
-<meta name="description" content="वार्ड 40 डीडवाना — नीतू मारोठिया · मतदाता जानकारी ऐप">
+<meta name="theme-color" content="#7b1fa2">
+<meta name="description" content="वार्ड 40 डीडवाना — नीतू मारोठिया · अपना नाम खोजें और 9 सितंबर 2026 को वोट जरूर दें">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+<!-- Open Graph for WhatsApp link preview -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="वार्ड 40 · नीतू मारोठिया">
+<meta property="og:description" content="अपना नाम खोजें और 9 सितंबर 2026 को अपने वार्ड के लिए वोट जरूर दें। नीतू मारोठिया — वार्ड 40 की आवाज़।">
+<meta property="og:image" content="candidate_poster.jpg">
+<meta property="og:image:width" content="1024">
+<meta property="og:image:height" content="1536">
+
 <title>वार्ड 40 · नीतू मारोठिया</title>
 <link rel="manifest" href="manifest.json">
 <link rel="apple-touch-icon" href="icons/icon-192.png">
@@ -14,18 +23,36 @@
 </head>
 <body>
 
+<!-- ===== AUDIO SPLASH SCREEN ===== -->
+<div id="splash-screen" class="splash">
+  <div class="splash-inner">
+    <div class="splash-badge">वार्ड 40 · डीडवाना</div>
+    <h1>नीतू मारोठिया</h1>
+    <p class="splash-tag">आपके वार्ड की आवाज़</p>
+    <button class="splash-btn" id="splash-tap">
+      <span class="splash-spk">🔊</span>
+      <span class="splash-txt">टैप करें और सुनें</span>
+    </button>
+    <p class="splash-hint">वोट 9 सितंबर 2026 · सुबह 7AM – शाम 6PM</p>
+  </div>
+</div>
+
 <!-- ===== मुख्य (HOME) ===== -->
 <div id="home-screen" class="screen active">
   <div class="hero">
-    <div class="hero-ward">वार्ड 40 · डीडवाना नगर पालिका</div>
-    <h1 class="hero-name">नीतू मारोठिया</h1>
-    <p class="hero-tagline">आपके वार्ड की आवाज़</p>
-    <div class="countdown-box" id="countdown-box"></div>
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+      <div class="hero-ward">वार्ड 40 · डीडवाना नगर पालिका</div>
+      <h1 class="hero-name">नीतू मारोठिया</h1>
+      <p class="hero-tagline">आपके वार्ड की आवाज़</p>
+      <div class="flip-clock" id="flip-clock"></div>
+      <div class="hero-vote-date">🗳️ 9 सितंबर 2026 · 7AM – 6PM</div>
+    </div>
+    <div class="hero-particles" id="hero-particles"></div>
   </div>
 
   <div class="search-bar">
     <input type="search" id="voter-search" placeholder="🔍 अपना नाम खोजें..." autocomplete="off">
-    <div id="search-badge" class="search-badge"></div>
   </div>
   <div id="search-results" class="list"></div>
 
@@ -45,6 +72,17 @@
 
   <div class="section-title">📊 वार्ड 40 का भरोसा</div>
   <div class="social-proof" id="social-proof"></div>
+
+  <!-- EVM Demo -->
+  <div class="section-title">🗳️ EVM डेमो — नीतू को वोट</div>
+  <div class="evm-card">
+    <div class="evm-screen" id="evm-screen">
+      <div class="evm-msg">दबाएं और देखें</div>
+    </div>
+    <button class="evm-btn" id="evm-btn">
+      <span class="evm-party">चक्र</span> <b>नीतू मारोठिया</b>
+    </button>
+  </div>
 </div>
 
 <!-- ===== नाम खोजें ===== -->
@@ -81,7 +119,7 @@
   </div>
   <div class="section-title">अन्य जानकारी</div>
   <div class="video-links">
-    <a class="video-link-card" id="whatsapp-share-video" href="javascript:void(0)">
+    <a class="video-link-card" id="whatsapp-share-video" onclick="App.shareWhatsApp()" href="javascript:void(0)">
       <span class="vl-icon">📲</span>
       <span class="vl-text">वीडियो WhatsApp पर शेयर करें</span>
     </a>
@@ -133,7 +171,7 @@
     </button>
     <button class="share-card copy" onclick="App.copyLink()">
       <span class="sc-icon">📋</span>
-      <span class="sc-title">लिंक कॉपी करें</span>
+      <span class="sc-title">लिंक कॉपी</span>
       <span class="sc-desc">कहीं भी पेस्ट करें</span>
     </button>
     <button class="share-card sms" onclick="App.shareSMS()">
@@ -159,6 +197,15 @@
     <h2>मतदाता विवरण</h2>
   </header>
   <div id="voter-detail" class="detail-content"></div>
+</div>
+
+<!-- ===== PWA INSTALL PROMPT ===== -->
+<div id="install-banner" class="install-banner hidden">
+  <div class="install-info">
+    <span class="install-icon">🏠</span>
+    <div><strong>होम स्क्रीन पर जोड़ें</strong><br><span class="install-sub">ऑफ़लाइन इस्तेमाल करें</span></div>
+  </div>
+  <button class="install-btn" id="install-btn">जोड़ें</button>
 </div>
 
 <!-- ===== BOTTOM NAV ===== -->

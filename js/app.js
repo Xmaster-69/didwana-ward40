@@ -1,9 +1,13 @@
 (function() {
   const $ = id => document.getElementById(id);
   let previousScreen = 'home-screen';
+  let flipTimer = null;
+  let clockStarted = false;
 
-  const APP_URL = typeof APP_LINK !== 'undefined' ? APP_LINK : 'https://xmaster-69.github.io/ward40-voter-app/';
+  const APP_URL = typeof APP_LINK !== 'undefined' ? APP_LINK : 'https://xmaster-69.github.io/didwana-ward40/';
+  const AUDIO_FILE = 'audio/welcome.mp3';
 
+  // ===== NAVIGATION =====
   function showScreen(id, pushPrev) {
     const prev = document.querySelector('.screen.active');
     if (pushPrev !== false && prev) previousScreen = prev.id;
@@ -13,7 +17,7 @@
       b.classList.toggle('active', b.dataset.nav === id);
     });
     window.scrollTo(0, 0);
-    if (id === 'home-screen') renderHome();
+    if (id === 'home-screen') { renderHome(); startFlipClock(); }
     if (id === 'search-screen') $('search2-input').focus();
     if (id === 'share-screen') renderShare();
   }
@@ -23,40 +27,141 @@
   });
   $('detail-back').addEventListener('click', () => showScreen(previousScreen, false));
 
-  // ===== COUNTDOWN =====
+  // ===== SPLASH SCREEN + AUDIO =====
+  function initSplash() {
+    if (sessionStorage.getItem('splashShown')) {
+      hideSplash();
+      return;
+    }
+    $('splash-tap').addEventListener('click', () => {
+      // Try to play audio (medium volume)
+      playSplashAudio();
+      sessionStorage.setItem('splashShown', '1');
+      hideSplash();
+    });
+  }
+
+  function playSplashAudio() {
+    try {
+      const audio = new Audio(AUDIO_FILE);
+      audio.volume = 0.5; // medium volume
+      audio.play().catch(() => { /* silent fallback if no file yet */ });
+    } catch(e) { /* noop */ }
+  }
+
+  function hideSplash() {
+    const s = $('splash-screen');
+    if (s) s.classList.add('hidden');
+  }
+
+  // ===== FLIP CLOCK COUNTDOWN (with seconds, New Year style) =====
   function renderCountdown() {
-    const box = $('countdown-box');
-    if (!box) return;
+    const clock = $('flip-clock');
+    if (!clock) return;
     const now = new Date();
     const pollStart = new Date(2026, 8, 9, CONFIG.pollStartHour, 0, 0);
     const pollEnd = new Date(2026, 8, 9, CONFIG.pollEndHour, 0, 0);
-    let html = '';
+
     if (now < pollStart) {
       const diff = pollStart - now;
       const days = Math.floor(diff / 86400000);
       const hours = Math.floor((diff % 86400000) / 3600000);
       const mins = Math.floor((diff % 3600000) / 60000);
-      html = `
-        <div class="countdown-title">मतदान शुरू होने में:</div>
-        <div class="countdown-nums">
-          <span class="cd-unit"><strong>${days}</strong><small>दिन</small></span>
-          <span class="cd-sep">:</span>
-          <span class="cd-unit"><strong>${hours}</strong><small>घंटे</small></span>
-          <span class="cd-sep">:</span>
-          <span class="cd-unit"><strong>${mins}</strong><small>मिनट</small></span>
-        </div>
-        <div class="countdown-date">🗳️ 9 सितंबर 2026 · सुबह 7AM – शाम 6PM</div>`;
+      const secs = Math.floor((diff % 60000) / 1000);
+      clock.innerHTML = `
+        <div class="flip-title">मतदान शुरू होने में</div>
+        <div class="flip-row">
+          ${flipUnit(days, 'दिन')}
+          <span class="flip-colon">:</span>
+          ${flipUnit(hours, 'घंटे')}
+          <span class="flip-colon">:</span>
+          ${flipUnit(mins, 'मिनट')}
+          <span class="flip-colon">:</span>
+          ${flipUnit(secs, 'सेकंड')}
+        </div>`;
     } else if (now >= pollStart && now <= pollEnd) {
-      html = `<div class="countdown-live">✅ मतदान चल रहा है — वोट जरूर दें!</div>`;
+      clock.innerHTML = `<div class="countdown-live">✅ मतदान चल रहा है — वोट जरूर दें!</div>`;
     } else {
-      html = `<div class="countdown-ended">✅ मतदान का समय समाप्त</div>`;
+      clock.innerHTML = `<div class="countdown-ended">✅ मतदान का समय समाप्त</div>`;
     }
-    box.innerHTML = html;
+  }
+
+  function flipUnit(val, label) {
+    const str = String(val).padStart(2, '0');
+    return `
+      <div class="flip-unit">
+        <div class="flip-card">
+          <div class="flip-face top">${str}</div>
+          <div class="flip-face bottom">${str}</div>
+          <div class="flip-fold"></div>
+        </div>
+        <div class="flip-label">${label}</div>
+      </div>`;
+  }
+
+  function startFlipClock() {
+    if (flipTimer) clearInterval(flipTimer);
+    renderCountdown();
+    flipTimer = setInterval(() => {
+      // Only update if home screen active & user has passed splash
+      const home = $('home-screen');
+      if (home && home.classList.contains('active')) renderCountdown();
+    }, 1000);
+  }
+
+  // ===== HERO PARTICLES =====
+  function createParticles() {
+    const container = $('hero-particles');
+    if (!container) return;
+    const emojis = ['🗳️', '✨', '💜', '🌸', '⭐', '🎀'];
+    let html = '';
+    for (let i = 0; i < 10; i++) {
+      const left = Math.floor(Math.random() * 90) + 5;
+      const delay = (Math.random() * 5).toFixed(1);
+      const dur = (Math.random() * 4 + 5).toFixed(1);
+      const emoji = emojis[i % emojis.length];
+      html += `<span class="particle" style="left:${left}%;animation-delay:${delay}s;animation-duration:${dur}s">${emoji}</span>`;
+    }
+    container.innerHTML = html;
+  }
+
+  // ===== EVM DEMO =====
+  function initEvm() {
+    const btn = $('evm-btn');
+    if (!btn) return;
+    btn.addEventListener('click', () => {
+      const screen = $('evm-screen');
+      screen.innerHTML = '<div class="evm-success"><b>✓</b><p>आपका वोट दर्ज!</p><p class="evm-note">नीतू मारोठिया — वार्ड 40 की आवाज़</p></div>';
+      screen.classList.add('vote-done');
+      // confetti
+      launchConfetti();
+      btn.disabled = true;
+      btn.style.opacity = '0.6';
+      setTimeout(() => {
+        screen.innerHTML = '<div class="evm-msg">दबाएं और देखें</div>';
+        screen.classList.remove('vote-done');
+        btn.disabled = false;
+        btn.style.opacity = '1';
+      }, 3500);
+    });
+  }
+
+  function launchConfetti() {
+    const colors = ['#e91e63', '#9c27b0', '#ff9800', '#4caf50', '#2196f3', '#fdd835'];
+    for (let i = 0; i < 30; i++) {
+      const c = document.createElement('div');
+      c.className = 'confetti';
+      c.style.left = Math.random() * 100 + 'vw';
+      c.style.background = colors[Math.floor(Math.random() * colors.length)];
+      c.style.animationDelay = (Math.random() * 0.5).toFixed(2) + 's';
+      c.style.animationDuration = (Math.random() * 2 + 2).toFixed(2) + 's';
+      document.body.appendChild(c);
+      setTimeout(() => c.remove(), 4500);
+    }
   }
 
   // ===== HOME =====
   function renderHome() {
-    renderCountdown();
     renderTrustCard();
     renderVotingSteps();
     renderSocialProof();
@@ -152,17 +257,14 @@
       $('video-save-btn').addEventListener('click', () => {
         const url = $('video-url').value.trim();
         if (!url) return;
-        let embedUrl = url;
-        const ytMatch = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([^&]+)/);
-        if (ytMatch) embedUrl = 'https://www.youtube.com/embed/' + ytMatch[1];
-        Store.set('videoUrl', embedUrl);
+        Store.set('videoUrl', url);
         alert('✅ वीडियो सेव हो गया!');
         location.reload();
       });
     }
   }
 
-  // ===== EDUCATION (पार्षद क्या है? + FAQ) =====
+  // ===== EDUCATION =====
   function renderEducation() {
     const roles = [
       { icon: '🛣️', t: 'सड़कें', d: 'गलियों और सड़कों का विकास व मरम्मत' },
@@ -206,11 +308,30 @@
 
   // ===== SHARE =====
   function renderShare() {
-    const msg = `🗳️ वार्ड 40 — नीतू मारोठिया\n\nदोस्तों! अपना नाम चेक करें और 9 सितंबर 2026 को वोट जरूर दें।\n\nसुबह 7AM – शाम 6PM\n\nनीतू मारोठिया — आपके वार्ड की सेवा में।\n\n🔗 ${APP_URL}`;
+    const msg = `🗳️ *वार्ड 40 — नीतू मारोठिया*\n\nदोस्तों! अपना नाम चेक करें और 9 सितंबर 2026 को वोट जरूर दें।\n\nसुबह 7AM – शाम 6PM\n\nनीतू मारोठिया — आपके वार्ड की सेवा में।\n\n🔗 ${APP_URL}`;
     $('share-msg').value = msg;
     $('share-preview').innerHTML = `<div class="preview-msg"><div class="preview-title">मैसेज पूर्वावलोकन:</div><div class="preview-body">${msg.replace(/\n/g, '<br>')}</div></div>`;
   }
 
+  // ===== PWA INSTALL PROMPT =====
+  let deferredPrompt = null;
+  function initInstall() {
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+      $('install-banner').classList.remove('hidden');
+    });
+    $('install-btn').addEventListener('click', async () => {
+      if (deferredPrompt) {
+        deferredPrompt.prompt();
+        await deferredPrompt.userChoice;
+        deferredPrompt = null;
+        $('install-banner').classList.add('hidden');
+      }
+    });
+  }
+
+  // ===== EXPOSED API =====
   window.App = {
     shareApp: function() {
       const msg = encodeURIComponent(`🗳️ वार्ड 40 के दोस्तों! अपना नाम यहां चेक करें: ${APP_URL}`);
@@ -242,4 +363,10 @@
   renderEducation();
   initVideo();
   renderShare();
+  createParticles();
+  initEvm();
+  initInstall();
+  initSplash();
+  renderCountdown();
+  startFlipClock();
 })();
