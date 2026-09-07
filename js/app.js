@@ -2,7 +2,7 @@
   const $ = id => document.getElementById(id);
   let previousScreen = 'home-screen';
 
-  const APP_URL = typeof APP_LINK !== 'undefined' ? APP_LINK : 'https://ward40.example.com';
+  const APP_URL = typeof APP_LINK !== 'undefined' ? APP_LINK : 'https://xmaster-69.github.io/ward40-voter-app/';
 
   function showScreen(id, pushPrev) {
     const prev = document.querySelector('.screen.active');

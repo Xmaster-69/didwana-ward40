@@ -1,15 +1,15 @@
 const CACHE = 'ward40-voter-v1';
 const ASSETS = [
-  '/',
-  '/index.html',
-  '/css/styles.css',
-  '/js/data.js',
-  '/js/voters.js',
-  '/js/app.js',
-  '/data/voters.json',
-  '/manifest.json',
-  '/icons/icon-192.png',
-  '/icons/icon-512.png'
+  './',
+  './index.html',
+  './css/styles.css',
+  './js/data.js',
+  './js/voters.js',
+  './js/app.js',
+  './data/voters.json',
+  './manifest.json',
+  './icons/icon-192.png',
+  './icons/icon-512.png'
 ];
 
 self.addEventListener('install', e => {
