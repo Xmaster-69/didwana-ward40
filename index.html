@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#c2185b">
+<meta name="description" content="वार्ड 40 डीडवाना — नीतू मारोठिया · मतदाता जानकारी ऐप">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>वार्ड 40 · नीतू मारोठिया</title>
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<!-- ===== मुख्य (HOME) ===== -->
+<div id="home-screen" class="screen active">
+  <div class="hero">
+    <div class="hero-ward">वार्ड 40 · डीडवाना नगर पालिका</div>
+    <h1 class="hero-name">नीतू मारोठिया</h1>
+    <p class="hero-tagline">आपके वार्ड की आवाज़</p>
+    <div class="countdown-box" id="countdown-box"></div>
+  </div>
+
+  <div class="search-bar">
+    <input type="search" id="voter-search" placeholder="🔍 अपना नाम खोजें..." autocomplete="off">
+    <div id="search-badge" class="search-badge"></div>
+  </div>
+  <div id="search-results" class="list"></div>
+
+  <div class="trust-card" id="trust-card"></div>
+
+  <div class="section-title">📢 नीतू से मिलें</div>
+  <div class="video-card">
+    <div class="video-placeholder" id="video-placeholder">
+      <div class="video-icon">🎬</div>
+      <p>वीडियो जल्द आ रहा है...</p>
+      <p class="video-sub">कैंपेन वीडियो यहाँ देखें</p>
+    </div>
+  </div>
+
+  <div class="section-title">🗳️ वोट कैसे डालें?</div>
+  <div class="steps-grid" id="voting-steps"></div>
+
+  <div class="section-title">📊 वार्ड 40 का भरोसा</div>
+  <div class="social-proof" id="social-proof"></div>
+</div>
+
+<!-- ===== नाम खोजें ===== -->
+<div id="search-screen" class="screen">
+  <header class="screen-header">
+    <h2>🔍 अपना नाम खोजें</h2>
+  </header>
+  <div class="search-bar">
+    <input type="search" id="search2-input" placeholder="नाम टाइप करें..." autocomplete="off">
+  </div>
+  <div id="search2-results" class="list"></div>
+  <div class="search-info">
+    <p>✅ यदि आपका नाम मिलता है तो आप वार्ड 40 के मतदाता हैं</p>
+    <p>🗳️ 9 सितंबर 2026 को अपने बूथ पर जरूर जाएं</p>
+  </div>
+</div>
+
+<!-- ===== वीडियो ===== -->
+<div id="video-screen" class="screen">
+  <header class="screen-header">
+    <h2>🎬 वीडियो</h2>
+  </header>
+  <div class="video-full">
+    <div class="video-placeholder big">
+      <div class="video-icon big-icon">🎬</div>
+      <h3>नीतू मारोठिया — वार्ड 40 का सपना</h3>
+      <p>कैंपेन वीडियो जल्द यहाँ जोड़ा जाएगा</p>
+      <div class="video-hook">
+        <p class="hook-label">वीडियो URL डालें:</p>
+        <input type="url" id="video-url" placeholder="https://youtube.com/watch?v=... या MP4 link">
+        <button id="video-save-btn" class="primary-btn">🔗 सेव करें</button>
+      </div>
+    </div>
+  </div>
+  <div class="section-title">अन्य जानकारी</div>
+  <div class="video-links">
+    <a class="video-link-card" id="whatsapp-share-video" href="javascript:void(0)">
+      <span class="vl-icon">📲</span>
+      <span class="vl-text">वीडियो WhatsApp पर शेयर करें</span>
+    </a>
+  </div>
+</div>
+
+<!-- ===== पार्षद क्या है? ===== -->
+<div id="education-screen" class="screen">
+  <header class="screen-header">
+    <h2>📚 पार्षद क्या है?</h2>
+  </header>
+
+  <div class="edu-card hero-edu">
+    <div class="edu-icon">🏛️</div>
+    <h3>पार्षद = आपके वार्ड का प्रतिनिधि</h3>
+    <p>पार्षद वह व्यक्ति होता है जिसे आप सीधे चुनते हैं। वह आपके वार्ड की हर समस्या का समाधान करता है।</p>
+  </div>
+
+  <div class="section-title">पार्षद यह काम करता है:</div>
+  <div class="role-cards" id="role-cards"></div>
+
+  <div class="edu-card cta-edu">
+    <h3>🗳️ अपना पार्षद चुनें</h3>
+    <p>9 सितंबर 2026 को <strong>नीतू मारोठिया</strong> को अपना वोट दें। आपके वार्ड की सेवा के लिए तैयार!</p>
+    <button class="cta-btn" onclick="App.shareApp()">📲 अभी शेयर करें</button>
+  </div>
+
+  <div class="section-title">सामान्य प्रश्न</div>
+  <div class="faq-list" id="faq-list"></div>
+</div>
+
+<!-- ===== शेयर करें ===== -->
+<div id="share-screen" class="screen">
+  <header class="screen-header">
+    <h2>📲 शेयर करें</h2>
+  </header>
+
+  <div class="share-hero">
+    <div class="share-big-icon">📲</div>
+    <h3>अपने सभी जानने वालों को भेजें</h3>
+    <p>वार्ड 40 के हर मतदाता तक पहुंचें</p>
+  </div>
+
+  <div class="share-cards">
+    <button class="share-card whatsapp" onclick="App.shareWhatsApp()">
+      <span class="sc-icon">💬</span>
+      <span class="sc-title">WhatsApp</span>
+      <span class="sc-desc">एक क्लिक में भेजें</span>
+    </button>
+    <button class="share-card copy" onclick="App.copyLink()">
+      <span class="sc-icon">📋</span>
+      <span class="sc-title">लिंक कॉपी करें</span>
+      <span class="sc-desc">कहीं भी पेस्ट करें</span>
+    </button>
+    <button class="share-card sms" onclick="App.shareSMS()">
+      <span class="sc-icon">✉️</span>
+      <span class="sc-title">SMS</span>
+      <span class="sc-desc">मैसेज भेजें</span>
+    </button>
+  </div>
+
+  <div class="share-preview" id="share-preview"></div>
+
+  <div class="section-title">शेयर करने के लिए मैसेज:</div>
+  <div class="share-msg-box">
+    <textarea id="share-msg" readonly></textarea>
+    <button class="primary-btn" onclick="App.copyMessage()">📋 मैसेज कॉपी करें</button>
+  </div>
+</div>
+
+<!-- ===== VOTER DETAIL (sub-screen) ===== -->
+<div id="voter-detail-screen" class="screen">
+  <header class="screen-header">
+    <button class="back-btn" id="detail-back">←</button>
+    <h2>मतदाता विवरण</h2>
+  </header>
+  <div id="voter-detail" class="detail-content"></div>
+</div>
+
+<!-- ===== BOTTOM NAV ===== -->
+<nav class="bottom-nav" id="bottom-nav">
+  <button data-nav="home-screen" class="active">🏠<span>मुख्य</span></button>
+  <button data-nav="search-screen">🔍<span>नाम खोजें</span></button>
+  <button data-nav="video-screen">🎬<span>वीडियो</span></button>
+  <button data-nav="education-screen">📚<span>पार्षद</span></button>
+  <button data-nav="share-screen">📲<span>शेयर</span></button>
+</nav>
+
+<script src="js/data.js"></script>
+<script src="js/voters.js"></script>
+<script src="js/app.js"></script>
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => navigator.serviceWorker.register('sw.js').catch(()=>{}));
+}
+</script>
+</body>
+</html>
