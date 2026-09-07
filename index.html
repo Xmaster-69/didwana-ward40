@@ -4,14 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="theme-color" content="#7b1fa2">
-<meta name="description" content="वार्ड 40 डीडवाना — नीतू मारोठिया · अपना नाम खोजें और 9 सितंबर 2026 को वोट जरूर दें">
+<meta name="description" content="वार्ड 40 डीडवाना — नीतू मारोठिया · वोटर लिस्ट में अपना नाम देखें और 9 सितंबर 2026 को वोट जरूर दें">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
 <!-- Open Graph for WhatsApp link preview -->
 <meta property="og:type" content="website">
 <meta property="og:title" content="वार्ड 40 · नीतू मारोठिया">
-<meta property="og:description" content="अपना नाम खोजें और 9 सितंबर 2026 को अपने वार्ड के लिए वोट जरूर दें। नीतू मारोठिया — वार्ड 40 की आवाज़।">
+<meta property="og:description" content="वोटर लिस्ट में अपना नाम देखें और 9 सितंबर 2026 को अपने वार्ड के लिए वोट जरूर दें। नीतू मारोठिया — वार्ड 40 की आवाज़।">
 <meta property="og:image" content="https://xmaster-69.github.io/didwana-ward40/candidate_poster.jpg">
 <meta property="og:image:width" content="1024">
 <meta property="og:image:height" content="1536">
@@ -51,21 +51,16 @@
     <div class="hero-particles" id="hero-particles"></div>
   </div>
 
-  <div class="search-bar">
-    <input type="search" id="voter-search" placeholder="🔍 अपना नाम खोजें..." autocomplete="off">
+  <div class="search-section">
+    <h2 class="search-title">वोटर लिस्ट में अपना नाम देखें</h2>
+    <p class="search-sub">नीचे बॉक्स में अपना नाम लिखें और देखें कि आप वार्ड 40 के मतदाता सूची में शामिल हैं या नहीं</p>
+    <div class="search-bar">
+      <input type="search" id="voter-search" placeholder="🔍 अपना नाम यहां लिखें..." autocomplete="off">
+    </div>
+    <div id="search-results" class="list"></div>
   </div>
-  <div id="search-results" class="list"></div>
 
   <div class="trust-card" id="trust-card"></div>
-
-  <div class="section-title">📢 नीतू से मिलें</div>
-  <div class="video-card">
-    <div class="video-placeholder" id="video-placeholder">
-      <div class="video-icon">🎬</div>
-      <p>वीडियो जल्द आ रहा है...</p>
-      <p class="video-sub">कैंपेन वीडियो यहाँ देखें</p>
-    </div>
-  </div>
 
   <div class="section-title">🗳️ वोट कैसे डालें?</div>
   <div class="steps-grid" id="voting-steps"></div>
@@ -73,63 +68,43 @@
   <div class="section-title">📊 वार्ड 40 का भरोसा</div>
   <div class="social-proof" id="social-proof"></div>
 
+  <!-- Poster -->
+  <div class="section-title">🖼️ आधिकारिक पोस्टर</div>
+  <div class="poster-card">
+    <img class="poster-img" src="candidate_poster.jpg" alt="नीतू मारोठिया — वार्ड 40 आधिकारिक पोस्टर" loading="lazy">
+    <div class="poster-caption">
+      <strong>नीतू मारोठिया — वार्ड 40 की आवाज़</strong>
+      <span>9 सितंबर 2026 · सुबह 7AM – शाम 6PM</span>
+    </div>
+    <button class="cta-btn" onclick="App.sharePoster()">📲 पोस्टर WhatsApp पर शेयर करें</button>
+  </div>
+
   <!-- EVM Demo -->
-  <div class="section-title">🗳️ EVM डेमो — नीतू को वोट</div>
+  <div class="section-title">🗳️ EVM डेमो — नीतू मारोठिया को वोट</div>
   <div class="evm-card">
+    <div class="evm-head">
+      <span class="evm-eci">भारत निर्वाचन आयोग (ईवीएम)</span>
+      <span class="evm-demo">डेमो</span>
+    </div>
     <div class="evm-screen" id="evm-screen">
-      <div class="evm-msg">दबाएं और देखें</div>
+      <div class="evm-msg">मतदान के लिए नीचे<br>अपना वोट दबाएं</div>
     </div>
-    <button class="evm-btn" id="evm-btn">
-      <span class="evm-party">चक्र</span> <b>नीतू मारोठिया</b>
+    <button class="evm-vote-btn" id="evm-btn">
+      <span class="evm-symbol">🪷</span>
+      <span class="evm-info">
+        <b>नीतू मारोठिया</b>
+        <span>भारतीय जनता पार्टी (भाजपा) · कमल</span>
+      </span>
+      <span class="evm-tally">वोट</span>
     </button>
+    <p class="evm-note">यह केवल एक डेमो है — असली मतदान 9 सितंबर 2026, सुबह 7AM – शाम 6PM तक होगा।</p>
   </div>
 </div>
 
-<!-- ===== नाम खोजें ===== -->
-<div id="search-screen" class="screen">
-  <header class="screen-header">
-    <h2>🔍 अपना नाम खोजें</h2>
-  </header>
-  <div class="search-bar">
-    <input type="search" id="search2-input" placeholder="नाम टाइप करें..." autocomplete="off">
-  </div>
-  <div id="search2-results" class="list"></div>
-  <div class="search-info">
-    <p>✅ यदि आपका नाम मिलता है तो आप वार्ड 40 के मतदाता हैं</p>
-    <p>🗳️ 9 सितंबर 2026 को अपने बूथ पर जरूर जाएं</p>
-  </div>
-</div>
-
-<!-- ===== वीडियो ===== -->
-<div id="video-screen" class="screen">
-  <header class="screen-header">
-    <h2>🎬 वीडियो</h2>
-  </header>
-  <div class="video-full">
-    <div class="video-placeholder big">
-      <div class="video-icon big-icon">🎬</div>
-      <h3>नीतू मारोठिया — वार्ड 40 का सपना</h3>
-      <p>कैंपेन वीडियो जल्द यहाँ जोड़ा जाएगा</p>
-      <div class="video-hook">
-        <p class="hook-label">वीडियो URL डालें:</p>
-        <input type="url" id="video-url" placeholder="https://youtube.com/watch?v=... या MP4 link">
-        <button id="video-save-btn" class="primary-btn">🔗 सेव करें</button>
-      </div>
-    </div>
-  </div>
-  <div class="section-title">अन्य जानकारी</div>
-  <div class="video-links">
-    <a class="video-link-card" id="whatsapp-share-video" onclick="App.shareWhatsApp()" href="javascript:void(0)">
-      <span class="vl-icon">📲</span>
-      <span class="vl-text">वीडियो WhatsApp पर शेयर करें</span>
-    </a>
-  </div>
-</div>
-
-<!-- ===== पार्षद क्या है? ===== -->
+<!-- ===== पार्षद कौन होता है? ===== -->
 <div id="education-screen" class="screen">
   <header class="screen-header">
-    <h2>📚 पार्षद क्या है?</h2>
+    <h2>📚 पार्षद कौन होता है?</h2>
   </header>
 
   <div class="edu-card hero-edu">
@@ -159,7 +134,7 @@
 
   <div class="share-hero">
     <div class="share-big-icon">📲</div>
-    <h3>अपने सभी जानने वालों को भेजें</h3>
+    <h3>ऐप को अपने वार्ड के मतदाताओं तक पहुंचाएं</h3>
     <p>वार्ड 40 के हर मतदाता तक पहुंचें</p>
   </div>
 
@@ -202,17 +177,15 @@
 <!-- ===== PWA INSTALL PROMPT ===== -->
 <div id="install-banner" class="install-banner hidden">
   <div class="install-info">
-    <span class="install-icon">🏠</span>
-    <div><strong>होम स्क्रीन पर जोड़ें</strong><br><span class="install-sub">ऑफ़लाइन इस्तेमाल करें</span></div>
+    <span class="install-icon">📥</span>
+    <div><strong>App Install करें</strong><br><span class="install-sub">ऑफ़लाइन इस्तेमाल करें</span></div>
   </div>
-  <button class="install-btn" id="install-btn">जोड़ें</button>
+  <button class="install-btn" id="install-btn">इंस्टॉल करें</button>
 </div>
 
 <!-- ===== BOTTOM NAV ===== -->
 <nav class="bottom-nav" id="bottom-nav">
   <button data-nav="home-screen" class="active">🏠<span>मुख्य</span></button>
-  <button data-nav="search-screen">🔍<span>नाम खोजें</span></button>
-  <button data-nav="video-screen">🎬<span>वीडियो</span></button>
   <button data-nav="education-screen">📚<span>पार्षद</span></button>
   <button data-nav="share-screen">📲<span>शेयर</span></button>
 </nav>

@@ -18,7 +18,6 @@
     });
     window.scrollTo(0, 0);
     if (id === 'home-screen') { renderHome(); startFlipClock(); }
-    if (id === 'search-screen') $('search2-input').focus();
     if (id === 'share-screen') renderShare();
   }
 
@@ -128,22 +127,41 @@
   // ===== EVM DEMO =====
   function initEvm() {
     const btn = $('evm-btn');
-    if (!btn) return;
+    const screen = $('evm-screen');
+    if (!btn || !screen) return;
+
     btn.addEventListener('click', () => {
-      const screen = $('evm-screen');
-      screen.innerHTML = '<div class="evm-success"><b>✓</b><p>आपका वोट दर्ज!</p><p class="evm-note">नीतू मारोठिया — वार्ड 40 की आवाज़</p></div>';
-      screen.classList.add('vote-done');
-      // confetti
-      launchConfetti();
-      btn.disabled = true;
-      btn.style.opacity = '0.6';
-      setTimeout(() => {
-        screen.innerHTML = '<div class="evm-msg">दबाएं और देखें</div>';
-        screen.classList.remove('vote-done');
-        btn.disabled = false;
-        btn.style.opacity = '1';
-      }, 3500);
+      if (screen.classList.contains('vote-confirm') || screen.classList.contains('vote-done')) return;
+      screen.classList.add('vote-confirm');
+      screen.innerHTML = `
+        <div class="evm-confirm">
+          <span class="evm-confirm-symbol">🪷</span>
+          <div class="evm-confirm-party">भारतीय जनता पार्टी (भाजपा) · कमल</div>
+          <div class="evm-confirm-name">नीतू मारोठिया</div>
+          <div class="evm-confirm-q">क्या आप अपना वोट इसे देना चाहते हैं?</div>
+          <div class="evm-confirm-actions">
+            <button class="evm-yes" id="evm-yes">हाँ, वोट करें</button>
+            <button class="evm-no" id="evm-no">नहीं</button>
+          </div>
+        </div>`;
+      $('evm-yes').addEventListener('click', () => {
+        screen.classList.remove('vote-confirm');
+        screen.classList.add('vote-done');
+        screen.innerHTML = '<div class="evm-success"><b>✓</b><p>आपका वोट दर्ज!</p><p class="evm-note">नीतू मारोठिया — वार्ड 40 की आवाज़</p></div>';
+        launchConfetti();
+        btn.disabled = true;
+        btn.style.opacity = '0.6';
+        setTimeout(resetEvm, 4000);
+      });
+      $('evm-no').addEventListener('click', resetEvm);
     });
+
+    function resetEvm() {
+      screen.classList.remove('vote-confirm', 'vote-done');
+      screen.innerHTML = '<div class="evm-msg">मतदान के लिए नीचे<br>अपना वोट दबाएं</div>';
+      btn.disabled = false;
+      btn.style.opacity = '1';
+    }
   }
 
   function launchConfetti() {
@@ -171,7 +189,7 @@
     const card = $('trust-card');
     if (!card) return;
     card.innerHTML = `
-      <div class="trust-item"><span class="trust-icon">✅</span><div><strong>अपना नाम खोजें</strong><p>नीचे सर्च बॉक्स में अपना नाम टाइप करें</p></div></div>
+      <div class="trust-item"><span class="trust-icon">✅</span><div><strong>वोटर लिस्ट में अपना नाम देखें</strong><p>सर्च बॉक्स में अपना नाम लिखें और पुष्टि करें</p></div></div>
       <div class="trust-item"><span class="trust-icon">🗳️</span><div><strong>9 सितंबर को वोट जरूर दें</strong><p>सुबह 7AM – शाम 6PM · वार्ड 40</p></div></div>
       <div class="trust-item"><span class="trust-icon">🤝</span><div><strong>नीतू मारोठिया — आपकी सेवा में</strong><p>वार्ड 40 की बेटी, आपके विकास के लिए</p></div></div>`;
   }
@@ -190,10 +208,10 @@
   }
 
   function renderSocialProof() {
-    const total = (window.VOTERS_DATA && VOTERS_DATA.length) || 1388;
+    const total = (VoterDB.voters && VoterDB.voters.length) || (window.VOTERS_DATA && VOTERS_DATA.length) || 1388;
     $('social-proof').innerHTML = `
       <div class="proof-item"><span class="proof-num">${total}</span><span class="proof-lbl">वार्ड 40 मतदाता</span></div>
-      <div class="proof-item"><span class="proof-num">1</span><span class="proof-lbl">उम्मीदवार — नीतू</span></div>
+      <div class="proof-item"><span class="proof-num">1</span><span class="proof-lbl">उम्मीदवार — नीतू मारोठिया</span></div>
       <div class="proof-item"><span class="proof-num">9 सितं.</span><span class="proof-lbl">मतदान दिवस</span></div>`;
   }
 
@@ -247,23 +265,6 @@
     });
   }
 
-  // ===== VIDEO =====
-  function initVideo() {
-    const savedUrl = Store.get('videoUrl', '');
-    if (savedUrl && $('video-placeholder')) {
-      $('video-placeholder').innerHTML = `<video controls style="width:100%;border-radius:12px;background:#000" src="${savedUrl}"></video>`;
-    }
-    if ($('video-save-btn')) {
-      $('video-save-btn').addEventListener('click', () => {
-        const url = $('video-url').value.trim();
-        if (!url) return;
-        Store.set('videoUrl', url);
-        alert('✅ वीडियो सेव हो गया!');
-        location.reload();
-      });
-    }
-  }
-
   // ===== EDUCATION =====
   function renderEducation() {
     const roles = [
@@ -308,7 +309,7 @@
 
   // ===== SHARE =====
   function renderShare() {
-    const msg = `🗳️ *वार्ड 40 — नीतू मारोठिया*\n\nदोस्तों! अपना नाम चेक करें और 9 सितंबर 2026 को वोट जरूर दें।\n\nसुबह 7AM – शाम 6PM\n\nनीतू मारोठिया — आपके वार्ड की सेवा में।\n\n🔗 ${APP_URL}`;
+    const msg = `🗳️ *वार्ड 40 — नीतू मारोठिया*\n\nवार्ड 40 के सभी मतदाताओं से आग्रह — 9 सितंबर 2026 को मतदान अवश्य करें।\n\nवोटर लिस्ट में अपना नाम देखें: ${APP_URL}\n\nसुबह 7AM – शाम 6PM · वार्ड 40\n\nनीतू मारोठिया — आपके वार्ड की सेवा में।\n\n🔗 ${APP_URL}`;
     $('share-msg').value = msg;
     $('share-preview').innerHTML = `<div class="preview-msg"><div class="preview-title">मैसेज पूर्वावलोकन:</div><div class="preview-body">${msg.replace(/\n/g, '<br>')}</div></div>`;
   }
@@ -334,7 +335,7 @@
   // ===== EXPOSED API =====
   window.App = {
     shareApp: function() {
-      const msg = encodeURIComponent(`🗳️ वार्ड 40 के दोस्तों! अपना नाम यहां चेक करें: ${APP_URL}`);
+      const msg = encodeURIComponent(`🗳️ वार्ड 40 के मतदाताओं के लिए जरूरी जानकारी — वोटर लिस्ट में अपना नाम देखें: ${APP_URL}`);
       if (navigator.share) {
         navigator.share({ title: 'वार्ड 40 — नीतू मारोठिया', text: decodeURIComponent(msg) }).catch(() => {});
       } else {
@@ -342,14 +343,22 @@
       }
     },
     shareWhatsApp: function() {
-      const msg = encodeURIComponent(`🗳️ *वार्ड 40 — नीतू मारोठिया*\n\nदोस्तों! अपना नाम चेक करें और 9 सितंबर को वोट जरूर दें।\n\nसुबह 7AM – शाम 6PM\n\n*नीतू मारोठिया* — आपके वार्ड की सेवा में।\n\n🔗 ${APP_URL}`);
+      const msg = encodeURIComponent(`🗳️ *वार्ड 40 — नीतू मारोठिया*\n\nवार्ड 40 के सभी मतदाताओं से आग्रह — 9 सितंबर 2026 को मतदान अवश्य करें।\n\nवोटर लिस्ट में अपना नाम देखें: ${APP_URL}\n\nसुबह 7AM – शाम 6PM · वार्ड 40\n\nनीतू मारोठिया — आपके वार्ड की सेवा में।\n\n🔗 ${APP_URL}`);
       window.open('https://wa.me/?text=' + msg, '_blank');
+    },
+    sharePoster: function() {
+      const msg = encodeURIComponent(`🗳️ वार्ड 40 · नीतू मारोठिया\n\nआधिकारिक पोस्टर — 9 सितंबर 2026 को अपना वोट जरूर दें।\n\nसुबह 7AM – शाम 6PM\n\n🖼️ ${APP_URL}candidate_poster.jpg`);
+      if (navigator.share) {
+        navigator.share({ title: 'वार्ड 40 — नीतू मारोठिया', text: decodeURIComponent(msg) }).catch(() => {});
+      } else {
+        window.open('https://wa.me/?text=' + msg, '_blank');
+      }
     },
     copyLink: function() {
       navigator.clipboard.writeText(APP_URL).then(() => alert('✅ लिंक कॉपी हो गया!'));
     },
     shareSMS: function() {
-      window.open('sms:?body=' + encodeURIComponent(`वार्ड 40 के दोस्तों! अपना नाम चेक करें:\n${APP_URL}\n9 सितंबर को वोट जरूर दें। नीतू मारोठिया को वोट दें।`), '_blank');
+      window.open('sms:?body=' + encodeURIComponent(`वार्ड 40 के सभी मतदाताओं से आग्रह — 9 सितंबर 2026 को वोट जरूर दें।\nवोटर लिस्ट में अपना नाम देखें: ${APP_URL}\nनीतू मारोठिया — वार्ड 40 की आवाज़।`), '_blank');
     },
     copyMessage: function() {
       navigator.clipboard.writeText($('share-msg').value).then(() => alert('✅ मैसेज कॉपी हो गया!'));
@@ -358,10 +367,8 @@
 
   // ===== INIT =====
   bindSearch('voter-search', 'search-results');
-  bindSearch('search2-input', 'search2-results');
   renderHome();
   renderEducation();
-  initVideo();
   renderShare();
   createParticles();
   initEvm();
@@ -369,4 +376,5 @@
   initSplash();
   renderCountdown();
   startFlipClock();
+  VoterDB.load().then(() => renderHome()).catch(() => {});
 })();
