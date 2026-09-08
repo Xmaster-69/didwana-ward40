@@ -8,10 +8,9 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
-<!-- Open Graph for WhatsApp link preview -->
 <meta property="og:type" content="website">
 <meta property="og:title" content="वार्ड 40 · नीतू मारोठिया">
-<meta property="og:description" content="वोटर लिस्ट में अपना नाम देखें और 9 सितंबर 2026 को अपने वार्ड के लिए वोट जरूर दें। नीतू मारोठिया — वार्ड 40 की आवाज़।">
+<meta property="og:description" content="वोटर लिस्ट में अपना नाम देखें और 9 सितंबर 2026 को अपने वार्ड के लिए वोट जरूर दें।">
 <meta property="og:image" content="https://xmaster-69.github.io/didwana-ward40/candidate_poster.jpg">
 <meta property="og:image:width" content="1024">
 <meta property="og:image:height" content="1536">
@@ -51,13 +50,42 @@
     <div class="hero-particles" id="hero-particles"></div>
   </div>
 
+  <!-- VOTE PLEDGE -->
+  <div class="pledge-section">
+    <div class="pledge-card" id="pledge-card">
+      <div class="pledge-top">
+        <span class="pledge-lotus">🪷</span>
+        <div class="pledge-text">
+          <div class="pledge-heading">मैं नीतू मारोठिया को वोट दूंगा/दूंगी!</div>
+          <div class="pledge-sub">9 सितंबर 2026 को वार्ड 40 के बूथ पर उपस्थित रहूंगा/रहूंगी</div>
+        </div>
+      </div>
+      <button class="pledge-btn" id="pledge-btn">
+        <span class="pledge-btn-icon">✋</span>
+        <span class="pledge-btn-text">वादा करें</span>
+      </button>
+      <div class="pledge-stats" id="pledge-stats"></div>
+    </div>
+  </div>
+
+  <!-- VOTER SEARCH -->
   <div class="search-section">
     <h2 class="search-title">वोटर लिस्ट में अपना नाम देखें</h2>
-    <p class="search-sub">नीचे बॉक्स में अपना नाम लिखें और देखें कि आप वार्ड 40 के मतदाता सूची में शामिल हैं या नहीं</p>
+    <p class="search-sub">नाम, पिता/पति का नाम, या EPIC वोटर ID नंबर से खोजें</p>
     <div class="search-bar">
-      <input type="search" id="voter-search" placeholder="🔍 अपना नाम यहां लिखें..." autocomplete="off">
+      <input type="search" id="voter-search" placeholder="🔍 नाम या EPIC नंबर लिखें..." autocomplete="off">
     </div>
     <div id="search-results" class="list"></div>
+    <div class="eci-link-box">
+      <a href="https://electoralsearch.eci.gov.in/" target="_blank" rel="noopener" class="eci-link">
+        <span class="eci-icon">🏛️</span>
+        <span class="eci-text">
+          <strong>आधिकारिक वोटर लिस्ट देखें</strong>
+          <small>electoralsearch.eci.gov.in — भारत निर्वाचन आयोग</small>
+        </span>
+        <span class="eci-arrow">→</span>
+      </a>
+    </div>
   </div>
 
   <div class="trust-card" id="trust-card"></div>

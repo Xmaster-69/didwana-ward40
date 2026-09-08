@@ -33,7 +33,6 @@
       return;
     }
     $('splash-tap').addEventListener('click', () => {
-      // Try to play audio (medium volume)
       playSplashAudio();
       sessionStorage.setItem('splashShown', '1');
       hideSplash();
@@ -43,9 +42,9 @@
   function playSplashAudio() {
     try {
       const audio = new Audio(AUDIO_FILE);
-      audio.volume = 0.5; // medium volume
-      audio.play().catch(() => { /* silent fallback if no file yet */ });
-    } catch(e) { /* noop */ }
+      audio.volume = 0.5;
+      audio.play().catch(() => {});
+    } catch(e) {}
   }
 
   function hideSplash() {
@@ -53,7 +52,7 @@
     if (s) s.classList.add('hidden');
   }
 
-  // ===== FLIP CLOCK COUNTDOWN (with seconds, New Year style) =====
+  // ===== FLIP CLOCK COUNTDOWN =====
   function renderCountdown() {
     const clock = $('flip-clock');
     if (!clock) return;
@@ -92,7 +91,6 @@
         <div class="flip-card">
           <div class="flip-face top">${str}</div>
           <div class="flip-face bottom">${str}</div>
-          <div class="flip-fold"></div>
         </div>
         <div class="flip-label">${label}</div>
       </div>`;
@@ -102,7 +100,6 @@
     if (flipTimer) clearInterval(flipTimer);
     renderCountdown();
     flipTimer = setInterval(() => {
-      // Only update if home screen active & user has passed splash
       const home = $('home-screen');
       if (home && home.classList.contains('active')) renderCountdown();
     }, 1000);
@@ -112,7 +109,7 @@
   function createParticles() {
     const container = $('hero-particles');
     if (!container) return;
-    const emojis = ['🗳️', '✨', '💜', '🌸', '⭐', '🎀'];
+    const emojis = ['🗳️', '✨', '💜', '🌸', '⭐', '🪷'];
     let html = '';
     for (let i = 0; i < 10; i++) {
       const left = Math.floor(Math.random() * 90) + 5;
@@ -122,6 +119,43 @@
       html += `<span class="particle" style="left:${left}%;animation-delay:${delay}s;animation-duration:${dur}s">${emoji}</span>`;
     }
     container.innerHTML = html;
+  }
+
+  // ===== VOTE PLEDGE =====
+  function initPledge() {
+    const btn = $('pledge-btn');
+    if (!btn) return;
+    const pledged = Store.get('pledged', false);
+    updatePledgeUI(pledged);
+
+    btn.addEventListener('click', () => {
+      const current = Store.get('pledged', false);
+      if (!current) {
+        Store.set('pledged', true);
+        Store.set('pledgeCount', (Store.get('pledgeCount', 0)) + 1);
+        updatePledgeUI(true);
+        launchConfetti();
+      } else {
+        Store.set('pledged', false);
+        Store.set('pledgeCount', Math.max(0, (Store.get('pledgeCount', 1)) - 1));
+        updatePledgeUI(false);
+      }
+    });
+  }
+
+  function updatePledgeUI(pledged) {
+    const btn = $('pledge-btn');
+    const stats = $('pledge-stats');
+    if (!btn || !stats) return;
+    const count = Store.get('pledgeCount', 47);
+    if (pledged) {
+      btn.classList.add('pledged');
+      btn.innerHTML = '<span class="pledge-btn-icon">✅</span><span class="pledge-btn-text">वादा किया!</span>';
+    } else {
+      btn.classList.remove('pledged');
+      btn.innerHTML = '<span class="pledge-btn-icon">✋</span><span class="pledge-btn-text">वादा करें</span>';
+    }
+    stats.innerHTML = `<span class="pledge-count">${count}</span> लोगों ने वादा किया है`;
   }
 
   // ===== EVM DEMO =====
@@ -189,7 +223,7 @@
     const card = $('trust-card');
     if (!card) return;
     card.innerHTML = `
-      <div class="trust-item"><span class="trust-icon">✅</span><div><strong>वोटर लिस्ट में अपना नाम देखें</strong><p>सर्च बॉक्स में अपना नाम लिखें और पुष्टि करें</p></div></div>
+      <div class="trust-item"><span class="trust-icon">✅</span><div><strong>वोटर लिस्ट में अपना नाम देखें</strong><p>नाम या EPIC नंबर से खोजें</p></div></div>
       <div class="trust-item"><span class="trust-icon">🗳️</span><div><strong>9 सितंबर को वोट जरूर दें</strong><p>सुबह 7AM – शाम 6PM · वार्ड 40</p></div></div>
       <div class="trust-item"><span class="trust-icon">🤝</span><div><strong>नीतू मारोठिया — आपकी सेवा में</strong><p>वार्ड 40 की बेटी, आपके विकास के लिए</p></div></div>`;
   }
@@ -199,7 +233,7 @@
       { n: '1', icon: '🪪', t: 'पहचान लेकर जाएं', d: 'EPIC कार्ड या मान्य फोटो पहचान पत्र' },
       { n: '2', icon: '📍', t: 'बूथ पर पहुंचें', d: 'अपने निर्धारित बूथ पर सुबह 7 बजे से' },
       { n: '3', icon: '✅', t: 'टोकन लें', d: 'लाइन में लगें और टोकन प्राप्त करें' },
-      { n: '4', icon: '🗳️', t: 'वोट डालें', d: 'ईवीएम पर नीतू मारोठिया का बटन दबाएं' },
+      { n: '4', icon: '🗳️', t: 'वोट डालें', d: 'ईवीएम पर कमल बटन दबाएं' },
       { n: '5', icon: '🤝', t: 'जांच करें', d: 'सफ़ेद स्याही की जांच करें और घर लौटें' }
     ];
     $('voting-steps').innerHTML = steps.map(s => `
@@ -225,6 +259,7 @@
       <div class="detail-card">
         <div class="detail-row"><span class="dl">नाम</span><span class="dv">${v.name || '—'}</span></div>
         <div class="detail-row"><span class="dl">पिता/पति</span><span class="dv">${v.parent || '—'}</span></div>
+        <div class="detail-row"><span class="dl">EPIC नंबर</span><span class="dv">${v.epic || '—'}</span></div>
         <div class="detail-row"><span class="dl">घर नं.</span><span class="dv">${v.houseCanonical || '—'}</span></div>
         <div class="detail-row"><span class="dl">आयु</span><span class="dv">${v.age != null ? v.age + ' वर्ष' : '—'}</span></div>
       </div>
@@ -238,7 +273,7 @@
     showScreen('voter-detail-screen');
   }
 
-  // ===== GENERIC SEARCH BINDER =====
+  // ===== ENHANCED SEARCH (Name + EPIC/Voter ID) =====
   function bindSearch(inputId, resultsId) {
     $(inputId).addEventListener('input', function() {
       const q = this.value.trim();
@@ -246,21 +281,20 @@
       if (!q || q.length < 2) { results.innerHTML = ''; return; }
       const voters = VoterDB.search(q).slice(0, 25);
       if (!voters.length) {
-        results.innerHTML = '<div class="search-empty">😕 कोई मेल नहीं मिला।<br>नाम सही लिखें।</div>';
+        results.innerHTML = '<div class="search-empty">😕 कोई परिणाम नहीं मिला।<br>नाम या EPIC नंबर सही लिखें।<br><a href="https://electoralsearch.eci.gov.in/" target="_blank" style="color:#9c27b0;font-weight:700;">आधिकारिक साइट पर खोजें →</a></div>';
         return;
       }
       results.innerHTML = voters.map(v => `
-        <div class="list-item voter-result" data-rid="${v.recordId}">
-          <div class="voter-avatar female">${(v.name || '?').substring(0, 1)}</div>
-          <div class="voter-info"><div class="voter-name">${v.name || 'अज्ञात'}</div>
-          <div class="voter-meta">घर ${v.houseCanonical || '—'}</div></div>
-          <div class="check-badge">✅</div></div>`).join('');
-      results.querySelectorAll('.list-item').forEach(el => {
-        el.addEventListener('click', () => {
-          $(inputId).value = '';
-          results.innerHTML = '';
-          openVoterDetail(parseInt(el.dataset.rid));
-        });
+        <div class="voter-result" data-rid="${v.recordId}">
+          <div class="vr-name">${v.name || ''} ${v.parent ? '(' + v.parent + ')' : ''}</div>
+          <div class="vr-meta">
+            ${v.epic ? '<span class="vr-tag">EPIC: ' + v.epic + '</span>' : ''}
+            ${v.houseCanonical ? '<span class="vr-tag">घर ' + v.houseCanonical + '</span>' : ''}
+            ${v.age != null ? '<span class="vr-tag">' + v.age + ' वर्ष</span>' : ''}
+          </div>
+        </div>`).join('');
+      results.querySelectorAll('.voter-result').forEach(el => {
+        el.addEventListener('click', () => openVoterDetail(Number(el.dataset.rid)));
       });
     });
   }
@@ -268,27 +302,24 @@
   // ===== EDUCATION =====
   function renderEducation() {
     const roles = [
-      { icon: '🛣️', t: 'सड़कें', d: 'गलियों और सड़कों का विकास व मरम्मत' },
-      { icon: '💧', t: 'पानी', d: 'नल का पानी और पेयजल व्यवस्था' },
-      { icon: '🧹', t: 'सफाई', d: 'कचरा संग्रहण, नालियों की सफाई' },
-      { icon: '💡', t: 'रोशनी', d: 'गली-मोहल्ले की स्ट्रीट लाइटें' },
-      { icon: '🏫', t: 'शिक्षा', d: 'स्कूल और युवाओं की सुविधाएं' },
-      { icon: '🏥', t: 'स्वास्थ्य', d: 'स्वास्थ्य केंद्र व्यवस्था' },
-      { icon: '📑', t: 'प्रमाण पत्र', d: 'जन्म, मृत्यु, आय और निवास प्रमाण पत्र' }
+      { icon: '🏗️', title: 'सड़क, नाली, बिजली', desc: 'बुनियादी ढांचे का विकास और रखरखाव।' },
+      { icon: '💧', title: 'पानी और सफ़ाई', desc: 'पेयजल आपूर्ति और स्वच्छता सुनिश्चित करना।' },
+      { icon: '🏫', title: 'शिक्षा और स्वास्थ्य', desc: 'स्कूल, अस्पताल और सामुदायिक सेवाओं का विकास।' },
+      { icon: '🌳', title: 'पार्क और सार्वजनिक स्थान', desc: 'हरित क्षेत्र और सार्वजनिक सुविधाओं का निर्माण।' }
     ];
     const rc = $('role-cards');
     if (rc) {
       rc.innerHTML = roles.map(r => `
         <div class="role-card"><div class="role-icon">${r.icon}</div>
-        <div class="role-title">${r.t}</div><div class="role-desc">${r.d}</div></div>`).join('');
+          <div class="role-text"><h4>${r.title}</h4><p>${r.desc}</p></div></div>`).join('');
     }
 
     const faqs = [
-      { q: 'EPIC कार्ड नहीं है तो?', a: 'किसी भी मान्य फोटो पहचान पत्र के साथ जाएं — आधार, पैन, ड्राइविंग लाइसेंस।' },
-      { q: 'कितनी बार वोट दे सकते हैं?', a: 'सिर्फ एक बार। एक बार डालने के बाद दोबारा नहीं।' },
-      { q: 'नाम सूची में नहीं आ रहा?', a: 'बूथ पर मतदान अधिकारी से संपर्क करें। सूची में नाम होना जरूरी है।' },
-      { q: 'बूथ कहां है?', a: 'मतदाता परिचय पत्र पर बूथ का पता लिखा होता है। या जिला निर्वाचन कार्यालय से संपर्क करें।' },
-      { q: 'मैं किसके लिए वोट देता/देती हूं?', a: 'आप अपने वार्ड के लिए एक पार्षद चुनते हैं जो सड़क, पानी, सफाई जैसी समस्याएं हल करेगा।' }
+      { q: 'पार्षद कौन होता है?', a: 'पार्षद वह जनप्रतिनिधि होता है जिसे आप सीधे अपने वार्ड से चुनते हैं। वह आपके क्षेत्र की समस्याओं को नगर पालिका में उठाता है और उनका समाधान कराता है।' },
+      { q: 'पार्षद कैसे चुना जाता है?', a: 'प्रत्येक वार्ड से एक पार्षद का चुनाव सीधे मतदान द्वारा होता है। ईवीएम पर अपने पसंदीदा उम्मीदवार को वोट दें।' },
+      { q: 'चुनाव कब हो रहा है?', a: '9 सितंबर 2026, सुबह 7 बजे से शाम 6 बजे तक। डीडवाना नगर पालिका, वार्ड 40।' },
+      { q: 'मैं वोट कैसे डालूं?', a: 'EPIC पहचान पत्र लेकर अपने निर्धारित बूथ पर जाएं। ईवीएम पर कमल बटन दबाएं। मतदान के बाद सफ़ेद स्याही से उंगली पर निशान जांचें।' },
+      { q: 'पहचान पत्र नहीं है तो क्या करें?', a: 'मतदाता सूची में नाम होना ज़रूरी है। आधार कार्ड, पासपोर्ट, ड्राइविंग लाइसेंस जैसे अन्य दस्तावेज़ भी चलेंगे।' }
     ];
     const fq = $('faq-list');
     if (fq) {
@@ -373,6 +404,7 @@
   createParticles();
   initEvm();
   initInstall();
+  initPledge();
   initSplash();
   renderCountdown();
   startFlipClock();

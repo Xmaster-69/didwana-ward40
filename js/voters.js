@@ -38,16 +38,20 @@ const VoterDB = {
   search(query) {
     if (!query) return this.voters;
     const q = query.toLowerCase().trim();
-    return this.voters.filter(v =>
-      (v.name && v.name.toLowerCase().includes(q)) ||
-      (v.parent && v.parent.toLowerCase().includes(q)) ||
-      (v.epic && v.epic.toLowerCase().includes(q)) ||
-      (v.houseSource && v.houseSource.toLowerCase().includes(q)) ||
-      (v.houseCanonical != null && String(v.houseCanonical) === q) ||
-      (v.recordId != null && String(v.recordId) === q) ||
-      (v.age != null && String(v.age) === q) ||
-      (v.gender && v.gender.includes(q))
-    );
+    const isNumeric = /^\d+$/.test(q);
+    return this.voters.filter(v => {
+      if (v.name && v.name.toLowerCase().includes(q)) return true;
+      if (v.parent && v.parent.toLowerCase().includes(q)) return true;
+      if (v.epic && v.epic.toLowerCase().includes(q)) return true;
+      if (v.houseSource && v.houseSource.toLowerCase().includes(q)) return true;
+      if (isNumeric) {
+        if (v.houseCanonical != null && String(v.houseCanonical) === q) return true;
+        if (v.recordId != null && String(v.recordId) === q) return true;
+        if (v.age != null && String(v.age) === q) return true;
+      }
+      if (v.gender && v.gender.includes(q)) return true;
+      return false;
+    });
   },
 
   getVoter(recordId) {
