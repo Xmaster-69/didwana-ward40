@@ -104,9 +104,9 @@
     }
     btn.addEventListener('click', () => {
       if (Store.get('reminderSet', false)) return;
-      const title = encodeURIComponent('🗳️ वोट दें — नीतू मारोठिया · वार्ड 40');
+      const title = encodeURIComponent('🗳️ वोट दें — नीतू चौहान · वार्ड 40');
       const dates = '20260909T010000Z/20260909T123000Z';
-      const details = encodeURIComponent('नेहरू बाल स्कूल, लाडनू रोड, डीडवाना\nसुबह 7AM – शाम 6PM\nनीतू मारोठिया को वोट दें!');
+      const details = encodeURIComponent('नेहरू बाल स्कूल, लाडनू रोड, डीडवाना\nसुबह 7AM – शाम 6PM\nनीतू चौहान को वोट दें!');
       const location = encodeURIComponent(CONFIG.boothFull);
       const gcalUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${dates}&details=${details}&location=${location}`;
       window.open(gcalUrl, '_blank');
@@ -226,7 +226,7 @@
         <div class="evm-confirm">
           <span class="evm-confirm-symbol">🪷</span>
           <div class="evm-confirm-party">भारतीय जनता पार्टी (भाजपा) · कमल</div>
-          <div class="evm-confirm-name">नीतू मारोठिया</div>
+          <div class="evm-confirm-name">नीतू चौहान</div>
           <div class="evm-confirm-q">क्या आप अपना वोट इसे देना चाहते हैं?</div>
           <div class="evm-confirm-actions">
             <button class="evm-yes" id="evm-yes">हाँ, वोट करें</button>
@@ -236,7 +236,7 @@
       $('evm-yes').addEventListener('click', () => {
         screen.classList.remove('vote-confirm');
         screen.classList.add('vote-done');
-        screen.innerHTML = '<div class="evm-success"><b>✓</b><p>आपका वोट दर्ज!</p><p class="evm-note">नीतू मारोठिया — वार्ड 40 की आवाज़</p></div>';
+        screen.innerHTML = '<div class="evm-success"><b>✓</b><p>आपका वोट दर्ज!</p><p class="evm-note">नीतू चौहान — वार्ड 40 की आवाज़</p></div>';
         launchConfetti();
         btn.disabled = true;
         btn.style.opacity = '0.6';
@@ -283,7 +283,7 @@
     card.innerHTML = `
       <div class="trust-item"><span class="trust-icon">✅</span><div><strong>वोटर लिस्ट में अपना नाम देखें</strong><p>नाम या EPIC नंबर से खोजें</p></div></div>
       <div class="trust-item"><span class="trust-icon">🗳️</span><div><strong>9 सितंबर को वोट जरूर दें</strong><p>सुबह 7AM – शाम 6PM · वार्ड 40</p></div></div>
-      <div class="trust-item"><span class="trust-icon">🤝</span><div><strong>नीतू मारोठिया — आपकी सेवा में</strong><p>वार्ड 40 की बेटी, आपके विकास के लिए</p></div></div>`;
+      <div class="trust-item"><span class="trust-icon">🤝</span><div><strong>नीतू चौहान — आपकी सेवा में</strong><p>वार्ड 40 की बेटी, आपके विकास के लिए</p></div></div>`;
   }
 
   function renderVotingSteps() {
@@ -303,7 +303,7 @@
     const total = (VoterDB.voters && VoterDB.voters.length) || (window.VOTERS_DATA && VOTERS_DATA.length) || 1388;
     $('social-proof').innerHTML = `
       <div class="proof-item"><span class="proof-num">${total}</span><span class="proof-lbl">वार्ड 40 मतदाता</span></div>
-      <div class="proof-item"><span class="proof-num">1</span><span class="proof-lbl">उम्मीदवार — नीतू मारोठिया</span></div>
+      <div class="proof-item"><span class="proof-num">1</span><span class="proof-lbl">उम्मीदवार — नीतू चौहान</span></div>
       <div class="proof-item"><span class="proof-num">9 सितं.</span><span class="proof-lbl">मतदान दिवस</span></div>`;
   }
 
@@ -320,7 +320,7 @@
       `घर नं.: ${v.houseCanonical || '—'}\n` +
       `आयु: ${v.age != null ? v.age + ' वर्ष' : '—'}\n\n` +
       `9 सितंबर 2026 · नेहरू बाल स्कूल, लाडनू रोड\n` +
-      `🪷 नीतू मारोठिया — वार्ड 40\n\n` +
+      `🪷 नीतू चौहान — वार्ड 40\n\n` +
       `🔗 ${APP_URL}`
     );
     detail.innerHTML = `
@@ -410,7 +410,7 @@
 
   // ===== SHARE =====
   function renderShare() {
-    const msg = `🗳️ *वार्ड 40 — नीतू मारोठिया*\n\nवार्ड 40 के सभी मतदाताओं से आग्रह — 9 सितंबर 2026 को मतदान अवश्य करें।\n\n📍 बूथ: ${CONFIG.boothFull}\n🕐 समय: सुबह 7AM – शाम 6PM\n\nवोटर लिस्ट में अपना नाम देखें: ${APP_URL}\n\n🪷 नीतू मारोठिया — आपके वार्ड की सेवा में।\n\n🔗 ${APP_URL}`;
+    const msg = `🗳️ *वार्ड 40 — नीतू चौहान*\n\nवार्ड 40 के सभी मतदाताओं से आग्रह — 9 सितंबर 2026 को मतदान अवश्य करें।\n\n📍 बूथ: ${CONFIG.boothFull}\n🕐 समय: सुबह 7AM – शाम 6PM\n\nवोटर लिस्ट में अपना नाम देखें: ${APP_URL}\n\n🪷 नीतू चौहान — आपके वार्ड की सेवा में।\n\n🔗 ${APP_URL}`;
     $('share-msg').value = msg;
     $('share-preview').innerHTML = `<div class="preview-msg"><div class="preview-title">मैसेज पूर्वावलोकन:</div><div class="preview-body">${msg.replace(/\n/g, '<br>')}</div></div>`;
   }
@@ -436,21 +436,21 @@
   // ===== EXPOSED API =====
   window.App = {
     shareApp: function() {
-      const msg = encodeURIComponent(`🗳️ वार्ड 40 — नीतू मारोठिया\n\n📍 बूथ: ${CONFIG.boothFull}\n🕐 9 सितंबर 2026 · सुबह 7AM – शाम 6PM\n\nवोटर लिस्ट में अपना नाम देखें: ${APP_URL}`);
+      const msg = encodeURIComponent(`🗳️ वार्ड 40 — नीतू चौहान\n\n📍 बूथ: ${CONFIG.boothFull}\n🕐 9 सितंबर 2026 · सुबह 7AM – शाम 6PM\n\nवोटर लिस्ट में अपना नाम देखें: ${APP_URL}`);
       if (navigator.share) {
-        navigator.share({ title: 'वार्ड 40 — नीतू मारोठिया', text: decodeURIComponent(msg) }).catch(() => {});
+        navigator.share({ title: 'वार्ड 40 — नीतू चौहान', text: decodeURIComponent(msg) }).catch(() => {});
       } else {
         window.open('https://wa.me/?text=' + msg, '_blank');
       }
     },
     shareWhatsApp: function() {
-      const msg = encodeURIComponent(`🗳️ *वार्ड 40 — नीतू मारोठिया*\n\nवार्ड 40 के सभी मतदाताओं से आग्रह — 9 सितंबर 2026 को मतदान अवश्य करें।\n\n📍 बूथ: ${CONFIG.boothFull}\n🕐 सुबह 7AM – शाम 6PM\n\nवोटर लिस्ट में अपना नाम देखें: ${APP_URL}\n\n🪷 नीतू मारोठिया — आपके वार्ड की सेवा में।\n\n🔗 ${APP_URL}`);
+      const msg = encodeURIComponent(`🗳️ *वार्ड 40 — नीतू चौहान*\n\nवार्ड 40 के सभी मतदाताओं से आग्रह — 9 सितंबर 2026 को मतदान अवश्य करें।\n\n📍 बूथ: ${CONFIG.boothFull}\n🕐 सुबह 7AM – शाम 6PM\n\nवोटर लिस्ट में अपना नाम देखें: ${APP_URL}\n\n🪷 नीतू चौहान — आपके वार्ड की सेवा में।\n\n🔗 ${APP_URL}`);
       window.open('https://wa.me/?text=' + msg, '_blank');
     },
     sharePoster: function() {
-      const msg = encodeURIComponent(`🗳️ वार्ड 40 · नीतू मारोठिया\n\n📍 बूथ: ${CONFIG.boothFull}\n🕐 9 सितंबर 2026 · सुबह 7AM – शाम 6PM\n\n🖼️ ${APP_URL}candidate_poster.jpg`);
+      const msg = encodeURIComponent(`🗳️ वार्ड 40 · नीतू चौहान\n\n📍 बूथ: ${CONFIG.boothFull}\n🕐 9 सितंबर 2026 · सुबह 7AM – शाम 6PM\n\n🖼️ ${APP_URL}candidate_poster.jpg`);
       if (navigator.share) {
-        navigator.share({ title: 'वार्ड 40 — नीतू मारोठिया', text: decodeURIComponent(msg) }).catch(() => {});
+        navigator.share({ title: 'वार्ड 40 — नीतू चौहान', text: decodeURIComponent(msg) }).catch(() => {});
       } else {
         window.open('https://wa.me/?text=' + msg, '_blank');
       }
@@ -467,7 +467,7 @@
       navigator.clipboard.writeText(APP_URL).then(() => alert('✅ लिंक कॉपी हो गया!'));
     },
     shareSMS: function() {
-      window.open('sms:?body=' + encodeURIComponent(`वार्ड 40 — नीतू मारोठिया\n📍 बूथ: ${CONFIG.boothFull}\n🕐 9 सितंबर · 7AM–6PM\nवोटर लिस्ट: ${APP_URL}\n🪷 वोट जरूर दें!`), '_blank');
+      window.open('sms:?body=' + encodeURIComponent(`वार्ड 40 — नीतू चौहान\n📍 बूथ: ${CONFIG.boothFull}\n🕐 9 सितंबर · 7AM–6PM\nवोटर लिस्ट: ${APP_URL}\n🪷 वोट जरूर दें!`), '_blank');
     },
     copyMessage: function() {
       navigator.clipboard.writeText($('share-msg').value).then(() => alert('✅ मैसेज कॉपी हो गया!'));

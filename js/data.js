@@ -2,7 +2,7 @@ const CONFIG = {
   ward: 40,
   area: 'डीडवाना',
   parishad: 'डीडवाना नगर पालिका',
-  candidate: 'नीतू मारोठिया',
+  candidate: 'नीतू चौहान',
   electionDate: new Date(2026, 8, 9),
   pollStartHour: 7,
   pollEndHour: 18,
