@@ -284,82 +284,140 @@ function drawPoster(voterImg,voterName){
   canvas.width=W;canvas.height=H;
   const ctx=canvas.getContext('2d');
 
-  // 1. Background gradient
-  const grad=ctx.createLinearGradient(0,0,W,H);
-  grad.addColorStop(0,'#4a148c');grad.addColorStop(0.5,'#7b1fa2');grad.addColorStop(1,'#e91e63');
-  ctx.fillStyle=grad;ctx.fillRect(0,0,W,H);
+  // === 1. RICH GRADIENT BACKGROUND ===
+  const bg=ctx.createLinearGradient(0,0,W*0.3,H);
+  bg.addColorStop(0,'#1a0533');bg.addColorStop(0.3,'#4a148c');bg.addColorStop(0.6,'#7b1fa2');bg.addColorStop(1,'#880e4f');
+  ctx.fillStyle=bg;ctx.fillRect(0,0,W,H);
 
-  // 2. Decorative circles
-  ctx.globalAlpha=0.08;ctx.fillStyle='#fff';
-  ctx.beginPath();ctx.arc(200,300,250,0,Math.PI*2);ctx.fill();
-  ctx.beginPath();ctx.arc(880,1600,300,0,Math.PI*2);ctx.fill();
+  // === 2. DECORATIVE TEXTURE PATTERN ===
+  ctx.globalAlpha=0.04;ctx.strokeStyle='#fff';ctx.lineWidth=1;
+  for(let i=-H;i<W+H;i+=60){ctx.beginPath();ctx.moveTo(i,0);ctx.lineTo(i+H,H);ctx.stroke();}
   ctx.globalAlpha=1;
 
-  // 3. "मैंने वोट दिया!" title
-  ctx.fillStyle='#fff';ctx.textAlign='center';
-  ctx.font='bold 72px "Noto Sans Devanagari", sans-serif';
+  // === 3. DECORATIVE BORDER FRAME ===
+  // Outer gold border
+  ctx.strokeStyle='rgba(255,193,7,0.5)';ctx.lineWidth=8;ctx.strokeRect(30,30,W-60,H-60);
+  // Inner border
+  ctx.strokeStyle='rgba(255,255,255,0.15)';ctx.lineWidth=2;ctx.strokeRect(50,50,W-100,H-100);
+  // Corner flourishes
+  const drawCorner=(x,y,flip)=>{
+    ctx.save();ctx.translate(x,y);ctx.scale(flip?1:-1,1);
+    ctx.beginPath();ctx.moveTo(0,0);ctx.quadraticCurveTo(25,0,25,25);ctx.strokeStyle='rgba(255,193,7,0.6)';ctx.lineWidth=3;ctx.stroke();
+    ctx.beginPath();ctx.arc(12,12,4,0,Math.PI*2);ctx.fillStyle='rgba(255,193,7,0.7)';ctx.fill();
+    ctx.restore();
+  };
+  drawCorner(70,70,false);drawCorner(W-70,70,true);drawCorner(70,H-70,false);drawCorner(W-70,H-70,true);
+
+  // === 4. DECORATIVE BANDS ===
+  // Top band
+  const topBand=ctx.createLinearGradient(0,80,W,80);
+  topBand.addColorStop(0,'rgba(255,193,7,0)');topBand.addColorStop(0.3,'rgba(255,193,7,0.15)');topBand.addColorStop(0.7,'rgba(255,193,7,0.15)');topBand.addColorStop(1,'rgba(255,193,7,0)');
+  ctx.fillStyle=topBand;ctx.fillRect(70,80,W-140,3);
+
+  // === 5. CAMPAIGN BADGE ===
+  const bx=W/2,by=140;
+  ctx.beginPath();ctx.ellipse(bx,by,200,38,0,0,Math.PI*2);
+  ctx.fillStyle='rgba(255,193,7,0.9)';ctx.fill();
+  ctx.fillStyle='#1a0533';ctx.font='bold 22px "Noto Sans Devanagari", sans-serif';ctx.textAlign='center';
+  ctx.fillText('🗳️ मतदान मुहिम 2026 · वार्ड 40',bx,by+7);
+
+  // === 6. TITLE "मैंने वोट दिया!" WITH GLOW ===
+  ctx.textAlign='center';
+  // Glow
+  ctx.shadowColor='rgba(255,193,7,0.5)';ctx.shadowBlur=30;
+  ctx.fillStyle='#ffeb3b';ctx.font='bold 80px "Noto Sans Devanagari", sans-serif';
   ctx.fillText('मैंने वोट दिया!',W/2,280);
-  ctx.font='bold 80px sans-serif';
-  ctx.fillText('🗳️',W/2,380);
+  ctx.shadowBlur=0;
 
-  // 4. Divider
-  ctx.strokeStyle='rgba(255,255,255,0.3)';ctx.lineWidth=2;
-  ctx.beginPath();ctx.moveTo(300,420);ctx.lineTo(780,420);ctx.stroke();
+  // Lotus SVG-style path
+  drawLotus(ctx,W/2,370,60);
 
-  // 5. Voter photo (circular)
-  const cx=W/2,cy=700,cr=180;
-  ctx.save();ctx.beginPath();ctx.arc(cx,cy,cr,0,Math.PI*2);ctx.closePath();ctx.clip();
+  // === 7. DECORATIVE DIVIDER ===
+  drawDivider(ctx,W/2,430,400,'rgba(255,193,7,0.5)');
+
+  // === 8. VOTER PHOTO — PREMIUM GLOW FRAME ===
+  const cx=W/2,cy=680,cr=190;
+
+  // Outer glow rings
+  for(let r=4;r>=1;r--){
+    ctx.beginPath();ctx.arc(cx,cy,cr+20+r*8,0,Math.PI*2);
+    ctx.strokeStyle=`rgba(255,193,7,${0.08*r})`;ctx.lineWidth=2;ctx.stroke();
+  }
+
+  // Photo clip
+  ctx.save();
+  ctx.beginPath();ctx.arc(cx,cy,cr,0,Math.PI*2);ctx.closePath();ctx.clip();
   const scale=Math.max(cr*2/voterImg.width,cr*2/voterImg.height);
   const sw=voterImg.width*scale,sh=voterImg.height*scale;
   ctx.drawImage(voterImg,cx-sw/2,cy-sh/2,sw,sh);
+  // Vignette
+  const vig=ctx.createRadialGradient(cx,cy,cr*0.5,cx,cy,cr);
+  vig.addColorStop(0,'rgba(0,0,0,0)');vig.addColorStop(1,'rgba(0,0,0,0.3)');
+  ctx.fillStyle=vig;ctx.fillRect(cx-cr,cy-cr,cr*2,cr*2);
   ctx.restore();
-  // Photo border
-  ctx.strokeStyle='#fff';ctx.lineWidth=6;
-  ctx.beginPath();ctx.arc(cx,cy,cr+3,0,Math.PI*2);ctx.stroke();
 
-  // 6. Voter name
-  ctx.fillStyle='#fff';ctx.textAlign='center';
-  ctx.font='bold 56px "Noto Sans Devanagari", sans-serif';
-  ctx.fillText(voterName,W/2,960);
+  // Gold ring border
+  ctx.beginPath();ctx.arc(cx,cy,cr+4,0,Math.PI*2);
+  ctx.strokeStyle='#ffc107';ctx.lineWidth=5;ctx.stroke();
+  ctx.beginPath();ctx.arc(cx,cy,cr+10,0,Math.PI*2);
+  ctx.strokeStyle='rgba(255,255,255,0.3)';ctx.lineWidth=2;ctx.stroke();
 
-  // 7. Ward info
-  ctx.font='32px "Noto Sans Devanagari", sans-serif';
-  ctx.fillStyle='rgba(255,255,255,0.85)';
-  ctx.fillText('वार्ड 40 · डीडवाना नगर पालिका',W/2,1020);
+  // ✅ Verified badge
+  const bx2=cx+cr-20,by2=cy+cr-20;
+  ctx.beginPath();ctx.arc(bx2,by2,28,0,Math.PI*2);ctx.fillStyle='#4caf50';ctx.fill();
+  ctx.strokeStyle='#fff';ctx.lineWidth=3;ctx.stroke();
+  ctx.fillStyle='#fff';ctx.font='bold 28px sans-serif';ctx.textAlign='center';
+  ctx.fillText('✓',bx2,by2+10);
 
-  // 8. Divider
-  ctx.strokeStyle='rgba(255,255,255,0.25)';ctx.lineWidth=2;
-  ctx.beginPath();ctx.moveTo(250,1070);ctx.lineTo(830,1070);ctx.stroke();
+  // === 9. VOTER NAME — GOLD + SHADOW ===
+  ctx.textAlign='center';
+  ctx.shadowColor='rgba(0,0,0,0.3)';ctx.shadowBlur=10;
+  ctx.fillStyle='#fff';ctx.font='bold 58px "Noto Sans Devanagari", sans-serif';
+  ctx.fillText(voterName,W/2,950);
+  ctx.shadowBlur=0;
 
-  // 9. Call to action
-  ctx.font='bold 44px "Noto Sans Devanagari", sans-serif';
-  ctx.fillStyle='#fdd835';
-  ctx.fillText('आपकी बारी है!',W/2,1160);
-  ctx.font='bold 36px "Noto Sans Devanagari", sans-serif';
-  ctx.fillStyle='#fff';
-  ctx.fillText('9 सितंबर 2026 · सुबह 7AM – शाम 6PM',W/2,1220);
+  // === 10. WARD INFO ===
+  ctx.font='30px "Noto Sans Devanagari", sans-serif';ctx.fillStyle='rgba(255,255,255,0.85)';
+  ctx.fillText('वार्ड 40 · डीडवाना नगर पालिका',W/2,1010);
 
-  // 10. Booth info
-  ctx.font='28px "Noto Sans Devanagari", sans-serif';
-  ctx.fillStyle='rgba(255,255,255,0.8)';
-  ctx.fillText('📍 नेहरू बाल स्कूल, लाडनू रोड, डीडवाना',W/2,1290);
+  // === 11. GOLD DIVIDER ===
+  drawDivider(ctx,W/2,1060,360,'rgba(255,193,7,0.4)');
 
-  // 11. Candidate branding
-  ctx.fillStyle='rgba(255,255,255,0.15)';
-  ctx.fillRect(0,1380,W,200);
-  ctx.fillStyle='#fff';ctx.textAlign='center';
-  ctx.font='bold 40px "Noto Sans Devanagari", sans-serif';
-  ctx.fillText('🪷 नीतू चौहान',W/2,1470);
-  ctx.font='28px "Noto Sans Devanagari", sans-serif';
-  ctx.fillStyle='rgba(255,255,255,0.85)';
-  ctx.fillText('भारतीय जनता पार्टी (भाजपा) · वार्ड 40',W/2,1520);
+  // === 12. CALL TO ACTION — BOLD ===
+  ctx.shadowColor='rgba(255,193,7,0.4)';ctx.shadowBlur=20;
+  ctx.fillStyle='#ffc107';ctx.font='bold 50px "Noto Sans Devanagari", sans-serif';
+  ctx.fillText('आपकी बारी है!',W/2,1140);
+  ctx.shadowBlur=0;
+  ctx.fillStyle='#fff';ctx.font='bold 34px "Noto Sans Devanagari", sans-serif';
+  ctx.fillText('9 सितंबर 2026 · सुबह 7AM – शाम 6PM',W/2,1200);
 
-  // 12. App watermark
-  ctx.font='22px sans-serif';
-  ctx.fillStyle='rgba(255,255,255,0.4)';
-  ctx.fillText(APP_URL,W/2,1850);
+  // === 13. BOOTH INFO ===
+  ctx.font='26px "Noto Sans Devanagari", sans-serif';ctx.fillStyle='rgba(255,255,255,0.75)';
+  ctx.fillText('📍 नेहरू बाल स्कूल, लाडनू रोड, डीडवाना',W/2,1270);
 
-  // Show result
+  // === 14. CANDIDATE BRANDING SECTION ===
+  // Bottom panel
+  const panelGrad=ctx.createLinearGradient(0,1360,0,H-60);
+  panelGrad.addColorStop(0,'rgba(0,0,0,0)');panelGrad.addColorStop(0.15,'rgba(0,0,0,0.25)');panelGrad.addColorStop(1,'rgba(0,0,0,0.4)');
+  ctx.fillStyle=panelGrad;ctx.fillRect(0,1360,W,H-1420);
+
+  // Lotus icon
+  drawLotus(ctx,W/2,1420,45);
+
+  // Candidate name
+  ctx.fillStyle='#fff';ctx.font='bold 44px "Noto Sans Devanagari", sans-serif';
+  ctx.fillText('नीतू चौहान',W/2,1490);
+  ctx.font='26px "Noto Sans Devanagari", sans-serif';ctx.fillStyle='rgba(255,255,255,0.8)';
+  ctx.fillText('भारतीय जनता पार्टी (भाजपा) · कमल 🪷',W/2,1540);
+
+  // Bottom gold divider
+  drawDivider(ctx,W/2,1580,300,'rgba(255,193,7,0.3)');
+
+  // === 15. APP WATERMARK ===
+  ctx.font='18px sans-serif';ctx.fillStyle='rgba(255,255,255,0.3)';
+  ctx.fillText(APP_URL,W/2,H-80);
+
+  // === SHOW RESULT ===
   canvas.toBlob(blob=>{
     posterBlob=blob;
     const url=URL.createObjectURL(blob);
@@ -369,6 +427,42 @@ function drawPoster(voterImg,voterName){
   },'image/jpeg',0.92);
 }
 
+/* ===== POSTER HELPER: Draw lotus shape ===== */
+function drawLotus(ctx,cx,cy,size){
+  ctx.save();ctx.translate(cx,cy);
+  const petals=[
+    {a:-90,s:1},{a:-60,s:0.85},{a:-120,s:0.85},
+    {a:-40,s:0.65},{a:-140,s:0.65},{a:-20,s:0.45},{a:-160,s:0.45}
+  ];
+  petals.forEach(p=>{
+    ctx.save();ctx.rotate(p.a*Math.PI/180);
+    ctx.beginPath();ctx.moveTo(0,0);
+    ctx.bezierCurveTo(-size*0.3*p.s,-size*0.5*p.s, size*0.3*p.s,-size*0.5*p.s, 0,-size*p.s);
+    ctx.fillStyle='rgba(255,193,7,0.8)';ctx.fill();
+    ctx.strokeStyle='rgba(255,255,255,0.3)';ctx.lineWidth=1;ctx.stroke();
+    ctx.restore();
+  });
+  // Center dot
+  ctx.beginPath();ctx.arc(0,0,size*0.12,0,Math.PI*2);
+  ctx.fillStyle='#ffc107';ctx.fill();
+  ctx.restore();
+}
+
+/* ===== POSTER HELPER: Decorative divider ===== */
+function drawDivider(ctx,cx,y,width,color){
+  ctx.save();
+  const left=cx-width/2,right=cx+width/2;
+  // Line
+  ctx.strokeStyle=color;ctx.lineWidth=2;
+  ctx.beginPath();ctx.moveTo(left,y);ctx.lineTo(right,y);ctx.stroke();
+  // Center diamond
+  ctx.fillStyle=color;
+  ctx.beginPath();ctx.moveTo(cx,y-6);ctx.lineTo(cx+6,y);ctx.lineTo(cx,y+6);ctx.lineTo(cx-6,y);ctx.closePath();ctx.fill();
+  // End dots
+  ctx.beginPath();ctx.arc(left,y,3,0,Math.PI*2);ctx.fill();
+  ctx.beginPath();ctx.arc(right,y,3,0,Math.PI*2);ctx.fill();
+  ctx.restore();
+}
 function downloadPosterImage(){
   if(!posterBlob)return;
   const a=document.createElement('a');a.href=URL.createObjectURL(posterBlob);
