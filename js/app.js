@@ -1,3 +1,29 @@
+
+/* ===== Material Ripple Effect ===== */
+(function(){
+  function addRipple(el){
+    el.classList.add('ripple-host');
+    el.addEventListener('pointerdown', function(e){
+      var rect = el.getBoundingClientRect();
+      var x = ((e.clientX - rect.left) / rect.width * 100).toFixed(0);
+      var y = ((e.clientY - rect.top) / rect.height * 100).toFixed(0);
+      el.style.setProperty('--ripple-x', x + '%');
+      el.style.setProperty('--ripple-y', y + '%');
+      el.classList.remove('rippling');
+      void el.offsetWidth;
+      el.classList.add('rippling');
+    });
+    el.addEventListener('animationend', function(){ el.classList.remove('rippling'); });
+  }
+  function scan(){
+    document.querySelectorAll('button, .step-item, .share-card, .eci-link, .trust-item, .pledge-btn, .poster-card, .faq-item')
+      .forEach(function(el){ if(!el.classList.contains('ripple-host')) addRipple(el); });
+  }
+  document.addEventListener('DOMContentLoaded', scan);
+  var mo = new MutationObserver(scan);
+  mo.observe(document.body, { childList: true, subtree: true });
+})();
+
 (function() {
   const $ = id => document.getElementById(id);
   let previousScreen = 'home-screen';

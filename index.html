@@ -19,11 +19,32 @@
 <meta property="og:image:height" content="1536">
 
 <title>वार्ड 40 · नीतू चौहान</title>
-<link rel="manifest" href="manifest.json?.*=5">
+<link rel="manifest" href="manifest.json?.*=6">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="वार्ड 40">
+<meta name="application-name" content="वार्ड 40">
+<meta name="msapplication-TileColor" content="#7b1fa2">
+<meta name="msapplication-TileImage" content="icons/icon-192.png">
 <link rel="apple-touch-icon" href="icons/icon-192.png">
-<link rel="stylesheet" href="css/styles.css?.*=5">
+<link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
+<link rel="icon" type="image/png" sizes="512x512" href="icons/icon-512.png">
+<link rel="stylesheet" href="css/styles.css?.*=6">
 </head>
 <body>
+<!-- ===== NATIVE SPLASH SCREEN ===== -->
+<div id="splash-screen" class="splash-screen">
+  <div class="splash-content">
+    <div class="splash-icon">🪷</div>
+    <div class="splash-app-name">वार्ड 40</div>
+    <div class="splash-sub">नीतू चौहान · डीडवाना</div>
+    <div class="splash-loader">
+      <div class="splash-spinner"></div>
+    </div>
+  </div>
+</div>
+
 
 <!-- ===== मुख्य (HOME) ===== -->
 <div id="home-screen" class="screen active">
@@ -231,9 +252,9 @@
 <!-- ===== FOOTER CREDIT ===== -->
 <div class="footer-credit"><span class="credit-line">📡 डिजिटल पहल</span> <span class="credit-divider">|</span> <span class="credit-name">Ramesh Saini</span></div>
 
-<script src="js/data.js?.*=5"></script>
-<script src="js/voters.js?.*=5"></script>
-<script src="js/app.js?.*=5"></script>
+<script src="js/data.js?.*=6"></script>
+<script src="js/voters.js?.*=6"></script>
+<script src="js/app.js?.*=6"></script>
 <script>
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
@@ -250,5 +271,18 @@ if ('serviceWorker' in navigator) {
   });
 }
 </script>
+
+<script>
+(function(){
+  var splash = document.getElementById('splash-screen');
+  if(splash){
+    setTimeout(function(){
+      splash.classList.add('splash-hide');
+      setTimeout(function(){ splash.remove(); }, 500);
+    }, 1400);
+  }
+})();
+</script>
+
 </body>
 </html>

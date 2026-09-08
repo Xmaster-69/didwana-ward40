@@ -31,8 +31,8 @@ body {
 }
 
 .screen { display: none; padding-bottom: 16px; overflow-x: hidden; }
-.screen.active { display: block; animation: screenIn 0.3s ease; }
-@keyframes screenIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+.screen.active { display: block; animation: slideIn 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
+@keyframes slideIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
 
 /* ===== HERO ===== */
 .hero { position: relative; overflow: visible; background: linear-gradient(135deg, #4a148c, #7b1fa2 55%, #e91e63); color: white; padding: 30px 16px 28px; }
@@ -411,20 +411,15 @@ body {
   font-family: inherit; font-weight: 700; font-size: 0.85rem; cursor: pointer;
 }
 
-/* ===== BOTTOM NAV ===== */
-.bottom-nav {
-  position: fixed; bottom: 0; left: 0; right: 0;
-  display: flex; background: rgba(255,255,255,0.95);
-  backdrop-filter: blur(12px); box-shadow: 0 -2px 14px rgba(0,0,0,0.08);
-  z-index: 100; padding-bottom: env(safe-area-inset-bottom, 0);
-}
-.bottom-nav button {
-  flex: 1; padding: 11px 2px 9px; font-size: 1.2rem;
-  background: none; border: none; cursor: pointer; opacity: 0.45;
-  transition: all 0.2s; text-align: center; line-height: 1; color: var(--text);
-}
-.bottom-nav button span { display: block; font-size: 0.6rem; margin-top: 2px; }
-.bottom-nav button.active { opacity: 1; color: var(--primary); transform: translateY(-2px); }
+/* ===== BOTTOM NAV — MATERIAL STYLE ===== */
+.bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; z-index: 900; display: flex; justify-content: space-around; align-items: center; background: rgba(255,255,255,0.96); backdrop-filter: blur(20px) saturate(180%); -webkit-backdrop-filter: blur(20px) saturate(180%); padding: 6px 0 max(6px, env(safe-area-inset-bottom)); border-top: 1px solid rgba(0,0,0,0.06); box-shadow: 0 -2px 16px rgba(0,0,0,0.05); }
+.bottom-nav button { display: flex; flex-direction: column; align-items: center; gap: 2px; padding: 4px 16px; border: none; background: none; cursor: pointer; border-radius: 12px; transition: all 0.25s ease; position: relative; color: #9e9e9e; font-size: 0.68rem; font-family: inherit; }
+.bottom-nav button span { display: block; font-size: 0.6rem; margin-top: 1px; font-weight: 500; transition: all 0.25s; }
+.bottom-nav button.active { color: var(--primary); }
+.bottom-nav button.active span { font-weight: 700; }
+.bottom-nav button::before { content: ""; position: absolute; top: -2px; left: 50%; transform: translateX(-50%); width: 0; height: 3px; background: var(--primary); border-radius: 0 0 4px 4px; transition: width 0.3s ease; }
+.bottom-nav button.active::before { width: 32px; }
+.bottom-nav button:active { transform: scale(0.92); }
 
 
 /* ===== VOTER GUIDE POSTER ===== */
@@ -535,3 +530,55 @@ body { padding-bottom: calc(68px + env(safe-area-inset-bottom, 0px)); }
 ::-webkit-scrollbar { width: 4px; }
 ::-webkit-scrollbar-thumb { background: var(--primary-light); border-radius: 2px; }
 ::selection { background: var(--primary-light); }
+
+/* ===== NATIVE SPLASH SCREEN ===== */
+.splash-screen {
+  position: fixed; inset: 0; z-index: 99999;
+  background: linear-gradient(160deg, #4a148c 0%, #7b1fa2 50%, #e91e63 100%);
+  display: flex; align-items: center; justify-content: center;
+  transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+.splash-screen.splash-hide { opacity: 0; visibility: hidden; pointer-events: none; }
+.splash-content { text-align: center; color: white; }
+.splash-icon { font-size: 4rem; animation: splashBounce 1s ease infinite alternate; }
+@keyframes splashBounce { from { transform: scale(1); } to { transform: scale(1.15); } }
+.splash-app-name { font-size: 1.8rem; font-weight: 900; margin-top: 8px; text-shadow: 0 2px 20px rgba(0,0,0,0.3); }
+.splash-sub { font-size: 0.85rem; opacity: 0.85; margin-top: 4px; }
+.splash-loader { margin-top: 24px; display: flex; justify-content: center; }
+.splash-spinner {
+  width: 36px; height: 36px; border: 3px solid rgba(255,255,255,0.3);
+  border-top-color: #fff; border-radius: 50%;
+  animation: splashSpin 0.8s linear infinite;
+}
+@keyframes splashSpin { to { transform: rotate(360deg); } }
+
+/* ===== MATERIAL RIPPLE ===== */
+.ripple-host { position: relative; overflow: hidden; }
+.ripple-host::after {
+  content: ""; position: absolute; inset: 0;
+  background: radial-gradient(circle at var(--ripple-x, 50%) var(--ripple-y, 50%), rgba(255,255,255,0.35) 0%, transparent 60%);
+  opacity: 0; transition: opacity 0.4s ease; pointer-events: none;
+}
+.ripple-host.rippling::after { opacity: 1; animation: rippleFade 0.5s ease forwards; }
+@keyframes rippleFade { 0% { opacity: 0.7; } 100% { opacity: 0; } }
+
+/* ===== SAFE AREA + NATIVE FEEL ===== */
+@supports (padding-top: env(safe-area-inset-top)) {
+  .hero { padding-top: calc(30px + env(safe-area-inset-top)); }
+}
+body {
+  overscroll-behavior-y: contain;
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-y;
+  user-select: none;
+  -webkit-user-select: none;
+}
+::-webkit-scrollbar { display: none; }
+
+/* ===== ENHANCED CARD ELEVATIONS ===== */
+.card, .trust-card, .evm-card, .pledge-card, .poster-card, .voter-guide-card {
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+.card:active, .trust-card:active, .evm-card:active, .pledge-card:active {
+  transform: scale(0.985);
+}
