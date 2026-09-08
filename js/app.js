@@ -2,9 +2,10 @@
   const $ = id => document.getElementById(id);
   let previousScreen = 'home-screen';
   let flipTimer = null;
+  let clockStarted = false;
 
   const APP_URL = typeof APP_LINK !== 'undefined' ? APP_LINK : 'https://xmaster-69.github.io/didwana-ward40/';
-  const MAP_QUERY = encodeURIComponent(CONFIG.boothFull + ', ' + CONFIG.area);
+  const AUDIO_FILE = 'audio/welcome.mp3';
 
   // ===== NAVIGATION =====
   function showScreen(id, pushPrev) {
@@ -24,6 +25,32 @@
     btn.addEventListener('click', () => showScreen(btn.dataset.nav));
   });
   $('detail-back').addEventListener('click', () => showScreen(previousScreen, false));
+
+  // ===== SPLASH SCREEN + AUDIO =====
+  function initSplash() {
+    if (sessionStorage.getItem('splashShown')) {
+      hideSplash();
+      return;
+    }
+    $('splash-tap').addEventListener('click', () => {
+      playSplashAudio();
+      sessionStorage.setItem('splashShown', '1');
+      hideSplash();
+    });
+  }
+
+  function playSplashAudio() {
+    try {
+      const audio = new Audio(AUDIO_FILE);
+      audio.volume = 0.5;
+      audio.play().catch(() => {});
+    } catch(e) {}
+  }
+
+  function hideSplash() {
+    const s = $('splash-screen');
+    if (s) s.classList.add('hidden');
+  }
 
   // ===== FLIP CLOCK COUNTDOWN =====
   function renderCountdown() {
@@ -51,9 +78,9 @@
           ${flipUnit(secs, 'सेकंड')}
         </div>`;
     } else if (now >= pollStart && now <= pollEnd) {
-      clock.innerHTML = `<div class="countdown-live">🔴 मतदान चल रहा है! अभी जाएं और वोट दें!</div>`;
+      clock.innerHTML = `<div class="countdown-live">✅ मतदान चल रहा है — वोट जरूर दें!</div>`;
     } else {
-      clock.innerHTML = `<div class="countdown-ended">✅ मतदान समाप्त — धन्यवाद!</div>`;
+      clock.innerHTML = `<div class="countdown-ended">✅ मतदान का समय समाप्त</div>`;
     }
   }
 
@@ -94,50 +121,6 @@
     container.innerHTML = html;
   }
 
-  // ===== CALENDAR REMINDER =====
-  function initReminder() {
-    const btn = $('reminder-btn');
-    if (!btn) return;
-    if (Store.get('reminderSet', false)) {
-      btn.innerHTML = '✅ रिमाइंडर सेट!';
-      btn.classList.add('set');
-    }
-    btn.addEventListener('click', () => {
-      if (Store.get('reminderSet', false)) return;
-      const title = encodeURIComponent('🗳️ वोट दें — नीतू मारोठिया · वार्ड 40');
-      const dates = '20260909T010000Z/20260909T123000Z';
-      const details = encodeURIComponent('नेहरू बाल स्कूल, लाडनू रोड, डीडवाना\nसुबह 7AM – शाम 6PM\nनीतू मारोठिया को वोट दें!');
-      const location = encodeURIComponent(CONFIG.boothFull);
-      const gcalUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${dates}&details=${details}&location=${location}`;
-      window.open(gcalUrl, '_blank');
-      Store.set('reminderSet', true);
-      btn.innerHTML = '✅ रिमाइंडर सेट!';
-      btn.classList.add('set');
-    });
-  }
-
-  // ===== QUICK FACTS BAR =====
-  function renderFactsBar() {
-    const bar = $('facts-bar');
-    if (!bar) return;
-    const total = (VoterDB.voters && VoterDB.voters.length) || 1388;
-    bar.innerHTML = `
-      <div class="fact-item">
-        <span class="fact-num">${total}</span>
-        <span class="fact-label">कुल मतदाता</span>
-      </div>
-      <div class="fact-divider"></div>
-      <div class="fact-item">
-        <span class="fact-num">1</span>
-        <span class="fact-label">उम्मीदवार</span>
-      </div>
-      <div class="fact-divider"></div>
-      <div class="fact-item">
-        <span class="fact-num">9 सितं.</span>
-        <span class="fact-label">मतदान दिवस</span>
-      </div>`;
-  }
-
   // ===== VOTE PLEDGE =====
   function initPledge() {
     const btn = $('pledge-btn');
@@ -173,44 +156,6 @@
       btn.innerHTML = '<span class="pledge-btn-icon">✋</span><span class="pledge-btn-text">वादा करें</span>';
     }
     stats.innerHTML = `<span class="pledge-count">${count}</span> लोगों ने वादा किया है`;
-  }
-
-  // ===== BOOTH INFO CARD =====
-  function renderBoothCard() {
-    const card = $('booth-card');
-    if (!card) return;
-    card.innerHTML = `
-      <div class="booth-inner">
-        <div class="booth-left">
-          <div class="booth-icon">📍</div>
-          <div class="booth-info">
-            <div class="booth-title">आपका बूथ — ${CONFIG.boothName}</div>
-            <div class="booth-addr">${CONFIG.boothAddress}</div>
-            <div class="booth-ward">वार्ड 40 · डीडवाना नगर पालिका</div>
-          </div>
-        </div>
-        <a href="https://www.google.com/maps/search/?api=1&query=${MAP_QUERY}" target="_blank" rel="noopener" class="booth-map-btn">
-          🗺️ मैप में देखें
-        </a>
-      </div>`;
-  }
-
-  // ===== TEAM GRID =====
-  function renderTeam() {
-    const grid = $('team-grid');
-    if (!grid) return;
-    grid.innerHTML = TEAM.map(m => {
-      const initials = m.name.charAt(0);
-      const highlight = m.highlight ? ' team-highlight' : '';
-      const badge = m.highlight ? '<span class="team-badge">ऐप निर्माता</span>' : '';
-      return `
-        <div class="team-member${highlight}">
-          <div class="team-avatar">${initials}</div>
-          <div class="team-name">${m.name}</div>
-          <div class="team-role">${m.role}</div>
-          ${badge}
-        </div>`;
-    }).join('');
   }
 
   // ===== EVM DEMO =====
@@ -272,9 +217,6 @@
     renderTrustCard();
     renderVotingSteps();
     renderSocialProof();
-    renderFactsBar();
-    renderBoothCard();
-    renderTeam();
   }
 
   function renderTrustCard() {
@@ -289,7 +231,7 @@
   function renderVotingSteps() {
     const steps = [
       { n: '1', icon: '🪪', t: 'पहचान लेकर जाएं', d: 'EPIC कार्ड या मान्य फोटो पहचान पत्र' },
-      { n: '2', icon: '📍', t: 'बूथ पर पहुंचें', d: 'नेहरू बाल स्कूल, लाडनू रोड — सुबह 7 बजे से' },
+      { n: '2', icon: '📍', t: 'बूथ पर पहुंचें', d: 'अपने निर्धारित बूथ पर सुबह 7 बजे से' },
       { n: '3', icon: '✅', t: 'टोकन लें', d: 'लाइन में लगें और टोकन प्राप्त करें' },
       { n: '4', icon: '🗳️', t: 'वोट डालें', d: 'ईवीएम पर कमल बटन दबाएं' },
       { n: '5', icon: '🤝', t: 'जांच करें', d: 'सफ़ेद स्याही की जांच करें और घर लौटें' }
@@ -312,17 +254,6 @@
     const v = VoterDB.getVoter(recordId);
     if (!v) return;
     const detail = $('voter-detail');
-    const voterCardMsg = encodeURIComponent(
-      `🗳️ वोटर कार्ड — वार्ड 40\n\n` +
-      `नाम: ${v.name || '—'}\n` +
-      `पिता/पति: ${v.parent || '—'}\n` +
-      `EPIC: ${v.epic || '—'}\n` +
-      `घर नं.: ${v.houseCanonical || '—'}\n` +
-      `आयु: ${v.age != null ? v.age + ' वर्ष' : '—'}\n\n` +
-      `9 सितंबर 2026 · नेहरू बाल स्कूल, लाडनू रोड\n` +
-      `🪷 नीतू मारोठिया — वार्ड 40\n\n` +
-      `🔗 ${APP_URL}`
-    );
     detail.innerHTML = `
       <div class="detail-found"><div class="found-icon">✅</div><div class="found-title">आप वार्ड 40 के मतदाता हैं!</div></div>
       <div class="detail-card">
@@ -334,16 +265,15 @@
       </div>
       <div class="detail-card voting-call">
         <div class="call-icon">🗳️</div>
-        <div class="call-text"><strong>9 सितंबर 2026 को वोट दें</strong><p>${CONFIG.boothFull}</p></div>
+        <div class="call-text"><strong>9 सितंबर 2026 को वोट दें</strong><p>सुबह 7AM – शाम 6PM · वार्ड 40</p></div>
       </div>
-      <div class="detail-card detail-actions">
-        <button class="cta-btn" onclick="App.shareVoterCard('${voterCardMsg}')">🗳️ वोटर कार्ड शेयर करें</button>
-        <button class="cta-btn secondary-cta" onclick="App.shareApp()">📲 ऐप शेयर करें</button>
+      <div class="detail-card">
+        <button class="cta-btn" onclick="App.shareApp()">📲 अपने परिवार को यह ऐप भेजें</button>
       </div>`;
     showScreen('voter-detail-screen');
   }
 
-  // ===== ENHANCED SEARCH =====
+  // ===== ENHANCED SEARCH (Name + EPIC/Voter ID) =====
   function bindSearch(inputId, resultsId) {
     $(inputId).addEventListener('input', function() {
       const q = this.value.trim();
@@ -387,7 +317,7 @@
     const faqs = [
       { q: 'पार्षद कौन होता है?', a: 'पार्षद वह जनप्रतिनिधि होता है जिसे आप सीधे अपने वार्ड से चुनते हैं। वह आपके क्षेत्र की समस्याओं को नगर पालिका में उठाता है और उनका समाधान कराता है।' },
       { q: 'पार्षद कैसे चुना जाता है?', a: 'प्रत्येक वार्ड से एक पार्षद का चुनाव सीधे मतदान द्वारा होता है। ईवीएम पर अपने पसंदीदा उम्मीदवार को वोट दें।' },
-      { q: 'चुनाव कब हो रहा है?', a: '9 सितंबर 2026, सुबह 7 बजे से शाम 6 बजे तक। नेहरू बाल स्कूल, लाडनू रोड, डीडवाना — वार्ड 40।' },
+      { q: 'चुनाव कब हो रहा है?', a: '9 सितंबर 2026, सुबह 7 बजे से शाम 6 बजे तक। डीडवाना नगर पालिका, वार्ड 40।' },
       { q: 'मैं वोट कैसे डालूं?', a: 'EPIC पहचान पत्र लेकर अपने निर्धारित बूथ पर जाएं। ईवीएम पर कमल बटन दबाएं। मतदान के बाद सफ़ेद स्याही से उंगली पर निशान जांचें।' },
       { q: 'पहचान पत्र नहीं है तो क्या करें?', a: 'मतदाता सूची में नाम होना ज़रूरी है। आधार कार्ड, पासपोर्ट, ड्राइविंग लाइसेंस जैसे अन्य दस्तावेज़ भी चलेंगे।' }
     ];
@@ -410,7 +340,7 @@
 
   // ===== SHARE =====
   function renderShare() {
-    const msg = `🗳️ *वार्ड 40 — नीतू मारोठिया*\n\nवार्ड 40 के सभी मतदाताओं से आग्रह — 9 सितंबर 2026 को मतदान अवश्य करें।\n\n📍 बूथ: ${CONFIG.boothFull}\n🕐 समय: सुबह 7AM – शाम 6PM\n\nवोटर लिस्ट में अपना नाम देखें: ${APP_URL}\n\n🪷 नीतू मारोठिया — आपके वार्ड की सेवा में।\n\n🔗 ${APP_URL}`;
+    const msg = `🗳️ *वार्ड 40 — नीतू मारोठिया*\n\nवार्ड 40 के सभी मतदाताओं से आग्रह — 9 सितंबर 2026 को मतदान अवश्य करें।\n\nवोटर लिस्ट में अपना नाम देखें: ${APP_URL}\n\nसुबह 7AM – शाम 6PM · वार्ड 40\n\nनीतू मारोठिया — आपके वार्ड की सेवा में।\n\n🔗 ${APP_URL}`;
     $('share-msg').value = msg;
     $('share-preview').innerHTML = `<div class="preview-msg"><div class="preview-title">मैसेज पूर्वावलोकन:</div><div class="preview-body">${msg.replace(/\n/g, '<br>')}</div></div>`;
   }
@@ -436,7 +366,7 @@
   // ===== EXPOSED API =====
   window.App = {
     shareApp: function() {
-      const msg = encodeURIComponent(`🗳️ वार्ड 40 — नीतू मारोठिया\n\n📍 बूथ: ${CONFIG.boothFull}\n🕐 9 सितंबर 2026 · सुबह 7AM – शाम 6PM\n\nवोटर लिस्ट में अपना नाम देखें: ${APP_URL}`);
+      const msg = encodeURIComponent(`🗳️ वार्ड 40 के मतदाताओं के लिए जरूरी जानकारी — वोटर लिस्ट में अपना नाम देखें: ${APP_URL}`);
       if (navigator.share) {
         navigator.share({ title: 'वार्ड 40 — नीतू मारोठिया', text: decodeURIComponent(msg) }).catch(() => {});
       } else {
@@ -444,30 +374,22 @@
       }
     },
     shareWhatsApp: function() {
-      const msg = encodeURIComponent(`🗳️ *वार्ड 40 — नीतू मारोठिया*\n\nवार्ड 40 के सभी मतदाताओं से आग्रह — 9 सितंबर 2026 को मतदान अवश्य करें।\n\n📍 बूथ: ${CONFIG.boothFull}\n🕐 सुबह 7AM – शाम 6PM\n\nवोटर लिस्ट में अपना नाम देखें: ${APP_URL}\n\n🪷 नीतू मारोठिया — आपके वार्ड की सेवा में।\n\n🔗 ${APP_URL}`);
+      const msg = encodeURIComponent(`🗳️ *वार्ड 40 — नीतू मारोठिया*\n\nवार्ड 40 के सभी मतदाताओं से आग्रह — 9 सितंबर 2026 को मतदान अवश्य करें।\n\nवोटर लिस्ट में अपना नाम देखें: ${APP_URL}\n\nसुबह 7AM – शाम 6PM · वार्ड 40\n\nनीतू मारोठिया — आपके वार्ड की सेवा में।\n\n🔗 ${APP_URL}`);
       window.open('https://wa.me/?text=' + msg, '_blank');
     },
     sharePoster: function() {
-      const msg = encodeURIComponent(`🗳️ वार्ड 40 · नीतू मारोठिया\n\n📍 बूथ: ${CONFIG.boothFull}\n🕐 9 सितंबर 2026 · सुबह 7AM – शाम 6PM\n\n🖼️ ${APP_URL}candidate_poster.jpg`);
+      const msg = encodeURIComponent(`🗳️ वार्ड 40 · नीतू मारोठिया\n\nआधिकारिक पोस्टर — 9 सितंबर 2026 को अपना वोट जरूर दें।\n\nसुबह 7AM – शाम 6PM\n\n🖼️ ${APP_URL}candidate_poster.jpg`);
       if (navigator.share) {
         navigator.share({ title: 'वार्ड 40 — नीतू मारोठिया', text: decodeURIComponent(msg) }).catch(() => {});
       } else {
         window.open('https://wa.me/?text=' + msg, '_blank');
       }
     },
-    shareVoterCard: function(encodedMsg) {
-      const msg = decodeURIComponent(encodedMsg);
-      if (navigator.share) {
-        navigator.share({ title: 'वोटर कार्ड — वार्ड 40', text: msg }).catch(() => {});
-      } else {
-        window.open('https://wa.me/?text=' + encodeURIComponent(msg), '_blank');
-      }
-    },
     copyLink: function() {
       navigator.clipboard.writeText(APP_URL).then(() => alert('✅ लिंक कॉपी हो गया!'));
     },
     shareSMS: function() {
-      window.open('sms:?body=' + encodeURIComponent(`वार्ड 40 — नीतू मारोठिया\n📍 बूथ: ${CONFIG.boothFull}\n🕐 9 सितंबर · 7AM–6PM\nवोटर लिस्ट: ${APP_URL}\n🪷 वोट जरूर दें!`), '_blank');
+      window.open('sms:?body=' + encodeURIComponent(`वार्ड 40 के सभी मतदाताओं से आग्रह — 9 सितंबर 2026 को वोट जरूर दें।\nवोटर लिस्ट में अपना नाम देखें: ${APP_URL}\nनीतू मारोठिया — वार्ड 40 की आवाज़।`), '_blank');
     },
     copyMessage: function() {
       navigator.clipboard.writeText($('share-msg').value).then(() => alert('✅ मैसेज कॉपी हो गया!'));
@@ -483,7 +405,7 @@
   initEvm();
   initInstall();
   initPledge();
-  initReminder();
+  initSplash();
   renderCountdown();
   startFlipClock();
   VoterDB.load().then(() => renderHome()).catch(() => {});

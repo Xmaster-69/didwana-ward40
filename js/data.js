@@ -5,24 +5,8 @@ const CONFIG = {
   candidate: 'नीतू मारोठिया',
   electionDate: new Date(2026, 8, 9),
   pollStartHour: 7,
-  pollEndHour: 18,
-  boothName: 'नेहरू बाल स्कूल',
-  boothAddress: 'लाडनू रोड, डीडवाना',
-  boothFull: 'नेहरू बाल स्कूल, लाडनू रोड, डीडवाना'
+  pollEndHour: 18
 };
-
-const TEAM = [
-  { name: 'गोरी शंकर', role: 'समर्थक' },
-  { name: 'धर्मराज सैनी', role: 'समर्थक' },
-  { name: 'रमेश सैनी', role: 'समर्थक · ऐप निर्माता', highlight: true },
-  { name: 'कृष्ण मारोठिया', role: 'समर्थक' },
-  { name: 'ताराचंद मारोठिया', role: 'समर्थक' },
-  { name: 'दुर्गा दत्त', role: 'समर्थक' },
-  { name: 'रामनिवास मारोठिया', role: 'समर्थक' },
-  { name: 'सीताराम मारोठिया', role: 'समर्थक' },
-  { name: 'मनोज बागरी', role: 'समर्थक' },
-  { name: 'दिनेश भाटी', role: 'समर्थक' }
-];
 
 const GUIDANCE = [
   { icon: '🪪', text: 'EPIC पहचान पत्र या मान्य पहचान दस्तावेज़ लेकर जाएं' },

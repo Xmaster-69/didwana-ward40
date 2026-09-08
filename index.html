@@ -22,6 +22,20 @@
 </head>
 <body>
 
+<!-- ===== AUDIO SPLASH SCREEN ===== -->
+<div id="splash-screen" class="splash">
+  <div class="splash-inner">
+    <div class="splash-badge">वार्ड 40 · डीडवाना</div>
+    <h1>नीतू मारोठिया</h1>
+    <p class="splash-tag">आपके वार्ड की आवाज़</p>
+    <button class="splash-btn" id="splash-tap">
+      <span class="splash-spk">🔊</span>
+      <span class="splash-txt">टैप करें और सुनें</span>
+    </button>
+    <p class="splash-hint">वोट 9 सितंबर 2026 · सुबह 7AM – शाम 6PM</p>
+  </div>
+</div>
+
 <!-- ===== मुख्य (HOME) ===== -->
 <div id="home-screen" class="screen active">
   <div class="hero">
@@ -32,13 +46,9 @@
       <p class="hero-tagline">आपके वार्ड की आवाज़</p>
       <div class="flip-clock" id="flip-clock"></div>
       <div class="hero-vote-date">🗳️ 9 सितंबर 2026 · 7AM – 6PM</div>
-      <button class="reminder-btn" id="reminder-btn">⏰ याद दिलाएं</button>
     </div>
     <div class="hero-particles" id="hero-particles"></div>
   </div>
-
-  <!-- QUICK FACTS BAR -->
-  <div class="facts-bar" id="facts-bar"></div>
 
   <!-- VOTE PLEDGE -->
   <div class="pledge-section">
@@ -57,9 +67,6 @@
       <div class="pledge-stats" id="pledge-stats"></div>
     </div>
   </div>
-
-  <!-- BOOTH INFO -->
-  <div class="booth-card" id="booth-card"></div>
 
   <!-- VOTER SEARCH -->
   <div class="search-section">
@@ -99,10 +106,6 @@
     </div>
     <button class="cta-btn" onclick="App.sharePoster()">📲 पोस्टर WhatsApp पर शेयर करें</button>
   </div>
-
-  <!-- TEAM -->
-  <div class="section-title">🤝 आपकी टीम — वार्ड 40</div>
-  <div class="team-grid" id="team-grid"></div>
 
   <!-- EVM Demo -->
   <div class="section-title">🗳️ EVM डेमो — नीतू मारोठिया को वोट</div>
@@ -214,9 +217,6 @@
   <button data-nav="education-screen">📚<span>पार्षद</span></button>
   <button data-nav="share-screen">📲<span>शेयर</span></button>
 </nav>
-
-<!-- ===== FOOTER CREDIT ===== -->
-<div class="footer-credit">Built with ❤️ by <strong>Ramesh Saini</strong></div>
 
 <script src="js/data.js"></script>
 <script src="js/voters.js"></script>
