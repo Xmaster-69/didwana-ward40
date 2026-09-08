@@ -1,4 +1,4 @@
-const CACHE = 'ward40-voter-v4';
+const CACHE = 'ward40-voter-v5';
 const NETWORK_FIRST = [
   './',
   './index.html',
@@ -11,7 +11,8 @@ const NETWORK_FIRST = [
 const CACHE_FIRST = [
   './manifest.json',
   './icons/icon-192.png',
-  './icons/icon-512.png'
+  './icons/icon-512.png',
+  './eci-voter-guide.jpg'
 ];
 
 self.addEventListener('install', e => {

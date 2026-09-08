@@ -426,12 +426,51 @@ body {
 .bottom-nav button span { display: block; font-size: 0.6rem; margin-top: 2px; }
 .bottom-nav button.active { opacity: 1; color: var(--primary); transform: translateY(-2px); }
 
+
+/* ===== VOTER GUIDE POSTER ===== */
+.voter-guide-section {
+  margin: 16px 0;
+}
+.voter-guide-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--heading);
+  text-align: center;
+  margin: 0 0 10px;
+}
+.voter-guide-card {
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+  border: 1px solid rgba(0,0,0,0.05);
+}
+.voter-guide-img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.voter-guide-caption {
+  text-align: center;
+  font-size: 0.72rem;
+  color: var(--text-sec);
+  padding: 8px 12px;
+  background: var(--bg-light);
+  margin: 0;
+  letter-spacing: 0.3px;
+}
+
 /* ===== FOOTER CREDIT ===== */
 .footer-credit {
   text-align: center; padding: 10px 16px 20px;
-  font-size: 0.75rem; color: var(--text-sec);
+  font-size: 0.68rem; color: #b0b0b0;
+  letter-spacing: 0.5px;
+  border-top: 1px solid rgba(0,0,0,0.04);
+  margin-top: 8px;
 }
-.footer-credit strong { color: var(--primary); }
+.credit-line { font-weight: 600; color: #9e9e9e; }
+.credit-divider { margin: 0 6px; color: #d0d0d0; }
+.credit-name { font-weight: 500; color: #a0a0a0; }
 
 /* ===== BUTTONS ===== */
 .primary-btn {
