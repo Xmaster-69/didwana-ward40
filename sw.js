@@ -1,4 +1,4 @@
-const CACHE = 'ward40-voter-v3';
+const CACHE = 'ward40-voter-v4';
 const NETWORK_FIRST = [
   './',
   './index.html',
