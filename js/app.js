@@ -218,17 +218,20 @@ function renderShare(){
 let posterStream=null,posterBlob=null,posterFacing='user';
 
 function startPosterCamera(){
+  const video=$('poster-video');
   navigator.mediaDevices.getUserMedia({video:{facingMode:posterFacing,width:{ideal:1080},height:{ideal:1080}}})
-    .then(stream=>{posterStream=stream;$('poster-video').srcObject=stream;})
+    .then(stream=>{posterStream=stream;video.srcObject=stream;return video.play();})
     .catch(()=>{$('poster-cam-hint').textContent='\u26a0\ufe0f \u0915\u0948\u092e\u0930\u093e \u0909\u092a\u0932\u092c\u094d\u0927 \u0928\u0939\u0940\u0902';});
 }
 function switchPosterCamera(){
   stopPosterCamera();
   posterFacing=posterFacing==='user'?'environment':'user';
+  posterBlob=null;
   $('poster-video').style.display='';
   $('poster-captured').classList.add('hidden');
   $('poster-capture-btn').classList.remove('hidden');
   $('poster-retake-btn').classList.add('hidden');
+  $('poster-generate-btn').disabled=true;
   $('poster-cam-hint').textContent=posterFacing==='user'?'📷 \u0938\u0947\u0932\u094d\u092b\u093c\u0940 \u0915\u0948\u092e\u0930\u093e':'📷 \u092a\u0939\u093e\u0921\u093c \u0915\u0948\u092e\u0930\u093e';
   startPosterCamera();
 }
@@ -256,6 +259,7 @@ function initPosterCamera(){
   $('poster-share-btn').onclick=()=>sharePosterImage();
   $('poster-retry-btn').onclick=()=>{posterBlob=null;$('poster-result').classList.add('hidden');retakePosterPhoto();};
   nameInput.oninput=()=>checkPosterReady();
+  nameInput.addEventListener('input',()=>checkPosterReady());
 }
 function stopPosterCamera(){
   if(posterStream){posterStream.getTracks().forEach(t=>t.stop());posterStream=null;}
@@ -279,14 +283,15 @@ function capturePosterPhoto(){
 
 function retakePosterPhoto(){
   posterStream=null;
+  posterBlob=null;
   $('poster-captured').classList.add('hidden');
   $('poster-video').style.display='';
   $('poster-capture-btn').classList.remove('hidden');
   $('poster-retake-btn').classList.add('hidden');
   $('poster-cam-hint').textContent=posterFacing==='user'?'📷 \u0938\u0947\u0932\u094d\u092b\u093c\u0940 \u0915\u0948\u092e\u0930\u093e':'📷 \u092a\u0939\u093e\u0921\u093c \u0915\u0948\u092e\u0930\u093e';
   $('poster-result').classList.add('hidden');
+  $('poster-generate-btn').disabled=true;
   startPosterCamera();
-  checkPosterReady();
 }
 function checkPosterReady(){
   const captured=$('poster-captured'),name=$('poster-name-input'),btn=$('poster-generate-btn');
@@ -297,7 +302,9 @@ function generatePoster(){
   const name=$('poster-name-input').value.trim();if(!name)return;
   Store.set('posterName',name);
   const captured=$('poster-captured');
+  if(!captured.src||captured.src===''){alert('\u274c \u092b\u094b\u091f\u094b \u0928\u0939\u0940\u0902 \u0932\u0940 \u0917\u0939\u093e! \u092a\u0939\u0932\u0947 \u092b\u094b\u091f\u094b \u0932\u0947\u0902');return;}
   const img=new Image();img.crossOrigin='anonymous';
+  img.onerror=()=>alert('\u274c \u092b\u094b\u091f\u094b \u0932\u094b\u0921 \u0928\u0939\u0940\u0902 \u0939\u094b \u092a\u093e\u0908! \u0926\u094b\u092c\u093e\u0930\u093e \u092b\u093c\u094b\u091f\u094b \u0932\u0947\u0902');
   img.onload=()=>drawPoster(img,name);
   img.src=captured.src;
 }
