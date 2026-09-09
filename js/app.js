@@ -215,99 +215,153 @@ function renderShare(){
 }
 
 /* ===== POSTER MAKER ===== */
-let posterStream=null,posterBlob=null,posterFacing='user';
+/* ===== POSTER MAKER ===== */
+let posterStream=null, posterBlob=null, posterFacing='user', capturedDataURL='';
+
+function initPosterCamera(){
+  // Bind all event handlers (only once per call)
+  const video=$('poster-video');
+  if(!video) return;
+
+  // Reset UI
+  $('poster-captured').classList.add('hidden');
+  video.style.display='';
+  $('poster-capture-btn').classList.remove('hidden');
+  $('poster-retake-btn').classList.add('hidden');
+  $('poster-cam-hint').textContent='\ud83d\udcf7 \u0905\u092a\u0928\u0940 \u0907\u0902\u0915 \u0932\u0917\u0940 \u0909\u0902\u0917\u0932\u0940 \u092f\u093e \u0938\u0947\u0932\u094d\u092b\u093c\u0940 \u0932\u0947\u0902';
+  $('poster-result').classList.add('hidden');
+  capturedDataURL='';
+
+  // Pre-fill name
+  const savedName=Store.get('posterName','');
+  const nameInput=$('poster-name-input');
+  if(nameInput && savedName) nameInput.value=savedName;
+
+  // Update button state immediately
+  updateGenerateBtn();
+
+  // Bind click handlers
+  $('poster-capture-btn').onclick=function(){ capturePosterPhoto(); };
+  $('poster-retake-btn').onclick=function(){ retakePosterPhoto(); };
+  $('poster-switch-btn').onclick=function(){ switchPosterCamera(); };
+  $('poster-generate-btn').onclick=function(){ generatePoster(); };
+  $('poster-download-btn').onclick=function(){ downloadPosterImage(); };
+  $('poster-share-btn').onclick=function(){ sharePosterImage(); };
+  $('poster-retry-btn').onclick=function(){
+    posterBlob=null;
+    $('poster-result').classList.add('hidden');
+    retakePosterPhoto();
+  };
+  nameInput.oninput=function(){ updateGenerateBtn(); };
+
+  // Start camera if not already running
+  if(posterStream) return;
+  startPosterCamera();
+}
 
 function startPosterCamera(){
   const video=$('poster-video');
-  navigator.mediaDevices.getUserMedia({video:{facingMode:posterFacing,width:{ideal:1080},height:{ideal:1080}}})
-    .then(stream=>{posterStream=stream;video.srcObject=stream;return video.play();})
-    .catch(()=>{$('poster-cam-hint').textContent='\u26a0\ufe0f \u0915\u0948\u092e\u0930\u093e \u0909\u092a\u0932\u092c\u094d\u0927 \u0928\u0939\u0940\u0902';});
+  const opts={video:{facingMode:posterFacing, width:{ideal:1080}, height:{ideal:1080}}};
+  navigator.mediaDevices.getUserMedia(opts)
+    .then(function(stream){
+      posterStream=stream;
+      video.srcObject=stream;
+      video.play().catch(function(){});
+    })
+    .catch(function(err){
+      console.warn('Camera error:', err);
+      $('poster-cam-hint').textContent='\u26a0\ufe0f \u0915\u0948\u092e\u0930\u093e \u0909\u092a\u0932\u092c\u094d\u0927 \u0928\u0939\u0940\u0902';
+    });
 }
+
+function stopPosterCamera(){
+  if(posterStream){
+    posterStream.getTracks().forEach(function(t){ t.stop(); });
+    posterStream=null;
+  }
+}
+
 function switchPosterCamera(){
   stopPosterCamera();
-  posterFacing=posterFacing==='user'?'environment':'user';
-  posterBlob=null;
-  $('poster-video').style.display='';
+  posterFacing = (posterFacing==='user') ? 'environment' : 'user';
+  capturedDataURL='';
   $('poster-captured').classList.add('hidden');
+  $('poster-video').style.display='';
   $('poster-capture-btn').classList.remove('hidden');
   $('poster-retake-btn').classList.add('hidden');
   $('poster-generate-btn').disabled=true;
-  $('poster-cam-hint').textContent=posterFacing==='user'?'📷 \u0938\u0947\u0932\u094d\u092b\u093c\u0940 \u0915\u0948\u092e\u0930\u093e':'📷 \u092a\u0939\u093e\u0921\u093c \u0915\u0948\u092e\u0930\u093e';
+  $('poster-cam-hint').textContent = (posterFacing==='user')
+    ? '\ud83d\udcf7 \u0938\u0947\u0932\u094d\u092b\u093c\u0940 \u0915\u0948\u092e\u0930\u093e'
+    : '\ud83d\udcf7 \u092a\u0939\u093e\u0921\u093c \u0915\u0948\u092e\u0930\u093e';
   startPosterCamera();
-}
-function initPosterCamera(){
-  const video=$('poster-video'),captured=$('poster-captured'),hint=$('poster-cam-hint');
-  const captureBtn=$('poster-capture-btn'),retakeBtn=$('poster-retake-btn');
-  if(!video)return;
-  captured.classList.add('hidden');
-  video.style.display='';
-  captureBtn.classList.remove('hidden');
-  retakeBtn.classList.add('hidden');
-  hint.textContent='📷 \u0905\u092a\u0928\u0940 \u0907\u0902\u0915 \u0932\u0917\u0940 \u0909\u0902\u0917\u0932\u0940 \u092f\u093e \u0938\u0947\u0932\u094d\u092b\u093c\u0940 \u0932\u0947\u0902';
-  $('poster-result').classList.add('hidden');
-  $('poster-generate-btn').disabled=true;
-  const savedName=Store.get('posterName','');
-  const nameInput=$('poster-name-input');
-  if(nameInput&&savedName)nameInput.value=savedName;
-  if(posterStream)return;
-  startPosterCamera();
-  captureBtn.onclick=()=>capturePosterPhoto();
-  retakeBtn.onclick=()=>retakePosterPhoto();
-  $('poster-switch-btn').onclick=()=>switchPosterCamera();
-  $('poster-generate-btn').onclick=()=>generatePoster();
-  $('poster-download-btn').onclick=()=>downloadPosterImage();
-  $('poster-share-btn').onclick=()=>sharePosterImage();
-  $('poster-retry-btn').onclick=()=>{posterBlob=null;$('poster-result').classList.add('hidden');retakePosterPhoto();};
-  nameInput.oninput=()=>checkPosterReady();
-  nameInput.addEventListener('input',()=>checkPosterReady());
-}
-function stopPosterCamera(){
-  if(posterStream){posterStream.getTracks().forEach(t=>t.stop());posterStream=null;}
 }
 
 function capturePosterPhoto(){
-  const video=$('poster-video'),captured=$('poster-captured'),canvas=$('poster-capture-canvas');
-  const captureBtn=$('poster-capture-btn'),retakeBtn=$('poster-retake-btn'),hint=$('poster-cam-hint');
-  canvas.width=video.videoWidth||1080;canvas.height=video.videoHeight||1080;
-  const ctx=canvas.getContext('2d');
-  if(posterFacing==='user'){ctx.translate(canvas.width,0);ctx.scale(-1,1);ctx.drawImage(video,0,0,canvas.width,canvas.height);ctx.setTransform(1,0,0,1,0,0);}else{ctx.drawImage(video,0,0,canvas.width,canvas.height);}
-  captured.src=canvas.toDataURL('image/jpeg',0.92);
+  var video=$('poster-video');
+  var captured=$('poster-captured');
+  var canvas=$('poster-capture-canvas');
+
+  // Capture frame from video
+  var w = video.videoWidth || 1080;
+  var h = video.videoHeight || 1080;
+  canvas.width=w; canvas.height=h;
+  var ctx=canvas.getContext('2d');
+
+  // Mirror for front camera
+  if(posterFacing==='user'){
+    ctx.translate(w,0);
+    ctx.scale(-1,1);
+    ctx.drawImage(video,0,0,w,h);
+    ctx.setTransform(1,0,0,1,0,0);
+  } else {
+    ctx.drawImage(video,0,0,w,h);
+  }
+
+  // Save as data URL
+  capturedDataURL = canvas.toDataURL('image/jpeg',0.92);
+  captured.src = capturedDataURL;
   captured.classList.remove('hidden');
   video.style.display='none';
-  captureBtn.classList.add('hidden');
-  retakeBtn.classList.remove('hidden');
-  hint.textContent='✅ फ़ोटो ले ली! अब नाम लिखें और पोस्टर बनाएं';
+  $('poster-capture-btn').classList.add('hidden');
+  $('poster-retake-btn').classList.remove('hidden');
+  $('poster-cam-hint').textContent='\u2705 \u092b\u093c\u094b\u091f\u094b \u0932\u0947 \u0932\u0940! \u0905\u092c \u0928\u093e\u092e \u0932\u093f\u0916\u0947\u0902 \u0914\u0930 \u092a\u094b\u0938\u094d\u091f\u0930 \u092c\u0928\u093e\u090f\u0902';
   stopPosterCamera();
-  checkPosterReady();
+  updateGenerateBtn();
 }
 
 function retakePosterPhoto(){
   posterStream=null;
   posterBlob=null;
+  capturedDataURL='';
   $('poster-captured').classList.add('hidden');
+  $('poster-captured').src='';
   $('poster-video').style.display='';
   $('poster-capture-btn').classList.remove('hidden');
   $('poster-retake-btn').classList.add('hidden');
-  $('poster-cam-hint').textContent=posterFacing==='user'?'📷 \u0938\u0947\u0932\u094d\u092b\u093c\u0940 \u0915\u0948\u092e\u0930\u093e':'📷 \u092a\u0939\u093e\u0921\u093c \u0915\u0948\u092e\u0930\u093e';
-  $('poster-result').classList.add('hidden');
   $('poster-generate-btn').disabled=true;
+  $('poster-cam-hint').textContent='\ud83d\udcf7 \u0905\u092a\u0928\u0940 \u0907\u0902\u0915 \u0932\u0917\u0940 \u0909\u0902\u0917\u0932\u0940 \u092f\u093e \u0938\u0947\u0932\u094d\u092b\u093c\u0940 \u0932\u0947\u0902';
+  $('poster-result').classList.add('hidden');
   startPosterCamera();
 }
-function checkPosterReady(){
-  const captured=$('poster-captured'),name=$('poster-name-input'),btn=$('poster-generate-btn');
-  btn.disabled=!(captured&&!captured.classList.contains('hidden')&&name.value.trim().length>0);
+
+function updateGenerateBtn(){
+  var name=$('poster-name-input').value.trim();
+  var hasPhoto = (capturedDataURL && capturedDataURL.length > 100);
+  $('poster-generate-btn').disabled = !(hasPhoto && name.length > 0);
 }
 
 function generatePoster(){
-  const name=$('poster-name-input').value.trim();if(!name)return;
-  Store.set('posterName',name);
-  const captured=$('poster-captured');
-  if(!captured.src||captured.src===''){alert('\u274c \u092b\u094b\u091f\u094b \u0928\u0939\u0940\u0902 \u0932\u0940 \u0917\u0939\u093e! \u092a\u0939\u0932\u0947 \u092b\u094b\u091f\u094b \u0932\u0947\u0902');return;}
-  const img=new Image();img.crossOrigin='anonymous';
-  img.onerror=()=>alert('\u274c \u092b\u094b\u091f\u094b \u0932\u094b\u0921 \u0928\u0939\u0940\u0902 \u0939\u094b \u092a\u093e\u0908! \u0926\u094b\u092c\u093e\u0930\u093e \u092b\u093c\u094b\u091f\u094b \u0932\u0947\u0902');
-  img.onload=()=>drawPoster(img,name);
-  img.src=captured.src;
+  var name=$('poster-name-input').value.trim();
+  if(!name){ alert('\u274c \u092a\u0939\u0932\u0947 \u0928\u093e\u092e \u0932\u093f\u0916\u0947\u0902'); return; }
+  if(!capturedDataURL || capturedDataURL.length < 100){ alert('\u274c \u092b\u093c\u094b\u091f\u094b \u0928\u0939\u0940\u0902 \u0932\u0940! \u092a\u0939\u0932\u0947 \u092b\u093c\u094b\u091f\u094b \u0932\u0947\u0902'); return; }
+  Store.set('posterName', name);
+  var img=new Image();
+  img.crossOrigin='anonymous';
+  img.onerror=function(){ alert('\u274c \u092b\u093c\u094b\u091f\u094b \u0932\u094b\u0921 \u0928\u0939\u0940\u0902 \u0939\u094b \u092a\u093e\u0908!'); };
+  img.onload=function(){ drawPoster(img, name); };
+  img.src = capturedDataURL;
 }
+
 
 function drawPoster(voterImg,voterName){
   const W=1080,H=1920;
