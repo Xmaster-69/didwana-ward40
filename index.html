@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="theme-color" content="#7b1fa2">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta name="app-version" content="v9-1788941019">
 <meta name="description" content="वार्ड 40 डीडवाना — नीतू चौहान · 9 सितंबर 2026 को वोट जरूर दें">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -13,13 +14,13 @@
 <meta property="og:description" content="9 सितंबर 2026 को वोट जरूर दें।">
 <meta property="og:image" content="https://xmaster-69.github.io/didwana-ward40/candidate_poster.jpg">
 <title>वार्ड 40 · नीतू चौहान</title>
-<link rel="manifest" href="manifest.json?.*=8">
+<link rel="manifest" href="manifest.json?.*=9">
 <meta name="apple-mobile-web-app-title" content="वार्ड 40">
 <meta name="application-name" content="वार्ड 40">
 <link rel="apple-touch-icon" href="icons/icon-192.png">
 <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
 <link rel="icon" type="image/png" sizes="512x512" href="icons/icon-512.png">
-<link rel="stylesheet" href="css/styles.css?.*=8">
+<link rel="stylesheet" href="css/styles.css?.*=9">
 </head>
 <body>
 
@@ -223,10 +224,10 @@
 <!-- ===== FOOTER ===== -->
 <div class="footer-credit"><span class="credit-line">📡 डिजिटल पहल</span> <span class="credit-divider">|</span> <span class="credit-name">Ramesh Saini</span></div>
 
-<script src="js/data.js?.*=8"></script>
-<script src="js/voters-en.js?.*=8"></script>
-<script src="js/voters.js?.*=8"></script>
-<script src="js/app.js?.*=8"></script>
+<script src="js/data.js?.*=9"></script>
+<script src="js/voters-en.js?.*=9"></script>
+<script src="js/voters.js?.*=9"></script>
+<script src="js/app.js?.*=9"></script>
 <script>
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
@@ -234,12 +235,19 @@ if ('serviceWorker' in navigator) {
       reg.addEventListener('updatefound', () => {
         const sw = reg.installing;
         if (sw) sw.addEventListener('statechange', () => {
-          if (sw.state === 'installed' && navigator.serviceWorker.controller) {
-            sw.skipWaiting();
+          if (sw.state === 'installed') {
+            if (navigator.serviceWorker.controller) {
+              sw.skipWaiting();
+            }
           }
         });
       });
     }).catch(() => {});
+    navigator.serviceWorker.addEventListener('message', e => {
+      if (e.data && e.data.type === 'SW_UPDATED') {
+        window.location.reload();
+      }
+    });
   });
 }
 </script>
