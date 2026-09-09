@@ -97,9 +97,10 @@ function bindSearch(inputId,resultId){
       const q=input.value.trim().toLowerCase();
       if(q.length<2){results.innerHTML='';return;}
       const matches=VoterDB.search(q);
-      if(!matches.length){results.innerHTML='<div class="empty-msg">कोई मतदाता नहीं मिला।<br>सही नाम या EPIC नंबर लिखें।</div>';return;}
+      if(!matches.length){results.innerHTML='<div class="empty-msg">कोई मतदाता नहीं मिला।<br>सही नाम, EPIC या क्रम संख्या लिखें।</div>';return;}
       results.innerHTML=matches.slice(0,20).map(v=>`
-        <div class="list-item" onclick="App.openVoter('${v._rid||v.epic}')">
+        <div class="list-item" onclick="App.openVoter('${v.recordId}')">
+          <div class="li-kram">क्रम संख्या: ${v.recordId||'—'}</div>
           <div class="li-name">${v.name||'—'}</div>
           <div class="li-sub">${v.parent||'—'} · घर ${v.houseCanonical||v.house||'—'}</div>
           ${v.epic?`<div class="li-epic">EPIC: ${v.epic}</div>`:''}
@@ -153,10 +154,11 @@ function renderHome(){renderBoothCard();renderVotingSteps();}
 function openVoterDetail(recordId){
   const v=VoterDB.getVoter(recordId);if(!v)return;
   const detail=$('voter-detail');
-  const voterCardMsg=encodeURIComponent(`🗳️ वोटर कार्ड — वार्ड 40\n\nनाम: ${v.name||'—'}\nपिता/पति: ${v.parent||'—'}\nEPIC: ${v.epic||'—'}\nघर नं.: ${v.houseCanonical||'—'}\nआयु: ${v.age!=null?v.age+' वर्ष':'—'}\n\n9 सितंबर 2026 · ${CONFIG.boothFull}\n🪷 नीतू चौहान — वार्ड 40\n\n🔗 ${APP_URL}`);
+  const voterCardMsg=encodeURIComponent(`🗳️ वोटर कार्ड — वार्ड 40\n\nक्रम संख्या: ${v.recordId||'—'}\nनाम: ${v.name||'—'}\nपिता/पति: ${v.parent||'—'}\nEPIC: ${v.epic||'—'}\nघर नं.: ${v.houseCanonical||'—'}\nआयु: ${v.age!=null?v.age+' वर्ष':'—'}\n\n9 सितंबर 2026 · ${CONFIG.boothFull}\n🪷 नीतू चौहान — वार्ड 40\n\n🔗 ${APP_URL}`);
   detail.innerHTML=`
     <div class="detail-found"><div class="found-icon">✅</div><div class="found-title">आप वार्ड 40 के मतदाता हैं!</div></div>
     <div class="detail-card">
+      <div class="detail-row"><span class="dl">क्रम संख्या</span><span class="dv">${v.recordId||'—'}</span></div>
       <div class="detail-row"><span class="dl">नाम</span><span class="dv">${v.name||'—'}</span></div>
       <div class="detail-row"><span class="dl">पिता/पति</span><span class="dv">${v.parent||'—'}</span></div>
       <div class="detail-row"><span class="dl">EPIC नंबर</span><span class="dv">${v.epic||'—'}</span></div>
