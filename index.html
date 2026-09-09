@@ -5,22 +5,22 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="theme-color" content="#7b1fa2">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-<meta name="app-version" content="v9-1788941019">
-<meta name="description" content="वार्ड 40 डीडवाना — नीतू चौहान · 9 सितंबर 2026 को वोट जरूर दें">
+<meta name="app-version" content="v11-1788966548">
+<meta name="description" content="वार्ड 40 डीडवाना — नीतू चौहान · परिणाम 14 सितंबर 2026 को आएंगे">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta property="og:type" content="website">
 <meta property="og:title" content="वार्ड 40 · नीतू चौहान">
-<meta property="og:description" content="9 सितंबर 2026 को वोट जरूर दें।">
+<meta property="og:description" content="परिणाम 14 सितंबर 2026 को आएंगे। 🪷 नीतू चौहान — वार्ड 40">
 <meta property="og:image" content="https://xmaster-69.github.io/didwana-ward40/candidate_poster.jpg">
 <title>वार्ड 40 · नीतू चौहान</title>
-<link rel="manifest" href="manifest.json?.*=10">
+<link rel="manifest" href="manifest.json?.*=11">
 <meta name="apple-mobile-web-app-title" content="वार्ड 40">
 <meta name="application-name" content="वार्ड 40">
 <link rel="apple-touch-icon" href="icons/icon-192.png">
 <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
 <link rel="icon" type="image/png" sizes="512x512" href="icons/icon-512.png">
-<link rel="stylesheet" href="css/styles.css?.*=10">
+<link rel="stylesheet" href="css/styles.css?.*=11">
 </head>
 <body>
 
@@ -41,34 +41,25 @@
     <div class="hero-content">
       <div class="hero-ward">वार्ड 40 · डीडवाना नगर पालिका</div>
       <h1 class="hero-name">नीतू चौहान</h1>
-      <p class="hero-tagline">आपके वार्ड की आवाज़</p>
+      <p class="hero-tagline">विजय की ओर 🪷</p>
       <div class="flip-clock" id="flip-clock"></div>
-      <div class="hero-vote-date">🗳️ 9 सितंबर 2026 · 7AM – 6PM</div>
-      <button class="reminder-btn" id="reminder-btn">⏰ याद दिलाएं</button>
+      <div class="hero-vote-date">📊 परिणाम 14 सितंबर 2026</div>
     </div>
     <div class="hero-particles" id="hero-particles"></div>
   </div>
 
-  <!-- VOTE PLEDGE -->
-  <div class="pledge-section">
-    <div class="pledge-card" id="pledge-card">
-      <div class="pledge-top">
-        <span class="pledge-lotus">🪷</span>
-        <div class="pledge-text">
-          <div class="pledge-heading">मैं नीतू चौहान को वोट दूंगा/दूंगी!</div>
-          <div class="pledge-sub">9 सितंबर 2026 को वार्ड 40 के बूथ पर उपस्थित रहूंगा/रहूंगी</div>
-        </div>
-      </div>
-      <button class="pledge-btn" id="pledge-btn">
-        <span class="pledge-btn-icon">✋</span>
-        <span class="pledge-btn-text">वादा करें</span>
-      </button>
-      <div class="pledge-stats" id="pledge-stats"></div>
-    </div>
-  </div>
-
   <!-- BOOTH INFO -->
   <div class="booth-card" id="booth-card"></div>
+
+
+  <!-- THANK YOU -->
+  <div class="thankyou-card">
+    <div class="thankyou-icon">🙏</div>
+    <h3 class="thankyou-title">धन्यवाद, वार्ड 40!</h3>
+    <p class="thankyou-text">मतदान संपन्न हो चुका है। अब परिणाम का इंतज़ार — <strong>14 सितंबर 2026</strong> को परिणाम आएंगे।</p>
+    <p class="thankyou-sub">🪷 नीतू चौहान — आपके सहयोग के लिए आभारी हैं।</p>
+    <button class="thankyou-share-btn" onclick="App.shareWhatsApp()">📲 जीत का मैसेज शेयर करें</button>
+  </div>
 
   <!-- VOTER SEARCH -->
   <div class="search-section">
@@ -90,86 +81,14 @@
     </div>
   </div>
 
-  <!-- VOTING STEPS -->
-  <div class="section-title">🗳️ वोट कैसे डालें?</div>
-  <div class="steps-grid" id="voting-steps"></div>
-
-  <!-- EVM DEMO -->
-  <div class="section-title">🗳️ EVM डेमो</div>
-  <div class="evm-card">
-    <div class="evm-head">
-      <span class="evm-eci">भारत निर्वाचन आयोग (ईवीएम)</span>
-      <span class="evm-demo">डेमो</span>
-    </div>
-    <div class="evm-screen" id="evm-screen">
-      <div class="evm-msg">मतदान के लिए नीचे<br>अपना वोट दबाएं</div>
-    </div>
-    <button class="evm-vote-btn" id="evm-btn">
-      <span class="evm-symbol">🪷</span>
-      <span class="evm-info">
-        <b>नीतू चौहान</b>
-        <span>भारतीय जनता पार्टी (भाजपा) · कमल</span>
-      </span>
-      <span class="evm-tally">वोट</span>
-    </button>
-    <p class="evm-note">यह केवल एक डेमो है — असली मतदान 9 सितंबर 2026, सुबह 7AM – शाम 6PM तक होगा।</p>
-  </div>
-</div>
-
-<!-- ===== POSTER MAKER ===== -->
-<div id="poster-screen" class="screen">
-  <header class="screen-header">
-    <h2>📸 मैंने वोट दिया</h2>
-  </header>
-
-  <div class="poster-top-intro">
-    <p>फ़ोटो लें, अपना नाम लिखें, और एक शानदार पोस्टर बनाएं — WhatsApp/Insta स्टेटस के लिए तैयार!</p>
-  </div>
-
-  <!-- Camera -->
-  <div class="poster-cam-section">
-    <div class="poster-cam-wrap" id="poster-cam-wrap">
-      <video id="poster-video" autoplay playsinline muted></video>
-      <img id="poster-captured" class="poster-captured hidden" alt="captured photo">
-      <canvas id="poster-capture-canvas" class="hidden"></canvas>
-      <button class="poster-switch-btn" id="poster-switch-btn" title="कैमरा बदलें">🔄</button>
-    </div>
-    <div class="poster-cam-actions">
-      <button class="poster-cam-btn" id="poster-capture-btn">📷</button>
-      <button class="poster-cam-btn secondary hidden" id="poster-retake-btn">🔄</button>
-    </div>
-    <p class="poster-cam-hint" id="poster-cam-hint">📷 अपनी इंक लगी उंगली या सेल्फ़ी लें</p>
-  </div>
-
-  <!-- Name Input -->
-  <div class="poster-name-section">
-    <input type="text" id="poster-name-input" class="poster-name-input" placeholder="अपना नाम लिखें" maxlength="30" autocomplete="off">
-  </div>
-
-  <!-- Generate Button -->
-  <button class="poster-generate-btn" id="poster-generate-btn" disabled>🎨 पोस्टर बनाएँ</button>
-
-  <!-- Result -->
-  <div class="poster-result hidden" id="poster-result">
-    <canvas id="poster-main-canvas" class="hidden"></canvas>
-    <img id="poster-preview" class="poster-preview-img" alt="generated poster">
-    <div class="poster-result-label">✅ आपका पोस्टर तैयार है!</div>
-    <div class="poster-actions">
-      <button class="poster-action-btn download" id="poster-download-btn">⬇️ डाउनलोड</button>
-      <button class="poster-action-btn share" id="poster-share-btn">📲 शेयर करें</button>
-    </div>
-    <button class="poster-retry-btn" id="poster-retry-btn">🔄 दोबारा बनाएं</button>
-  </div>
-</div>
-
 <!-- ===== शेयर करें ===== -->
 <div id="share-screen" class="screen">
   <header class="screen-header">
     <h2>📲 शेयर करें</h2>
   </header>
   <div class="share-hero">
-    <div class="share-big-icon">📲</div>
-    <h3>ऐप को अपने वार्ड के मतदाताओं तक पहुंचाएं</h3>
+    <div class="share-big-icon">🪷</div>
+    <h3>जीत की ख़ुशी सबके साथ बाँटें!</h3>
   </div>
   <div class="share-cards">
     <button class="share-card whatsapp" onclick="App.shareWhatsApp()">
@@ -217,17 +136,16 @@
 <!-- ===== BOTTOM NAV ===== -->
 <nav class="bottom-nav" id="bottom-nav">
   <button data-nav="home-screen" class="active">🏠<span>मुख्य</span></button>
-  <button data-nav="poster-screen">📸<span>पोस्टर</span></button>
   <button data-nav="share-screen">📲<span>शेयर</span></button>
 </nav>
 
 <!-- ===== FOOTER ===== -->
 <div class="footer-credit"><span class="credit-line">📡 डिजिटल पहल</span> <span class="credit-divider">|</span> <span class="credit-name">Ramesh Saini</span></div>
 
-<script src="js/data.js?.*=10"></script>
-<script src="js/voters-en.js?.*=10"></script>
-<script src="js/voters.js?.*=10"></script>
-<script src="js/app.js?.*=10"></script>
+<script src="js/data.js?.*=11"></script>
+<script src="js/voters-en.js?.*=11"></script>
+<script src="js/voters.js?.*=11"></script>
+<script src="js/app.js?.*=11"></script>
 <script>
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
