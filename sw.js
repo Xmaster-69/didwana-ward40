@@ -1,4 +1,4 @@
-const CACHE = 'ward40-voter-v9';
+const CACHE = 'ward40-voter-v10';
 const CORE_FILES = [
   './',
   './index.html',
