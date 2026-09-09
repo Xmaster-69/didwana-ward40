@@ -39,7 +39,7 @@ const VoterDB = {
     if (!query) return this.voters;
     const q = query.toLowerCase().trim();
     const isNumeric = /^\d+$/.test(q);
-    return this.voters.filter(v => {
+    const hindiResults = this.voters.filter(v => {
       if (v.name && v.name.toLowerCase().includes(q)) return true;
       if (v.parent && v.parent.toLowerCase().includes(q)) return true;
       if (v.epic && v.epic.toLowerCase().includes(q)) return true;
@@ -48,10 +48,36 @@ const VoterDB = {
         if (v.houseCanonical != null && String(v.houseCanonical) === q) return true;
         if (v.recordId != null && String(v.recordId) === q) return true;
         if (v.age != null && String(v.age) === q) return true;
+        if (v.kramSankhya && String(v.kramSankhya) === q) return true;
       }
       if (v.gender && v.gender.includes(q)) return true;
+      if (v.nameEn && v.nameEn.toLowerCase().includes(q)) return true;
+      if (v.fatherEn && v.fatherEn.toLowerCase().includes(q)) return true;
       return false;
     });
+    return hindiResults;
+  },
+
+  searchEnglish(query) {
+    if (!query || !window.EN_VOTERS) return [];
+    const q = query.toLowerCase().trim();
+    const isNumeric = /^\d+$/.test(q);
+    return window.EN_VOTERS.filter(v => {
+      if (v.n && v.n.toLowerCase().includes(q)) return true;
+      if (v.f && v.f.toLowerCase().includes(q)) return true;
+      if (v.e && v.e.toLowerCase().includes(q)) return true;
+      if (v.c && v.c.toLowerCase().includes(q)) return true;
+      if (isNumeric && v.k === q) return true;
+      return false;
+    }).map(v => ({
+      name: v.n,
+      parent: v.f,
+      epic: v.e,
+      kramSankhya: v.k,
+      age: v.a,
+      family: v.c,
+      source: 'en'
+    }));
   },
 
   getVoter(recordId) {

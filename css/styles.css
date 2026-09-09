@@ -113,6 +113,7 @@ body {
 .li-name { font-size:0.88rem; font-weight:700; }
 .li-sub { font-size:0.72rem; color:var(--text-sec); margin-top:1px; }
 .li-kram { font-size:0.68rem; color:#7b1fa2; font-weight:700; }
+.li-name-en { font-size:0.72rem; color:#888; font-weight:400; }
 .li-epic { font-size:0.68rem; color:var(--primary); font-weight:600; }
 
 /* ===== ECI LINK ===== */

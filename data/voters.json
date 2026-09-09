@@ -39,7 +39,11 @@
     "fieldStatus": "",
     "recordId": 3,
     "houseSource": "29",
-    "houseCanonical": 29
+    "houseCanonical": 29,
+    "nameEn": "Gulab Chand",
+    "fatherEn": "Kishan lal Gulab",
+    "kramSankhya": "3",
+    "family": "M"
   },
   {
     "name": "सुशीलादेवी",
@@ -381,7 +385,7 @@
     "name": "संगीता",
     "parent": "कालू राम",
     "epic": "MTW3522679",
-    "age": 44,
+    "age": 40,
     "gender": "स्त्री",
     "house": "43",
     "note": "",
@@ -389,7 +393,11 @@
     "fieldStatus": "",
     "recordId": 28,
     "houseSource": "43",
-    "houseCanonical": 43
+    "houseCanonical": 43,
+    "nameEn": "Satnosh",
+    "fatherEn": "Tansukh",
+    "kramSankhya": "30",
+    "family": "M"
   },
   {
     "name": "सनन्‍्तोष",
@@ -417,7 +425,11 @@
     "fieldStatus": "",
     "recordId": 30,
     "houseSource": "43",
-    "houseCanonical": 43
+    "houseCanonical": 43,
+    "nameEn": "Lokesh",
+    "fatherEn": "Sharwan Kumar",
+    "kramSankhya": "31",
+    "family": "M"
   },
   {
     "name": "सरिता",
@@ -501,7 +513,11 @@
     "fieldStatus": "",
     "recordId": 36,
     "houseSource": "44",
-    "houseCanonical": 44
+    "houseCanonical": 44,
+    "nameEn": "Manju devi",
+    "fatherEn": "Om Prakash",
+    "kramSankhya": "37",
+    "family": "M"
   },
   {
     "name": "ललितादेवी",
@@ -529,7 +545,11 @@
     "fieldStatus": "",
     "recordId": 38,
     "houseSource": "44",
-    "houseCanonical": 44
+    "houseCanonical": 44,
+    "nameEn": "Rajaram",
+    "fatherEn": "Bhairu Baksh",
+    "kramSankhya": "39",
+    "family": "M"
   },
   {
     "name": "संजुदेवी",
@@ -745,7 +765,7 @@
     "name": "दिनेश माली",
     "parent": "दुला राम नल",
     "epic": "AZB0344507",
-    "age": 46,
+    "age": 45,
     "gender": "पुरूष",
     "house": "46",
     "note": "",
@@ -753,7 +773,11 @@
     "fieldStatus": "",
     "recordId": 54,
     "houseSource": "46",
-    "houseCanonical": 46
+    "houseCanonical": 46,
+    "nameEn": "Nemichand",
+    "fatherEn": "Ramgopal",
+    "kramSankhya": "56",
+    "family": "M"
   },
   {
     "name": "नेमीचन्द",
@@ -795,7 +819,11 @@
     "fieldStatus": "",
     "recordId": 57,
     "houseSource": "46",
-    "houseCanonical": 46
+    "houseCanonical": 46,
+    "nameEn": "Koshalya",
+    "fatherEn": "Dinesh",
+    "kramSankhya": "58",
+    "family": "M"
   },
   {
     "name": "दुर्गा दत्त",
@@ -1061,7 +1089,11 @@
     "fieldStatus": "",
     "recordId": 76,
     "houseSource": "48",
-    "houseCanonical": 48
+    "houseCanonical": 48,
+    "nameEn": "Sitaram",
+    "fatherEn": "Kaluram",
+    "kramSankhya": "77",
+    "family": "M"
   },
   {
     "name": "मुन्नी देवी",
@@ -1131,7 +1163,11 @@
     "fieldStatus": "",
     "recordId": 81,
     "houseSource": "48",
-    "houseCanonical": 48
+    "houseCanonical": 48,
+    "nameEn": "Munni Devi",
+    "fatherEn": "Ramnivash",
+    "kramSankhya": "82",
+    "family": "M"
   },
   {
     "name": "कृष्ण लाल",
@@ -1165,7 +1201,7 @@
     "name": "धर्मराज मारोठिया पा ता कि",
     "parent": "भंवरलाल",
     "epic": "AZB0795369",
-    "age": 32,
+    "age": 29,
     "gender": "पुरूष",
     "house": "48",
     "note": "",
@@ -1173,7 +1209,11 @@
     "fieldStatus": "",
     "recordId": 84,
     "houseSource": "48",
-    "houseCanonical": 48
+    "houseCanonical": 48,
+    "nameEn": "kiran Saini",
+    "fatherEn": "Krishlal",
+    "kramSankhya": "86",
+    "family": "M"
   },
   {
     "name": "किरण सैनी",
@@ -1263,7 +1303,7 @@
     "name": "कंवरीदेवी",
     "parent": "बद्रीराम ४",
     "epic": "AZB0236778",
-    "age": 58,
+    "age": 41,
     "gender": "स्त्री",
     "house": "50",
     "note": "",
@@ -1271,7 +1311,11 @@
     "fieldStatus": "",
     "recordId": 91,
     "houseSource": "50",
-    "houseCanonical": 50
+    "houseCanonical": 50,
+    "nameEn": "Omprakash",
+    "fatherEn": "badri Parsad",
+    "kramSankhya": "93",
+    "family": "M"
   },
   {
     "name": "ओमप्रकाश",
@@ -1599,7 +1643,7 @@
     "name": "विकेश सांखला",
     "parent": "नन्द किशोर ४",
     "epic": "AZB0744656",
-    "age": 32,
+    "age": 30,
     "gender": "पुरूष",
     "house": "52",
     "note": "",
@@ -1607,7 +1651,11 @@
     "fieldStatus": "",
     "recordId": 115,
     "houseSource": "52",
-    "houseCanonical": 52
+    "houseCanonical": 52,
+    "nameEn": "Rakesh Sankhla",
+    "fatherEn": "Nand Kishore Sankhala",
+    "kramSankhya": "117",
+    "family": "M"
   },
   {
     "name": "राकेश सांखला",
@@ -2167,7 +2215,11 @@
     "fieldStatus": "",
     "recordId": 155,
     "houseSource": "55",
-    "houseCanonical": 55
+    "houseCanonical": 55,
+    "nameEn": "Kiran",
+    "fatherEn": "Anil Kumar",
+    "kramSankhya": "157",
+    "family": "M"
   },
   {
     "name": "गायत्री चांदोलिया",
@@ -2545,7 +2597,11 @@
     "fieldStatus": "",
     "recordId": 182,
     "houseSource": "62",
-    "houseCanonical": 62
+    "houseCanonical": 62,
+    "nameEn": "Sonu Kanwar",
+    "fatherEn": "Ganshyam Singh",
+    "kramSankhya": "186",
+    "family": "RAJPUT"
   },
   {
     "name": "सोनूकंवर",
@@ -3231,7 +3287,11 @@
     "fieldStatus": "",
     "recordId": 231,
     "houseSource": "78",
-    "houseCanonical": 78
+    "houseCanonical": 78,
+    "nameEn": "Mulchan Saini",
+    "fatherEn": "Jetha Ram",
+    "kramSankhya": "234",
+    "family": "M"
   },
   {
     "name": "अनिल कुड़ी",
@@ -3259,7 +3319,11 @@
     "fieldStatus": "",
     "recordId": 233,
     "houseSource": null,
-    "houseCanonical": null
+    "houseCanonical": null,
+    "nameEn": "Govindi Devi",
+    "fatherEn": "Ganpatlal",
+    "kramSankhya": "236",
+    "family": "JAT"
   },
   {
     "name": "सीता भाकर पा ता कि",
@@ -3517,7 +3581,7 @@
     "name": "कविता शेखावत",
     "parent": "भंवर सिंह",
     "epic": "AZB0888933",
-    "age": 36,
+    "age": 28,
     "gender": "स्त्री",
     "house": "8",
     "note": "",
@@ -3525,7 +3589,11 @@
     "fieldStatus": "",
     "recordId": 252,
     "houseSource": "8",
-    "houseCanonical": 8
+    "houseCanonical": 8,
+    "nameEn": "Sakti Singh",
+    "fatherEn": "Manohar Singh",
+    "kramSankhya": "260",
+    "family": "RAJPUT"
   },
   {
     "name": "आंचल",
@@ -4505,7 +4573,11 @@
     "fieldStatus": "",
     "recordId": 322,
     "houseSource": "74",
-    "houseCanonical": 74
+    "houseCanonical": 74,
+    "nameEn": "Komal Rinwa",
+    "fatherEn": "Pradeep Joshi",
+    "kramSankhya": "339",
+    "family": "SHARMA"
   },
   {
     "name": "माया पचार हर हा हा",
@@ -5001,7 +5073,7 @@
     "name": "मंजू देवी पा री को",
     "parent": "हक्माराम ४",
     "epic": "MTW3523404",
-    "age": 54,
+    "age": 52,
     "gender": "स्त्री",
     "house": "66",
     "note": "",
@@ -5009,7 +5081,11 @@
     "fieldStatus": "",
     "recordId": 358,
     "houseSource": "66",
-    "houseCanonical": 66
+    "houseCanonical": 66,
+    "nameEn": "Rajudevi",
+    "fatherEn": "Hukmaram",
+    "kramSankhya": "386",
+    "family": "M"
   },
   {
     "name": "राजूदेवी हक",
@@ -5365,7 +5441,7 @@
     "name": "गीतादेवी",
     "parent": "बिरदीचन्द",
     "epic": "MTW3523305",
-    "age": 54,
+    "age": 36,
     "gender": "स्त्री",
     "house": "69",
     "note": "",
@@ -5373,7 +5449,11 @@
     "fieldStatus": "",
     "recordId": 384,
     "houseSource": "69",
-    "houseCanonical": 69
+    "houseCanonical": 69,
+    "nameEn": "Ramniwas",
+    "fatherEn": "Birda Ram",
+    "kramSankhya": "413",
+    "family": "M"
   },
   {
     "name": "रामनिवास",
@@ -5387,7 +5467,11 @@
     "fieldStatus": "",
     "recordId": 385,
     "houseSource": "69",
-    "houseCanonical": 69
+    "houseCanonical": 69,
+    "nameEn": "Durgaram",
+    "fatherEn": "Ramnarayan",
+    "kramSankhya": "414",
+    "family": "M"
   },
   {
     "name": "दुर्गाराम",
@@ -5667,7 +5751,11 @@
     "fieldStatus": "",
     "recordId": 405,
     "houseSource": "74",
-    "houseCanonical": 74
+    "houseCanonical": 74,
+    "nameEn": "Rakesh Gadhwal",
+    "fatherEn": "Choturam",
+    "kramSankhya": "433",
+    "family": "M"
   },
   {
     "name": "मुन्नी देवी",
@@ -5701,7 +5789,7 @@
     "name": "सुखाराम",
     "parent": "गोविन्द्राम करन डक",
     "epic": "MTW3600343",
-    "age": null,
+    "age": 61,
     "gender": "पुरूष",
     "house": "79",
     "note": "",
@@ -5709,13 +5797,17 @@
     "fieldStatus": "",
     "recordId": 408,
     "houseSource": "79",
-    "houseCanonical": 79
+    "houseCanonical": 79,
+    "nameEn": "Sukharam",
+    "fatherEn": "Govindram",
+    "kramSankhya": "436",
+    "family": "M"
   },
   {
     "name": "पुष्पादेवी कर",
     "parent": "सुखाराम कली कक",
     "epic": "MTW3520483",
-    "age": 58,
+    "age": 41,
     "gender": "स्त्री",
     "house": "79",
     "note": "",
@@ -5723,7 +5815,11 @@
     "fieldStatus": "",
     "recordId": 409,
     "houseSource": "79",
-    "houseCanonical": 79
+    "houseCanonical": 79,
+    "nameEn": "Ramovatar",
+    "fatherEn": "Shkharam",
+    "kramSankhya": "438",
+    "family": "M"
   },
   {
     "name": "रामोवतार",
@@ -5863,7 +5959,11 @@
     "fieldStatus": "",
     "recordId": 419,
     "houseSource": "99",
-    "houseCanonical": 99
+    "houseCanonical": 99,
+    "nameEn": "Daleepsingh",
+    "fatherEn": "Jivan Singh",
+    "kramSankhya": "447",
+    "family": "RAJPUT"
   },
   {
     "name": "कमल",
@@ -5911,7 +6011,7 @@
     "name": "रतनीदेवी",
     "parent": "छोटूलाल",
     "epic": "MTW3524204",
-    "age": 72,
+    "age": 69,
     "gender": "स्त्री",
     "house": null,
     "note": "",
@@ -5919,7 +6019,11 @@
     "fieldStatus": "",
     "recordId": 423,
     "houseSource": null,
-    "houseCanonical": null
+    "houseCanonical": null,
+    "nameEn": "Baldevaram",
+    "fatherEn": "Bhanwru Ram",
+    "kramSankhya": "452",
+    "family": "JAT"
   },
   {
     "name": "बलदेवाराम",
@@ -6051,7 +6155,7 @@
     "name": "महेंद्र चौधरी",
     "parent": "बलदेव राम लि मन",
     "epic": "AZB0744508",
-    "age": 36,
+    "age": 95,
     "gender": "पुरूष",
     "house": "404",
     "note": "",
@@ -6059,7 +6163,11 @@
     "fieldStatus": "",
     "recordId": 433,
     "houseSource": "404",
-    "houseCanonical": 404
+    "houseCanonical": 404,
+    "nameEn": "Khetaram",
+    "fatherEn": "Jesaram",
+    "kramSankhya": "462",
+    "family": "JAT"
   },
   {
     "name": "खेताराम",
@@ -6213,7 +6321,11 @@
     "fieldStatus": "",
     "recordId": 444,
     "houseSource": "03",
-    "houseCanonical": 3
+    "houseCanonical": 3,
+    "nameEn": "Manju",
+    "fatherEn": "Rakesh Kumar",
+    "kramSankhya": "473",
+    "family": "JAT"
   },
   {
     "name": "कृतिका गहलोत",
@@ -6331,7 +6443,7 @@
     "name": "नन्‍्दाराम",
     "parent": "कुम्भाराम",
     "epic": "MTW3520046",
-    "age": 68,
+    "age": 64,
     "gender": "पुरूष",
     "house": "07",
     "note": "",
@@ -6339,13 +6451,17 @@
     "fieldStatus": "",
     "recordId": 453,
     "houseSource": "07",
-    "houseCanonical": 7
+    "houseCanonical": 7,
+    "nameEn": "Bhagirath",
+    "fatherEn": "Ratanram",
+    "kramSankhya": "483",
+    "family": "JAT"
   },
   {
     "name": "मूलीदेवी",
     "parent": "भागीरथ",
     "epic": "AZB0007237",
-    "age": null,
+    "age": 61,
     "gender": "स्त्री",
     "house": "407",
     "note": "",
@@ -6353,7 +6469,11 @@
     "fieldStatus": "",
     "recordId": 454,
     "houseSource": "407",
-    "houseCanonical": 407
+    "houseCanonical": 407,
+    "nameEn": "Mulidevi",
+    "fatherEn": "Bhagirath",
+    "kramSankhya": "484",
+    "family": "JAT"
   },
   {
     "name": "सुरजनराम",
@@ -6367,7 +6487,11 @@
     "fieldStatus": "",
     "recordId": 455,
     "houseSource": "407",
-    "houseCanonical": 407
+    "houseCanonical": 407,
+    "nameEn": "Surjanram",
+    "fatherEn": "Ratna Ram",
+    "kramSankhya": "485",
+    "family": "JAT"
   },
   {
     "name": "तनसुखीदेवी",
@@ -6465,7 +6589,11 @@
     "fieldStatus": "",
     "recordId": 462,
     "houseSource": "407",
-    "houseCanonical": 407
+    "houseCanonical": 407,
+    "nameEn": "Narandra Singh BhakaSrurjanram",
+    "fatherEn": "",
+    "kramSankhya": "492",
+    "family": "JAT"
   },
   {
     "name": "राजूराम भाकर पा",
@@ -6521,7 +6649,11 @@
     "fieldStatus": "",
     "recordId": 466,
     "houseSource": "09",
-    "houseCanonical": 9
+    "houseCanonical": 9,
+    "nameEn": "Khumaram Bera",
+    "fatherEn": "Hanumana Ram Bera",
+    "kramSankhya": "496",
+    "family": "JAT"
   },
   {
     "name": "रेवंती देवी बेरा",
@@ -6535,7 +6667,11 @@
     "fieldStatus": "",
     "recordId": 467,
     "houseSource": "09",
-    "houseCanonical": 9
+    "houseCanonical": 9,
+    "nameEn": "Rewanti Devi Bera",
+    "fatherEn": "Khumaram",
+    "kramSankhya": "497",
+    "family": "JAT"
   },
   {
     "name": "सुरेन्द्र कुमार",
@@ -6549,7 +6685,11 @@
     "fieldStatus": "",
     "recordId": 468,
     "houseSource": "409",
-    "houseCanonical": 409
+    "houseCanonical": 409,
+    "nameEn": "Surendra Kumar",
+    "fatherEn": "Radhakishan",
+    "kramSankhya": "498",
+    "family": "SHARMA"
   },
   {
     "name": "सुमन",
@@ -6563,7 +6703,11 @@
     "fieldStatus": "",
     "recordId": 469,
     "houseSource": "409",
-    "houseCanonical": 409
+    "houseCanonical": 409,
+    "nameEn": "Suman",
+    "fatherEn": "Anil Kumar",
+    "kramSankhya": "499",
+    "family": "SHARMA"
   },
   {
     "name": "सरिता",
@@ -6591,7 +6735,11 @@
     "fieldStatus": "",
     "recordId": 471,
     "houseSource": "409",
-    "houseCanonical": 409
+    "houseCanonical": 409,
+    "nameEn": "Mukesh Bera",
+    "fatherEn": "Khumaram",
+    "kramSankhya": "501",
+    "family": "JAT"
   },
   {
     "name": "सूर्य प्रकाश बेरा",
@@ -6605,7 +6753,11 @@
     "fieldStatus": "",
     "recordId": 472,
     "houseSource": "409",
-    "houseCanonical": 409
+    "houseCanonical": 409,
+    "nameEn": "Surya Prakash Bera",
+    "fatherEn": "Khumaram Bera",
+    "kramSankhya": "502",
+    "family": "JAT"
   },
   {
     "name": "सुशीला चौधरी",
@@ -6751,7 +6903,7 @@
     "name": "अशोक",
     "parent": "भागीरथ",
     "epic": "MTW3523602",
-    "age": 43,
+    "age": 42,
     "gender": "पुरूष",
     "house": null,
     "note": "",
@@ -6759,7 +6911,11 @@
     "fieldStatus": "",
     "recordId": 483,
     "houseSource": null,
-    "houseCanonical": null
+    "houseCanonical": null,
+    "nameEn": "Jeevraj",
+    "fatherEn": "Bhagrath",
+    "kramSankhya": "515",
+    "family": "SHARMA"
   },
   {
     "name": "जीवराज",
@@ -6773,7 +6929,11 @@
     "fieldStatus": "",
     "recordId": 484,
     "houseSource": null,
-    "houseCanonical": null
+    "houseCanonical": null,
+    "nameEn": "Rajshree",
+    "fatherEn": "TANSUKH",
+    "kramSankhya": "516",
+    "family": "SHARMA"
   },
   {
     "name": "राजश्री",
@@ -6815,7 +6975,11 @@
     "fieldStatus": "",
     "recordId": 487,
     "houseSource": null,
-    "houseCanonical": null
+    "houseCanonical": null,
+    "nameEn": "Suman",
+    "fatherEn": "Subhash",
+    "kramSankhya": "518",
+    "family": "SHARMA"
   },
   {
     "name": "सुभाश गौड़",
@@ -6829,7 +6993,11 @@
     "fieldStatus": "",
     "recordId": 488,
     "houseSource": null,
-    "houseCanonical": null
+    "houseCanonical": null,
+    "nameEn": "Subhash Gour",
+    "fatherEn": "Bhanvarlal",
+    "kramSankhya": "519",
+    "family": "SHARMA"
   },
   {
     "name": "मुकेश",
@@ -7129,7 +7297,7 @@
     "name": "मुकेश कुमार",
     "parent": "गोपाल लि मन",
     "epic": "AZB0795286",
-    "age": 37,
+    "age": 44,
     "gender": "पुरूष",
     "house": "3",
     "note": "",
@@ -7137,7 +7305,11 @@
     "fieldStatus": "",
     "recordId": 510,
     "houseSource": "3",
-    "houseCanonical": 3
+    "houseCanonical": 3,
+    "nameEn": "Ram Chandra",
+    "fatherEn": "Padma Ram",
+    "kramSankhya": "543",
+    "family": "JAT"
   },
   {
     "name": "राम चन्द्र",
@@ -7157,7 +7329,7 @@
     "name": "अनीता बगड़िया",
     "parent": "राम चन्द्र",
     "epic": "MTW3524725",
-    "age": 40,
+    "age": 60,
     "gender": "स्त्री",
     "house": "5",
     "note": "",
@@ -7165,7 +7337,11 @@
     "fieldStatus": "",
     "recordId": 512,
     "houseSource": "5",
-    "houseCanonical": 5
+    "houseCanonical": 5,
+    "nameEn": "Shambhu Singh",
+    "fatherEn": "Chagan Singh",
+    "kramSankhya": "545",
+    "family": "RAJPUT"
   },
   {
     "name": "शिम्भूसिंह",
@@ -7207,7 +7383,11 @@
     "fieldStatus": "",
     "recordId": 515,
     "houseSource": "5",
-    "houseCanonical": 5
+    "houseCanonical": 5,
+    "nameEn": "Bhanwar Singh",
+    "fatherEn": "Shambhu Singh",
+    "kramSankhya": "547",
+    "family": "RAJPUT"
   },
   {
     "name": "राजू सिंह",
@@ -7269,7 +7449,7 @@
     "name": "यशपाल सिंह",
     "parent": "हरी सिंह",
     "epic": "MTW3523354",
-    "age": null,
+    "age": 66,
     "gender": "",
     "house": "8",
     "note": "",
@@ -7277,13 +7457,17 @@
     "fieldStatus": "",
     "recordId": 520,
     "houseSource": "8",
-    "houseCanonical": 8
+    "houseCanonical": 8,
+    "nameEn": "Yashpal Singh",
+    "fatherEn": "Hari Singh",
+    "kramSankhya": "552",
+    "family": "RAJPUT"
   },
   {
     "name": "सुरज्ञानकंवर पा ता कि",
     "parent": "यसपालसिंह",
     "epic": "MTW3523347",
-    "age": 62,
+    "age": 41,
     "gender": "स्त्री",
     "house": "8",
     "note": "",
@@ -7291,7 +7475,11 @@
     "fieldStatus": "",
     "recordId": 521,
     "houseSource": "8",
-    "houseCanonical": 8
+    "houseCanonical": 8,
+    "nameEn": "Bhanwar Singh",
+    "fatherEn": "Yashpal Singh",
+    "kramSankhya": "554",
+    "family": "RAJPUT"
   },
   {
     "name": "भंवर सिंह",
@@ -7367,7 +7555,7 @@
     "name": "मनोहर सिंह शेखावत",
     "parent": "डूंगर सिंह हा है",
     "epic": "AZB0070268",
-    "age": 57,
+    "age": 53,
     "gender": "पुरूष",
     "house": "9",
     "note": "",
@@ -7375,7 +7563,11 @@
     "fieldStatus": "",
     "recordId": 527,
     "houseSource": "9",
-    "houseCanonical": 9
+    "houseCanonical": 9,
+    "nameEn": "Laand Kanwar",
+    "fatherEn": "Manohar Singh",
+    "kramSankhya": "560",
+    "family": "RAJPUT"
   },
   {
     "name": "लाड कंवर",
@@ -7529,7 +7721,11 @@
     "fieldStatus": "",
     "recordId": 538,
     "houseSource": "49",
-    "houseCanonical": 49
+    "houseCanonical": 49,
+    "nameEn": "Devi Singh",
+    "fatherEn": "Harnath Singh",
+    "kramSankhya": "571",
+    "family": "RAJPUT"
   },
   {
     "name": "कैलाशकंवर",
@@ -7557,7 +7753,11 @@
     "fieldStatus": "",
     "recordId": 540,
     "houseSource": "49",
-    "houseCanonical": 49
+    "houseCanonical": 49,
+    "nameEn": "Sada Kanwar",
+    "fatherEn": "Devi Singh",
+    "kramSankhya": "573",
+    "family": "RAJPUT"
   },
   {
     "name": "सारिका राठौड़",
@@ -7605,7 +7805,7 @@
     "name": "पतासीदेबी",
     "parent": "उमाराम",
     "epic": "MTW3520392",
-    "age": 74,
+    "age": 70,
     "gender": "स्त्री",
     "house": "2",
     "note": "",
@@ -7613,7 +7813,11 @@
     "fieldStatus": "",
     "recordId": 544,
     "houseSource": "2",
-    "houseCanonical": 2
+    "houseCanonical": 2,
+    "nameEn": "Ratan Singh",
+    "fatherEn": "Dhan Singh",
+    "kramSankhya": "581",
+    "family": "RAJPUT"
   },
   {
     "name": "रतन सिंह",
@@ -7647,7 +7851,7 @@
     "name": "विक्रम सिंह पा",
     "parent": "रतनसिंह",
     "epic": "MTW3520400",
-    "age": 44,
+    "age": 40,
     "gender": "पुरूष",
     "house": "2",
     "note": "",
@@ -7655,7 +7859,11 @@
     "fieldStatus": "",
     "recordId": 547,
     "houseSource": "2",
-    "houseCanonical": 2
+    "houseCanonical": 2,
+    "nameEn": "Gajraj Kanwar",
+    "fatherEn": "Vikram Singh",
+    "kramSankhya": "585",
+    "family": "RAJPUT"
   },
   {
     "name": "विजयसिंह",
@@ -7689,7 +7897,7 @@
     "name": "कमोद शेखावत पा ता कि",
     "parent": "विजयसिंह",
     "epic": "MTW3000056",
-    "age": 36,
+    "age": 59,
     "gender": "स्त्री",
     "house": "2",
     "note": "",
@@ -7697,7 +7905,11 @@
     "fieldStatus": "",
     "recordId": 550,
     "houseSource": "2",
-    "houseCanonical": 2
+    "houseCanonical": 2,
+    "nameEn": "Kesar Devi",
+    "fatherEn": "Hiralal",
+    "kramSankhya": "587",
+    "family": "KUMHAR"
   },
   {
     "name": "केसरदेवी",
@@ -7767,7 +7979,11 @@
     "fieldStatus": "",
     "recordId": 555,
     "houseSource": "23",
-    "houseCanonical": 23
+    "houseCanonical": 23,
+    "nameEn": "Ghanshyam",
+    "fatherEn": "Ashik Kumar Soni",
+    "kramSankhya": "592",
+    "family": "SONI"
   },
   {
     "name": "सुमन देवी",
@@ -7843,7 +8059,7 @@
     "name": "विरेन्द्रसिंह",
     "parent": "गिरधारीसिंह",
     "epic": "MTW3520467",
-    "age": 44,
+    "age": 39,
     "gender": "पुरूष",
     "house": "24",
     "note": "",
@@ -7851,7 +8067,11 @@
     "fieldStatus": "",
     "recordId": 561,
     "houseSource": "24",
-    "houseCanonical": 24
+    "houseCanonical": 24,
+    "nameEn": "Gajendra Singh",
+    "fatherEn": "Girdhari Singh",
+    "kramSankhya": "599",
+    "family": "RAJPUT"
   },
   {
     "name": "गजेन्द्र सिंह",
@@ -7885,7 +8105,7 @@
     "name": "भावना",
     "parent": "विरेन्द्र सिंह",
     "epic": "AZB0009548",
-    "age": 33,
+    "age": 61,
     "gender": "स्त्री",
     "house": "24",
     "note": "",
@@ -7893,7 +8113,11 @@
     "fieldStatus": "",
     "recordId": 564,
     "houseSource": "24",
-    "houseCanonical": 24
+    "houseCanonical": 24,
+    "nameEn": "Bhawani Singh",
+    "fatherEn": "Narpat Singh",
+    "kramSankhya": "602",
+    "family": "RAJPUT"
   },
   {
     "name": "भवानी सिंह",
@@ -8019,7 +8243,11 @@
     "fieldStatus": "",
     "recordId": 573,
     "houseSource": "25",
-    "houseCanonical": 25
+    "houseCanonical": 25,
+    "nameEn": "Sampat Singh",
+    "fatherEn": "Magan Singh",
+    "kramSankhya": "610",
+    "family": "RAJPUT"
   },
   {
     "name": "रघुराज सिंह",
@@ -8033,13 +8261,17 @@
     "fieldStatus": "",
     "recordId": 574,
     "houseSource": "25",
-    "houseCanonical": 25
+    "houseCanonical": 25,
+    "nameEn": "Raghuraj Singh",
+    "fatherEn": "Bhanwar Singh",
+    "kramSankhya": "611",
+    "family": "RAJPUT"
   },
   {
     "name": "अरविन्द सिंह",
     "parent": "भंवर सिंह",
     "epic": "MTW3520939",
-    "age": 44,
+    "age": 41,
     "gender": "पुरूष",
     "house": "425",
     "note": "",
@@ -8047,7 +8279,11 @@
     "fieldStatus": "",
     "recordId": 575,
     "houseSource": "425",
-    "houseCanonical": 425
+    "houseCanonical": 425,
+    "nameEn": "Arvind Singh",
+    "fatherEn": "Bhanwar Singh",
+    "kramSankhya": "612",
+    "family": "RAJPUT"
   },
   {
     "name": "कमलजीत सिंह",
@@ -8061,7 +8297,11 @@
     "fieldStatus": "",
     "recordId": 576,
     "houseSource": "425",
-    "houseCanonical": 425
+    "houseCanonical": 425,
+    "nameEn": "Kamaljeet Singh",
+    "fatherEn": "Bhanwar Singh",
+    "kramSankhya": "613",
+    "family": "RAJPUT"
   },
   {
     "name": "सरिता देवी",
@@ -8145,7 +8385,11 @@
     "fieldStatus": "",
     "recordId": 582,
     "houseSource": "26",
-    "houseCanonical": 26
+    "houseCanonical": 26,
+    "nameEn": "Shetanram Dara",
+    "fatherEn": "Nandaram",
+    "kramSankhya": "620",
+    "family": "JAT"
   },
   {
     "name": "शैतानराम डारा",
@@ -8187,7 +8431,11 @@
     "fieldStatus": "",
     "recordId": 585,
     "houseSource": "26",
-    "houseCanonical": 26
+    "houseCanonical": 26,
+    "nameEn": "Prem",
+    "fatherEn": "Rakesh Dara",
+    "kramSankhya": "622",
+    "family": "JAT"
   },
   {
     "name": "राकेश डारा",
@@ -8221,7 +8469,7 @@
     "name": "लादूराम",
     "parent": "गोपाल लाल",
     "epic": "AZB0344457",
-    "age": 68,
+    "age": 58,
     "gender": "पुरूष",
     "house": null,
     "note": "",
@@ -8229,7 +8477,11 @@
     "fieldStatus": "",
     "recordId": 588,
     "houseSource": null,
-    "houseCanonical": null
+    "houseCanonical": null,
+    "nameEn": "Subhash",
+    "fatherEn": "Gopal Lal",
+    "kramSankhya": "626",
+    "family": "SHARMA"
   },
   {
     "name": "सुभाष",
@@ -8271,7 +8523,11 @@
     "fieldStatus": "",
     "recordId": 591,
     "houseSource": "27",
-    "houseCanonical": 27
+    "houseCanonical": 27,
+    "nameEn": "Ashok Kumar",
+    "fatherEn": "Gopal Lal",
+    "kramSankhya": "628",
+    "family": "SHARMA"
   },
   {
     "name": "उमादेवी",
@@ -8285,7 +8541,11 @@
     "fieldStatus": "",
     "recordId": 592,
     "houseSource": "27",
-    "houseCanonical": 27
+    "houseCanonical": 27,
+    "nameEn": "Uma Devi",
+    "fatherEn": "Subhash",
+    "kramSankhya": "629",
+    "family": "SHARMA"
   },
   {
     "name": "कनक",
@@ -8305,7 +8565,7 @@
     "name": "प्रकाशकंवर",
     "parent": "ओमसिंह",
     "epic": "AZB0007278",
-    "age": 54,
+    "age": 53,
     "gender": "पुरूष",
     "house": "27",
     "note": "",
@@ -8313,7 +8573,11 @@
     "fieldStatus": "",
     "recordId": 594,
     "houseSource": "27",
-    "houseCanonical": 27
+    "houseCanonical": 27,
+    "nameEn": "Prakash Kanwar",
+    "fatherEn": "Omsingh",
+    "kramSankhya": "631",
+    "family": "RAJPUT"
   },
   {
     "name": "ओमनारायण",
@@ -8389,7 +8653,7 @@
     "name": "सीमा",
     "parent": "अश्विनी",
     "epic": "MTW3520459",
-    "age": 44,
+    "age": 42,
     "gender": "स्त्री",
     "house": "27",
     "note": "",
@@ -8397,7 +8661,11 @@
     "fieldStatus": "",
     "recordId": 600,
     "houseSource": "27",
-    "houseCanonical": 27
+    "houseCanonical": 27,
+    "nameEn": "Sunita Choudhary",
+    "fatherEn": "Rakesh",
+    "kramSankhya": "638",
+    "family": "JAT"
   },
   {
     "name": "सुनिता चौधरी",
@@ -8977,7 +9245,7 @@
     "name": "ललिता देवी",
     "parent": "किशन भोजक",
     "epic": "AZB0098202",
-    "age": 44,
+    "age": 41,
     "gender": "स्त्री",
     "house": "33",
     "note": "",
@@ -8985,7 +9253,11 @@
     "fieldStatus": "",
     "recordId": 642,
     "houseSource": "33",
-    "houseCanonical": 33
+    "houseCanonical": 33,
+    "nameEn": "Lalita Devi",
+    "fatherEn": "Kishan Bhojak",
+    "kramSankhya": "679",
+    "family": "SHARMA"
   },
   {
     "name": "दीपक कुमार",
@@ -9041,7 +9313,11 @@
     "fieldStatus": "",
     "recordId": 646,
     "houseSource": "433",
-    "houseCanonical": 433
+    "houseCanonical": 433,
+    "nameEn": "Bhawna jangir",
+    "fatherEn": "Laxmanram",
+    "kramSankhya": "684",
+    "family": "KHATI"
   },
   {
     "name": "भावना जांगिड",
@@ -9097,7 +9373,11 @@
     "fieldStatus": "",
     "recordId": 650,
     "houseSource": "334",
-    "houseCanonical": 334
+    "houseCanonical": 334,
+    "nameEn": "Durjan Singh",
+    "fatherEn": "Ladu Singh",
+    "kramSankhya": "687",
+    "family": "RAJPUT"
   },
   {
     "name": "रेबत सिंह पा ता कि",
@@ -9195,7 +9475,11 @@
     "fieldStatus": "",
     "recordId": 657,
     "houseSource": "33",
-    "houseCanonical": 33
+    "houseCanonical": 33,
+    "nameEn": "Rekha Kanwar",
+    "fatherEn": "Mahipal Singh",
+    "kramSankhya": "700",
+    "family": "RAJPUT"
   },
   {
     "name": "हनुमानसिंह",
@@ -9223,7 +9507,11 @@
     "fieldStatus": "",
     "recordId": 659,
     "houseSource": "35",
-    "houseCanonical": 35
+    "houseCanonical": 35,
+    "nameEn": "Amrut Kanwar",
+    "fatherEn": "Hanuman Ram",
+    "kramSankhya": "702",
+    "family": "RAJPUT"
   },
   {
     "name": "भगवानाराम",
@@ -9271,7 +9559,7 @@
     "name": "डूंगरसिंह",
     "parent": "राम कुंवारसिंह",
     "epic": "AZB0009274",
-    "age": 54,
+    "age": 50,
     "gender": "पुरूष",
     "house": "35",
     "note": "",
@@ -9279,13 +9567,17 @@
     "fieldStatus": "",
     "recordId": 663,
     "houseSource": "35",
-    "houseCanonical": 35
+    "houseCanonical": 35,
+    "nameEn": "Santosh",
+    "fatherEn": "Lichhman ram",
+    "kramSankhya": "707",
+    "family": "JAT"
   },
   {
     "name": "संतोष",
     "parent": "लिछमणराम ४",
     "epic": "MTW3523222",
-    "age": 50,
+    "age": 49,
     "gender": "स्त्री",
     "house": "435",
     "note": "",
@@ -9293,7 +9585,11 @@
     "fieldStatus": "",
     "recordId": 664,
     "houseSource": "435",
-    "houseCanonical": 435
+    "houseCanonical": 435,
+    "nameEn": "Sharda Kanwar",
+    "fatherEn": "Dungar Singh",
+    "kramSankhya": "708",
+    "family": "RAJPUT"
   },
   {
     "name": "शारदा कंवर",
@@ -9321,7 +9617,11 @@
     "fieldStatus": "",
     "recordId": 666,
     "houseSource": "35",
-    "houseCanonical": 35
+    "houseCanonical": 35,
+    "nameEn": "Saroj Kanwar",
+    "fatherEn": "Kaan Singh",
+    "kramSankhya": "709",
+    "family": "RAJPUT"
   },
   {
     "name": "नरेशसिंह",
@@ -9335,7 +9635,11 @@
     "fieldStatus": "",
     "recordId": 667,
     "houseSource": "435",
-    "houseCanonical": 435
+    "houseCanonical": 435,
+    "nameEn": "Naresh Singh",
+    "fatherEn": "Tej Singh",
+    "kramSankhya": "710",
+    "family": "RAJPUT"
   },
   {
     "name": "दिपेन्द्र",
@@ -9363,7 +9667,11 @@
     "fieldStatus": "",
     "recordId": 669,
     "houseSource": "35",
-    "houseCanonical": 35
+    "houseCanonical": 35,
+    "nameEn": "Ramchandra",
+    "fatherEn": "ganguram",
+    "kramSankhya": "712",
+    "family": "JAT"
   },
   {
     "name": "मुनेश सिंह",
@@ -9377,7 +9685,11 @@
     "fieldStatus": "",
     "recordId": 670,
     "houseSource": "435",
-    "houseCanonical": 435
+    "houseCanonical": 435,
+    "nameEn": "Munesh Singh",
+    "fatherEn": "Hanuman Singh",
+    "kramSankhya": "713",
+    "family": "RAJPUT"
   },
   {
     "name": "नन्‍्दकिशोर",
@@ -9391,7 +9703,11 @@
     "fieldStatus": "",
     "recordId": 671,
     "houseSource": "35",
-    "houseCanonical": 35
+    "houseCanonical": 35,
+    "nameEn": "Nandkishor",
+    "fatherEn": "Lakshmanram",
+    "kramSankhya": "714",
+    "family": "JAT"
   },
   {
     "name": "बबीता जांगिड पा ता कि",
@@ -9405,7 +9721,11 @@
     "fieldStatus": "",
     "recordId": 672,
     "houseSource": "435",
-    "houseCanonical": 435
+    "houseCanonical": 435,
+    "nameEn": "Babita jangir",
+    "fatherEn": "Nandkishor",
+    "kramSankhya": "715",
+    "family": "KHATI"
   },
   {
     "name": "कौशल्या ढाका",
@@ -9439,7 +9759,7 @@
     "name": "आकाश सिंह",
     "parent": "डूंगर सिंह ला ही के",
     "epic": "AZB0744623",
-    "age": 20,
+    "age": 32,
     "gender": "पुरूष",
     "house": "35",
     "note": "",
@@ -9447,7 +9767,11 @@
     "fieldStatus": "",
     "recordId": 675,
     "houseSource": "35",
-    "houseCanonical": 35
+    "houseCanonical": 35,
+    "nameEn": "Rahul Choudhary",
+    "fatherEn": "Bhagwanaram Ranwa",
+    "kramSankhya": "720",
+    "family": "JAT"
   },
   {
     "name": "जितेंद्र सिंह",
@@ -9559,7 +9883,11 @@
     "fieldStatus": "",
     "recordId": 683,
     "houseSource": "38",
-    "houseCanonical": 38
+    "houseCanonical": 38,
+    "nameEn": "Sanjay Singh",
+    "fatherEn": "Mahaveer Singh",
+    "kramSankhya": "727",
+    "family": "RAJPUT"
   },
   {
     "name": "सीमा शेखावत",
@@ -9677,7 +10005,7 @@
     "name": "मोवारिस पा",
     "parent": "मो सलीम",
     "epic": "AZB0285353",
-    "age": 39,
+    "age": 36,
     "gender": "पुरूष",
     "house": "439",
     "note": "",
@@ -9685,7 +10013,11 @@
     "fieldStatus": "",
     "recordId": 692,
     "houseSource": "439",
-    "houseCanonical": 439
+    "houseCanonical": 439,
+    "nameEn": "Issak Ali",
+    "fatherEn": "Mo Ayyub Ali",
+    "kramSankhya": "737",
+    "family": "MOMDON"
   },
   {
     "name": "इसाक अली",
@@ -9831,7 +10163,7 @@
     "name": "गीता",
     "parent": "हनुमत प्रसाद",
     "epic": "MTW3600335",
-    "age": 79,
+    "age": 58,
     "gender": "स्त्री",
     "house": "445",
     "note": "",
@@ -9839,7 +10171,11 @@
     "fieldStatus": "",
     "recordId": 703,
     "houseSource": "445",
-    "houseCanonical": 445
+    "houseCanonical": 445,
+    "nameEn": "Vishnu Prasad",
+    "fatherEn": "Hanumat Prasad",
+    "kramSankhya": "749",
+    "family": "SHARMA"
   },
   {
     "name": "विष्णु प्रसाद",
@@ -9915,7 +10251,7 @@
     "name": "जगदीश",
     "parent": "भगवानाराम",
     "epic": "MTW3524477",
-    "age": 47,
+    "age": 37,
     "gender": "पुरूष",
     "house": "46",
     "note": "",
@@ -9923,7 +10259,11 @@
     "fieldStatus": "",
     "recordId": 709,
     "houseSource": "46",
-    "houseCanonical": 46
+    "houseCanonical": 46,
+    "nameEn": "Gulab",
+    "fatherEn": "Mahaveer",
+    "kramSankhya": "756",
+    "family": "JAT"
   },
   {
     "name": "महावीर",
@@ -9957,7 +10297,7 @@
     "name": "शान्ता",
     "parent": "शिवराम",
     "epic": "AZB0380360",
-    "age": 72,
+    "age": 69,
     "gender": "स्त्री",
     "house": "47",
     "note": "",
@@ -9965,7 +10305,11 @@
     "fieldStatus": "",
     "recordId": 712,
     "houseSource": "47",
-    "houseCanonical": 47
+    "houseCanonical": 47,
+    "nameEn": "Raj Kanwar",
+    "fatherEn": "Bhanwar Singh",
+    "kramSankhya": "759",
+    "family": "JAT"
   },
   {
     "name": "राहुल जाखड",
@@ -9999,7 +10343,7 @@
     "name": "पुरुषोत्तम लाल पुरोहित पा ता कि",
     "parent": "बंकट लाल पुरोहित",
     "epic": "MTW3520020",
-    "age": 63,
+    "age": 62,
     "gender": "पुरूष",
     "house": "48",
     "note": "",
@@ -10007,7 +10351,11 @@
     "fieldStatus": "",
     "recordId": 715,
     "houseSource": "48",
-    "houseCanonical": 48
+    "houseCanonical": 48,
+    "nameEn": "Kamla",
+    "fatherEn": "Ramprasad",
+    "kramSankhya": "762",
+    "family": "SWAMI"
   },
   {
     "name": "रामप्रसाद",
@@ -10049,13 +10397,17 @@
     "fieldStatus": "",
     "recordId": 718,
     "houseSource": "48",
-    "houseCanonical": 48
+    "houseCanonical": 48,
+    "nameEn": "Laxmmi Narayan VaishBaavbulal",
+    "fatherEn": "Vaishnav",
+    "kramSankhya": "763",
+    "family": "SWAMI"
   },
   {
     "name": "दिनेश",
     "parent": "रामप्रसाद ४",
     "epic": "MTW3523685",
-    "age": 42,
+    "age": 41,
     "gender": "पुरूष",
     "house": "485",
     "note": "",
@@ -10063,7 +10415,11 @@
     "fieldStatus": "",
     "recordId": 719,
     "houseSource": "485",
-    "houseCanonical": 485
+    "houseCanonical": 485,
+    "nameEn": "Lokesh",
+    "fatherEn": "Ramprasad",
+    "kramSankhya": "765",
+    "family": "SWAMI"
   },
   {
     "name": "लोकेश",
@@ -10083,7 +10439,7 @@
     "name": "दुर्गा",
     "parent": "दिनेश",
     "epic": "MTW3520038",
-    "age": 39,
+    "age": 40,
     "gender": "स्त्री",
     "house": "485",
     "note": "",
@@ -10091,13 +10447,17 @@
     "fieldStatus": "",
     "recordId": 721,
     "houseSource": "485",
-    "houseCanonical": 485
+    "houseCanonical": 485,
+    "nameEn": "Durga",
+    "fatherEn": "Dinesh",
+    "kramSankhya": "766",
+    "family": "SWAMI"
   },
   {
     "name": "निशा रामावत",
     "parent": "लक्ष्मी नारायण वैष्णव",
     "epic": "AZB0073700",
-    "age": 38,
+    "age": 39,
     "gender": "पुरूष",
     "house": "48",
     "note": "",
@@ -10105,7 +10465,11 @@
     "fieldStatus": "",
     "recordId": 722,
     "houseSource": "48",
-    "houseCanonical": 48
+    "houseCanonical": 48,
+    "nameEn": "Nisha Ramavat",
+    "fatherEn": "Laxmmi Narayan Vaishnav",
+    "kramSankhya": "767",
+    "family": "SWAMI"
   },
   {
     "name": "राजेश",
@@ -10125,7 +10489,7 @@
     "name": "सुलोचना पा ता कि",
     "parent": "लोकेश",
     "epic": "AZB0458877",
-    "age": 38,
+    "age": 35,
     "gender": "स्त्री",
     "house": "48",
     "note": "",
@@ -10133,7 +10497,11 @@
     "fieldStatus": "",
     "recordId": 724,
     "houseSource": "48",
-    "houseCanonical": 48
+    "houseCanonical": 48,
+    "nameEn": "Pooja Devi",
+    "fatherEn": "Rajesh",
+    "kramSankhya": "770",
+    "family": "SWAMI"
   },
   {
     "name": "पूजादेवी",
@@ -10259,13 +10627,17 @@
     "fieldStatus": "",
     "recordId": 733,
     "houseSource": "449",
-    "houseCanonical": 449
+    "houseCanonical": 449,
+    "nameEn": "Santosh",
+    "fatherEn": "Akhilkumar",
+    "kramSankhya": "779",
+    "family": "SWAMI"
   },
   {
     "name": "संतोष",
     "parent": "अखिलकुमार",
     "epic": "AZB0260695",
-    "age": 43,
+    "age": 41,
     "gender": "स्त्री",
     "house": "449",
     "note": "",
@@ -10273,7 +10645,11 @@
     "fieldStatus": "",
     "recordId": 734,
     "houseSource": "449",
-    "houseCanonical": 449
+    "houseCanonical": 449,
+    "nameEn": "Rukma",
+    "fatherEn": "Dhanraj",
+    "kramSankhya": "780",
+    "family": "KUMHAR"
   },
   {
     "name": "रूकमा",
@@ -10357,7 +10733,11 @@
     "fieldStatus": "",
     "recordId": 740,
     "houseSource": "49",
-    "houseCanonical": 49
+    "houseCanonical": 49,
+    "nameEn": "Umaram",
+    "fatherEn": "Nankaram",
+    "kramSankhya": "786",
+    "family": "JAT"
   },
   {
     "name": "उमाराम",
@@ -10377,7 +10757,7 @@
     "name": "सुनीतादेवी पे कि",
     "parent": "उमाराम करन डक",
     "epic": "AZB0658005",
-    "age": 64,
+    "age": 32,
     "gender": "स्त्री",
     "house": "50",
     "note": "",
@@ -10385,7 +10765,11 @@
     "fieldStatus": "",
     "recordId": 742,
     "houseSource": "50",
-    "houseCanonical": 50
+    "houseCanonical": 50,
+    "nameEn": "Manoj Kumari",
+    "fatherEn": "Vinod Kumar",
+    "kramSankhya": "789",
+    "family": "JAT"
   },
   {
     "name": "विनोद कुमार ग",
@@ -10427,7 +10811,11 @@
     "fieldStatus": "",
     "recordId": 745,
     "houseSource": "52",
-    "houseCanonical": 52
+    "houseCanonical": 52,
+    "nameEn": "Kamla",
+    "fatherEn": "Purnaram",
+    "kramSankhya": "790",
+    "family": "JAT"
   },
   {
     "name": "सलोचना",
@@ -10461,7 +10849,7 @@
     "name": "धनराज",
     "parent": "चांदमल",
     "epic": "MTW3522265",
-    "age": 50,
+    "age": 49,
     "gender": "पुरूष",
     "house": "52",
     "note": "",
@@ -10469,7 +10857,11 @@
     "fieldStatus": "",
     "recordId": 748,
     "houseSource": "52",
-    "houseCanonical": 52
+    "houseCanonical": 52,
+    "nameEn": "Devaram",
+    "fatherEn": "Purnaram",
+    "kramSankhya": "794",
+    "family": "M"
   },
   {
     "name": "देवाराम",
@@ -10511,7 +10903,11 @@
     "fieldStatus": "",
     "recordId": 751,
     "houseSource": "52",
-    "houseCanonical": 52
+    "houseCanonical": 52,
+    "nameEn": "Arvind",
+    "fatherEn": "Bhanwarlal",
+    "kramSankhya": "796",
+    "family": "BHARGAV"
   },
   {
     "name": "पुखराज",
@@ -10553,7 +10949,11 @@
     "fieldStatus": "",
     "recordId": 754,
     "houseSource": "52",
-    "houseCanonical": 52
+    "houseCanonical": 52,
+    "nameEn": "Arvind",
+    "fatherEn": "Bhanwarlal",
+    "kramSankhya": "799",
+    "family": "BHARGAV"
   },
   {
     "name": "महावीर सैन",
@@ -10567,7 +10967,11 @@
     "fieldStatus": "",
     "recordId": 755,
     "houseSource": "452",
-    "houseCanonical": 452
+    "houseCanonical": 452,
+    "nameEn": "Mahaveer Sain",
+    "fatherEn": "Kanhaiyalal",
+    "kramSankhya": "800",
+    "family": "SAIN"
   },
   {
     "name": "प्रवीण कुमार",
@@ -10595,7 +10999,11 @@
     "fieldStatus": "",
     "recordId": 757,
     "houseSource": "52",
-    "houseCanonical": 52
+    "houseCanonical": 52,
+    "nameEn": "Kamlesh Sharma",
+    "fatherEn": "Bajrang Lal",
+    "kramSankhya": "802",
+    "family": "SHARMA"
   },
   {
     "name": "कविता शर्मा",
@@ -10665,7 +11073,11 @@
     "fieldStatus": "",
     "recordId": 762,
     "houseSource": "52",
-    "houseCanonical": 52
+    "houseCanonical": 52,
+    "nameEn": "Sunita",
+    "fatherEn": "Arvind",
+    "kramSankhya": "807",
+    "family": "BHARGAV"
   },
   {
     "name": "विधानन्द",
@@ -10693,7 +11105,11 @@
     "fieldStatus": "",
     "recordId": 764,
     "houseSource": "52",
-    "houseCanonical": 52
+    "houseCanonical": 52,
+    "nameEn": "Dipti Sharma",
+    "fatherEn": "Bajranglal Sharma",
+    "kramSankhya": "809",
+    "family": "SHARMA"
   },
   {
     "name": "दिनेश मारोठिया",
@@ -10839,7 +11255,7 @@
     "name": "कमलादेबी",
     "parent": "हनुमानराम ही ही मे",
     "epic": "MTW3524923",
-    "age": 63,
+    "age": 59,
     "gender": "स्त्री",
     "house": "454",
     "note": "",
@@ -10847,7 +11263,11 @@
     "fieldStatus": "",
     "recordId": 775,
     "houseSource": "454",
-    "houseCanonical": 454
+    "houseCanonical": 454,
+    "nameEn": "Kamladevi",
+    "fatherEn": "Keshrimal",
+    "kramSankhya": "822",
+    "family": "BANJARA"
   },
   {
     "name": "कमलादेबी",
@@ -11203,7 +11623,7 @@
     "name": "सरोजदेवी",
     "parent": "गोपाल",
     "epic": "AZB0380444",
-    "age": 54,
+    "age": 49,
     "gender": "स्त्री",
     "house": "55",
     "note": "",
@@ -11211,7 +11631,11 @@
     "fieldStatus": "",
     "recordId": 801,
     "houseSource": "55",
-    "houseCanonical": 55
+    "houseCanonical": 55,
+    "nameEn": "Nirmla Tak",
+    "fatherEn": "Sandeep Chand Tak",
+    "kramSankhya": "848",
+    "family": "M"
   },
   {
     "name": "निर्मला टाक",
@@ -11245,7 +11669,7 @@
     "name": "जयनारायण",
     "parent": "भंवरलाल",
     "epic": "MTW3523438",
-    "age": 45,
+    "age": 44,
     "gender": "पुरूष",
     "house": "455",
     "note": "",
@@ -11253,13 +11677,17 @@
     "fieldStatus": "",
     "recordId": 804,
     "houseSource": "455",
-    "houseCanonical": 455
+    "houseCanonical": 455,
+    "nameEn": "Meeradevi",
+    "fatherEn": "Jetharam",
+    "kramSankhya": "851",
+    "family": "M"
   },
   {
     "name": "मीरादेवी",
     "parent": "जेठाराम",
     "epic": "MTW3522323",
-    "age": 44,
+    "age": 42,
     "gender": "स्त्री",
     "house": "455",
     "note": "",
@@ -11267,7 +11695,11 @@
     "fieldStatus": "",
     "recordId": 805,
     "houseSource": "455",
-    "houseCanonical": 455
+    "houseCanonical": 455,
+    "nameEn": "Premprakash",
+    "fatherEn": "Govindlal",
+    "kramSankhya": "852",
+    "family": "M"
   },
   {
     "name": "प्रेमप्रकाश",
@@ -11371,7 +11803,7 @@
     "name": "अमरचन्द पंवार गा हा शो",
     "parent": "सुरजाराम लि जल",
     "epic": "AZB0744839",
-    "age": 34,
+    "age": 29,
     "gender": "पुरूष",
     "house": "55",
     "note": "",
@@ -11379,7 +11811,11 @@
     "fieldStatus": "",
     "recordId": 813,
     "houseSource": "55",
-    "houseCanonical": 55
+    "houseCanonical": 55,
+    "nameEn": "Bebi",
+    "fatherEn": "Mahendra Tak",
+    "kramSankhya": "860",
+    "family": "M"
   },
   {
     "name": "बेबी गा",
@@ -11413,7 +11849,7 @@
     "name": "मनोहरी देवी पा ता कि",
     "parent": "जय नारायण नल",
     "epic": "MTW3520095",
-    "age": 38,
+    "age": 69,
     "gender": "स्त्री",
     "house": "56",
     "note": "",
@@ -11421,7 +11857,11 @@
     "fieldStatus": "",
     "recordId": 816,
     "houseSource": "56",
-    "houseCanonical": 56
+    "houseCanonical": 56,
+    "nameEn": "Khemaram",
+    "fatherEn": "Jasraj",
+    "kramSankhya": "863",
+    "family": "JAT"
   },
   {
     "name": "खेमाराम",
@@ -11491,7 +11931,11 @@
     "fieldStatus": "",
     "recordId": 821,
     "houseSource": "57",
-    "houseCanonical": 57
+    "houseCanonical": 57,
+    "nameEn": "Pooja",
+    "fatherEn": "Rajkumar",
+    "kramSankhya": "867",
+    "family": "JAT"
   },
   {
     "name": "विजयसिंह",
@@ -11631,7 +12075,11 @@
     "fieldStatus": "",
     "recordId": 831,
     "houseSource": "58",
-    "houseCanonical": 58
+    "houseCanonical": 58,
+    "nameEn": "Nandkishor",
+    "fatherEn": "Babulal",
+    "kramSankhya": "877",
+    "family": "SHARMA"
   },
   {
     "name": "द्रोपती",
@@ -11645,7 +12093,11 @@
     "fieldStatus": "",
     "recordId": 832,
     "houseSource": "58",
-    "houseCanonical": 58
+    "houseCanonical": 58,
+    "nameEn": "Dropadi",
+    "fatherEn": "Nandkishor",
+    "kramSankhya": "878",
+    "family": "SHARMA"
   },
   {
     "name": "सरबती",
@@ -11659,7 +12111,11 @@
     "fieldStatus": "",
     "recordId": 833,
     "houseSource": "58",
-    "houseCanonical": 58
+    "houseCanonical": 58,
+    "nameEn": "Sarbati",
+    "fatherEn": "Madanlal",
+    "kramSankhya": "879",
+    "family": "SHARMA"
   },
   {
     "name": "गजेन्द्रसिंह",
@@ -11841,7 +12297,11 @@
     "fieldStatus": "",
     "recordId": 846,
     "houseSource": "59",
-    "houseCanonical": 59
+    "houseCanonical": 59,
+    "nameEn": "Sitaram",
+    "fatherEn": "Bhagirath Ram",
+    "kramSankhya": "898",
+    "family": "JAT"
   },
   {
     "name": "सुनीता",
@@ -11925,7 +12385,11 @@
     "fieldStatus": "",
     "recordId": 852,
     "houseSource": "459",
-    "houseCanonical": 459
+    "houseCanonical": 459,
+    "nameEn": "Sumitra",
+    "fatherEn": "Sitaram",
+    "kramSankhya": "904",
+    "family": "JAT"
   },
   {
     "name": "केशरा राम नेतड़",
@@ -11973,7 +12437,7 @@
     "name": "सुगना",
     "parent": "सोहन ४",
     "epic": "AZB0097550",
-    "age": null,
+    "age": 61,
     "gender": "स्त्री",
     "house": "59",
     "note": "",
@@ -11981,7 +12445,11 @@
     "fieldStatus": "",
     "recordId": 856,
     "houseSource": "59",
-    "houseCanonical": 59
+    "houseCanonical": 59,
+    "nameEn": "Sugna",
+    "fatherEn": "Sohan",
+    "kramSankhya": "908",
+    "family": "JAT"
   },
   {
     "name": "गणपतराम",
@@ -12183,7 +12651,7 @@
     "name": "गुलाबसिंह कर",
     "parent": "गुलाबसिंह",
     "epic": "AZB0744995",
-    "age": 52,
+    "age": 59,
     "gender": "स्त्री",
     "house": "64",
     "note": "",
@@ -12191,7 +12659,11 @@
     "fieldStatus": "",
     "recordId": 871,
     "houseSource": "64",
-    "houseCanonical": 64
+    "houseCanonical": 64,
+    "nameEn": "Gulab Singh",
+    "fatherEn": "Pratap Singh",
+    "kramSankhya": "923",
+    "family": "RAJPUT"
   },
   {
     "name": "भंवरकंवर",
@@ -12519,7 +12991,7 @@
     "name": "पन्नाराम",
     "parent": "मालाराम ही ही मे",
     "epic": "MTW3525045",
-    "age": 74,
+    "age": 71,
     "gender": "पुरूष",
     "house": "74",
     "note": "",
@@ -12527,7 +12999,11 @@
     "fieldStatus": "",
     "recordId": 895,
     "houseSource": "74",
-    "houseCanonical": 74
+    "houseCanonical": 74,
+    "nameEn": "Panna Ram",
+    "fatherEn": "Malaram",
+    "kramSankhya": "947",
+    "family": "JAT"
   },
   {
     "name": "भंवरीदेवी",
@@ -12667,7 +13143,11 @@
     "fieldStatus": "",
     "recordId": 905,
     "houseSource": "74",
-    "houseCanonical": 74
+    "houseCanonical": 74,
+    "nameEn": "Anita",
+    "fatherEn": "Ajay Kumar",
+    "kramSankhya": "957",
+    "family": "JAT"
   },
   {
     "name": "बनवारी लाल",
@@ -12681,7 +13161,11 @@
     "fieldStatus": "",
     "recordId": 906,
     "houseSource": "74",
-    "houseCanonical": 74
+    "houseCanonical": 74,
+    "nameEn": "Banwari Lal",
+    "fatherEn": "Mangu Ram",
+    "kramSankhya": "958",
+    "family": "JAT"
   },
   {
     "name": "किरण",
@@ -12695,7 +13179,11 @@
     "fieldStatus": "",
     "recordId": 907,
     "houseSource": "74",
-    "houseCanonical": 74
+    "houseCanonical": 74,
+    "nameEn": "Kiran",
+    "fatherEn": "Banwari Lal",
+    "kramSankhya": "959",
+    "family": "JAT"
   },
   {
     "name": "महेन्द्र चाहर",
@@ -12737,7 +13225,11 @@
     "fieldStatus": "",
     "recordId": 910,
     "houseSource": "745",
-    "houseCanonical": 745
+    "houseCanonical": 745,
+    "nameEn": "Kamla Devi",
+    "fatherEn": "Hanumanaram",
+    "kramSankhya": "963",
+    "family": "JAT"
   },
   {
     "name": "कमला देवी",
@@ -12757,7 +13249,7 @@
     "name": "दीपाराम",
     "parent": "हनुमान राम",
     "epic": "AZB0458687",
-    "age": 44,
+    "age": 36,
     "gender": "पुरूष",
     "house": "745",
     "note": "",
@@ -12765,7 +13257,11 @@
     "fieldStatus": "",
     "recordId": 912,
     "houseSource": "745",
-    "houseCanonical": 745
+    "houseCanonical": 745,
+    "nameEn": "Manju",
+    "fatherEn": "Diparam",
+    "kramSankhya": "968",
+    "family": "JAT"
   },
   {
     "name": "मंजू",
@@ -12799,7 +13295,7 @@
     "name": "किरण खिलेरी पा ता कि",
     "parent": "सुखदेव चौधरी",
     "epic": "AZB0664706",
-    "age": 34,
+    "age": 30,
     "gender": "स्त्री",
     "house": "745",
     "note": "",
@@ -12807,7 +13303,11 @@
     "fieldStatus": "",
     "recordId": 915,
     "houseSource": "745",
-    "houseCanonical": 745
+    "houseCanonical": 745,
+    "nameEn": "Sharda Doot",
+    "fatherEn": "Hanumanaram",
+    "kramSankhya": "971",
+    "family": "JAT"
   },
   {
     "name": "शारदा दूत",
@@ -13009,7 +13509,7 @@
     "name": "महेन्द्र सिंह नेहरा पे",
     "parent": "रामचन्द्र नेहह",
     "epic": "AZB0664870",
-    "age": 44,
+    "age": 39,
     "gender": "पुरूष",
     "house": "75",
     "note": "",
@@ -13017,7 +13517,11 @@
     "fieldStatus": "",
     "recordId": 930,
     "houseSource": "75",
-    "houseCanonical": 75
+    "houseCanonical": 75,
+    "nameEn": "Vimla",
+    "fatherEn": "Surendra Siiinghi Nehra",
+    "kramSankhya": "987",
+    "family": "JAT"
   },
   {
     "name": "मनोहरी ग हा हा",
@@ -13219,7 +13723,7 @@
     "name": "पूजा कंवर",
     "parent": "जगवीर",
     "epic": "AZB0380592",
-    "age": 33,
+    "age": 63,
     "gender": "स्त्री",
     "house": null,
     "note": "",
@@ -13227,7 +13731,11 @@
     "fieldStatus": "",
     "recordId": 945,
     "houseSource": null,
-    "houseCanonical": null
+    "houseCanonical": null,
+    "nameEn": "Dungar Singh",
+    "fatherEn": "Bheru Singh",
+    "kramSankhya": "1001",
+    "family": "RAJPUT"
   },
   {
     "name": "डूगरसिंह",
@@ -13745,13 +14253,17 @@
     "fieldStatus": "",
     "recordId": 982,
     "houseSource": "58",
-    "houseCanonical": 58
+    "houseCanonical": 58,
+    "nameEn": "Saluram",
+    "fatherEn": "Aaduram",
+    "kramSankhya": "1037",
+    "family": "JAT"
   },
   {
     "name": "रामेश्वर",
     "parent": "नेमाराम",
     "epic": "AZB0665075",
-    "age": 35,
+    "age": 34,
     "gender": "पुरूष",
     "house": "58",
     "note": "",
@@ -13759,7 +14271,11 @@
     "fieldStatus": "",
     "recordId": 983,
     "houseSource": "58",
-    "houseCanonical": 58
+    "houseCanonical": 58,
+    "nameEn": "Bhawari",
+    "fatherEn": "Nemaram",
+    "kramSankhya": "1039",
+    "family": "JAT"
   },
   {
     "name": "भंवरी",
@@ -14367,7 +14883,7 @@
     "name": "मोतीसिंह पा ता कि",
     "parent": "पूससिंह",
     "epic": "AZB0008243",
-    "age": 64,
+    "age": 37,
     "gender": "पुरूष",
     "house": "24",
     "note": "",
@@ -14375,13 +14891,17 @@
     "fieldStatus": "",
     "recordId": 1027,
     "houseSource": "24",
-    "houseCanonical": 24
+    "houseCanonical": 24,
+    "nameEn": "Harendar Singh BhatiMoti",
+    "fatherEn": "Singh",
+    "kramSankhya": "1097",
+    "family": "RAJPUT"
   },
   {
     "name": "हरेन्द्र सिंह भाटी",
     "parent": "मोती सिंह ४",
     "epic": "AZB0458885",
-    "age": 37,
+    "age": 35,
     "gender": "पुरूष",
     "house": "2",
     "note": "",
@@ -14389,7 +14909,11 @@
     "fieldStatus": "",
     "recordId": 1028,
     "houseSource": "2",
-    "houseCanonical": 2
+    "houseCanonical": 2,
+    "nameEn": "baby Kanwar",
+    "fatherEn": "Rohitash Singh Bhati",
+    "kramSankhya": "1098",
+    "family": "RAJPUT"
   },
   {
     "name": "बेबी कंवर",
@@ -15019,7 +15543,11 @@
     "fieldStatus": "",
     "recordId": 1073,
     "houseSource": "265",
-    "houseCanonical": 265
+    "houseCanonical": 265,
+    "nameEn": "Gajendar Singh",
+    "fatherEn": "Kaan Singh",
+    "kramSankhya": "1144",
+    "family": "RAJPUT"
   },
   {
     "name": "रविन्द्र सिंह",
@@ -15033,7 +15561,11 @@
     "fieldStatus": "",
     "recordId": 1074,
     "houseSource": "26",
-    "houseCanonical": 26
+    "houseCanonical": 26,
+    "nameEn": "Ravindar Singh",
+    "fatherEn": "Hanuman Singh",
+    "kramSankhya": "1145",
+    "family": "RAJPUT"
   },
   {
     "name": "चान्द कंवर",
@@ -15355,7 +15887,11 @@
     "fieldStatus": "",
     "recordId": 1097,
     "houseSource": "29",
-    "houseCanonical": 29
+    "houseCanonical": 29,
+    "nameEn": "Varsha Veshanav",
+    "fatherEn": "Gokulparshad",
+    "kramSankhya": "1168",
+    "family": "SWAMI"
   },
   {
     "name": "प्रमिला",
@@ -15453,7 +15989,11 @@
     "fieldStatus": "",
     "recordId": 1104,
     "houseSource": "34",
-    "houseCanonical": 34
+    "houseCanonical": 34,
+    "nameEn": "Samandar Singh",
+    "fatherEn": "Guman Singh",
+    "kramSankhya": "1175",
+    "family": "RAJPUT"
   },
   {
     "name": "कोमल कंवर",
@@ -15467,7 +16007,11 @@
     "fieldStatus": "",
     "recordId": 1105,
     "houseSource": "34",
-    "houseCanonical": 34
+    "houseCanonical": 34,
+    "nameEn": "Komal Kanwar",
+    "fatherEn": "Samandar Singh",
+    "kramSankhya": "1176",
+    "family": "RAJPUT"
   },
   {
     "name": "राज कवंर शेखावत गा हा शो",
@@ -15481,7 +16025,11 @@
     "fieldStatus": "",
     "recordId": 1106,
     "houseSource": "3",
-    "houseCanonical": 3
+    "houseCanonical": 3,
+    "nameEn": "Raj Kanwar ShekhawaGtajendar",
+    "fatherEn": "Singh",
+    "kramSankhya": "1177",
+    "family": "RAJPUT"
   },
   {
     "name": "किशोर कंवर गा",
@@ -15733,7 +16281,11 @@
     "fieldStatus": "",
     "recordId": 1124,
     "houseSource": "32",
-    "houseCanonical": 32
+    "houseCanonical": 32,
+    "nameEn": "Sumit Sharma",
+    "fatherEn": "Babulal",
+    "kramSankhya": "1195",
+    "family": "SHARMA"
   },
   {
     "name": "रचना",
@@ -15837,7 +16389,7 @@
     "name": "गोविन्द सिंह गा हा शो",
     "parent": "मदन सिंह करन डक",
     "epic": "AZB0007666",
-    "age": 53,
+    "age": 42,
     "gender": "पुरूष",
     "house": "32",
     "note": "",
@@ -15845,7 +16397,11 @@
     "fieldStatus": "",
     "recordId": 1132,
     "houseSource": "32",
-    "houseCanonical": 32
+    "houseCanonical": 32,
+    "nameEn": "Santosh Kanwar",
+    "fatherEn": "Bajrang Singh",
+    "kramSankhya": "1205",
+    "family": "RAJPUT"
   },
   {
     "name": "संतोष कंवर गा",
@@ -16139,7 +16695,11 @@
     "fieldStatus": "",
     "recordId": 1153,
     "houseSource": "36",
-    "houseCanonical": 36
+    "houseCanonical": 36,
+    "nameEn": "Ashok Singh ShekhawAatmraav",
+    "fatherEn": "Singh Shekhawat",
+    "kramSankhya": "1225",
+    "family": "RAJPUT"
   },
   {
     "name": "भंवर लाल",
@@ -16383,7 +16943,7 @@
     "name": "गोविन्दसिंह",
     "parent": "भैरूपिह",
     "epic": "MTW3523040",
-    "age": 55,
+    "age": 36,
     "gender": "पुरूष",
     "house": null,
     "note": "",
@@ -16391,7 +16951,11 @@
     "fieldStatus": "",
     "recordId": 1171,
     "houseSource": null,
-    "houseCanonical": null
+    "houseCanonical": null,
+    "nameEn": "Pawan Kumar",
+    "fatherEn": "Hanuman Parshad",
+    "kramSankhya": "1245",
+    "family": "SONI"
   },
   {
     "name": "सुमनकंवर",
@@ -17083,7 +17647,7 @@
     "name": "दुलाराम",
     "parent": "खेताराम",
     "epic": "AZB0889220",
-    "age": 54,
+    "age": 51,
     "gender": "पुरूष",
     "house": "68",
     "note": "",
@@ -17091,7 +17655,11 @@
     "fieldStatus": "",
     "recordId": 1221,
     "houseSource": "68",
-    "houseCanonical": 68
+    "houseCanonical": 68,
+    "nameEn": "Dula Ram",
+    "fatherEn": "Kheta Ram",
+    "kramSankhya": "1294",
+    "family": "M"
   },
   {
     "name": "दिनेश तुनवाल",
@@ -18155,7 +18723,11 @@
     "fieldStatus": "",
     "recordId": 1297,
     "houseSource": "67",
-    "houseCanonical": 67
+    "houseCanonical": 67,
+    "nameEn": "Narendra",
+    "fatherEn": "Kanaram",
+    "kramSankhya": "1373",
+    "family": "M"
   },
   {
     "name": "सुमन",
@@ -18169,7 +18741,11 @@
     "fieldStatus": "",
     "recordId": 1298,
     "houseSource": "67",
-    "houseCanonical": 67
+    "houseCanonical": 67,
+    "nameEn": "Jyoti Devi",
+    "fatherEn": "Sunil Tunwal",
+    "kramSankhya": "1374",
+    "family": "M"
   },
   {
     "name": "प्रदीप तुनवाल",
@@ -18301,7 +18877,7 @@
     "name": "दिनेश",
     "parent": "रामगोपाल",
     "epic": "AZB0236448",
-    "age": 44,
+    "age": 36,
     "gender": "पुरूष",
     "house": "68",
     "note": "",
@@ -18309,7 +18885,11 @@
     "fieldStatus": "",
     "recordId": 1308,
     "houseSource": "68",
-    "houseCanonical": 68
+    "houseCanonical": 68,
+    "nameEn": "Suresh Kumar",
+    "fatherEn": "Ramgopal",
+    "kramSankhya": "1387",
+    "family": "M"
   },
   {
     "name": "किरणदेवी",
@@ -18595,7 +19175,7 @@
     "name": "मदनलाल",
     "parent": "नराणाराम",
     "epic": "MTW3520327",
-    "age": 65,
+    "age": 63,
     "gender": "पुरूष",
     "house": "78",
     "note": "",
@@ -18603,7 +19183,11 @@
     "fieldStatus": "",
     "recordId": 1329,
     "houseSource": "78",
-    "houseCanonical": 78
+    "houseCanonical": 78,
+    "nameEn": "Jetharam",
+    "fatherEn": "Narayanram",
+    "kramSankhya": "1407",
+    "family": "M"
   },
   {
     "name": "जेठाराम",
@@ -18925,7 +19509,11 @@
     "fieldStatus": "",
     "recordId": 1352,
     "houseSource": null,
-    "houseCanonical": null
+    "houseCanonical": null,
+    "nameEn": "Komal Sharma",
+    "fatherEn": "Amit Kumar Sharma",
+    "kramSankhya": "1056",
+    "family": "DEL"
   },
   {
     "name": "भंवरलाल",
@@ -19127,7 +19715,7 @@
     "name": "पुनम",
     "parent": "मोती सिंह",
     "epic": "AZB0795245",
-    "age": 35,
+    "age": 28,
     "gender": "स्त्री",
     "house": "24",
     "note": "",
@@ -19135,7 +19723,11 @@
     "fieldStatus": "",
     "recordId": 1367,
     "houseSource": "24",
-    "houseCanonical": 24
+    "houseCanonical": 24,
+    "nameEn": "Soniya Saini",
+    "fatherEn": "Radha Singh",
+    "kramSankhya": "1106",
+    "family": "DEL"
   },
   {
     "name": "सोनिया सैनी",
@@ -19211,7 +19803,7 @@
     "name": "ज्योति कंवर",
     "parent": "अनोपसिंह",
     "epic": "AZB0744870",
-    "age": 47,
+    "age": 33,
     "gender": "स्त्री",
     "house": "26",
     "note": "",
@@ -19219,7 +19811,11 @@
     "fieldStatus": "",
     "recordId": 1373,
     "houseSource": "26",
-    "houseCanonical": 26
+    "houseCanonical": 26,
+    "nameEn": "Ranjeet Singh ShekhawGoatvind",
+    "fatherEn": "Singh Shekhawat",
+    "kramSankhya": "1167",
+    "family": "DEL"
   },
   {
     "name": "रणजीत",

@@ -94,17 +94,36 @@ function bindSearch(inputId,resultId){
   input.addEventListener('input',()=>{
     clearTimeout(searchTimeout);
     searchTimeout=setTimeout(()=>{
-      const q=input.value.trim().toLowerCase();
+      const q=input.value.trim();
       if(q.length<2){results.innerHTML='';return;}
+      const ql=q.toLowerCase();
       const matches=VoterDB.search(q);
-      if(!matches.length){results.innerHTML='<div class="empty-msg">कोई मतदाता नहीं मिला।<br>सही नाम, EPIC या क्रम संख्या लिखें।</div>';return;}
-      results.innerHTML=matches.slice(0,20).map(v=>`
-        <div class="list-item" onclick="App.openVoter('${v.recordId}')">
-          <div class="li-kram">क्रम संख्या: ${v.recordId||'—'}</div>
-          <div class="li-name">${v.name||'—'}</div>
+      const enMatches=VoterDB.searchEnglish(q);
+      // Deduplicate by EPIC
+      const seen=new Set();
+      const merged=[];
+      matches.forEach(v=>{const k=v.epic||'_h'+v.recordId;if(!seen.has(k)){seen.add(k);merged.push(v);}});
+      enMatches.forEach(v=>{const k=v.epic||'_e'+v.name;if(!seen.has(k)){seen.add(k);merged.push(v);}});
+      if(!merged.length){results.innerHTML='<div class="empty-msg">कोई मतदाता नहीं मिला।<br>सही नाम, EPIC या क्रम संख्या लिखें।</div>';return;}
+      results.innerHTML=merged.slice(0,30).map(v=>{
+        const isEn=v.source==='en';
+        const recId=v.recordId||'en_'+(v.epic||v.name);
+        if(isEn){
+          return `<div class="list-item" onclick="App.openEnVoter('${v.epic||''}')">
+            <div class="li-kram">क्रम संख्या: ${v.kramSankhya||'—'}</div>
+            <div class="li-name">${v.name||'—'}</div>
+            <div class="li-sub">${v.parent||'—'} · ${v.age?v.age+' वर्ष':''} ${v.family?' · '+v.family:''}</div>
+            <div class="li-epic">EPIC: ${v.epic||'—'}</div>
+          </div>`;
+        }
+        const enName=(v.nameEn||'');
+        return `<div class="list-item" onclick="App.openVoter('${v.recordId}')">
+          <div class="li-kram">क्रम संख्या: ${v.kramSankhya||v.recordId||'—'}</div>
+          <div class="li-name">${v.name||'—'}${enName?' <span class="li-name-en">('+enName+')</span>':''}</div>
           <div class="li-sub">${v.parent||'—'} · घर ${v.houseCanonical||v.house||'—'}</div>
           ${v.epic?`<div class="li-epic">EPIC: ${v.epic}</div>`:''}
-        </div>`).join('');
+        </div>`;
+      }).join('');
     },250);
   });
 }
@@ -159,8 +178,8 @@ function openVoterDetail(recordId){
     <div class="detail-found"><div class="found-icon">✅</div><div class="found-title">आप वार्ड 40 के मतदाता हैं!</div></div>
     <div class="detail-card">
       <div class="detail-row"><span class="dl">क्रम संख्या</span><span class="dv">${v.recordId||'—'}</span></div>
-      <div class="detail-row"><span class="dl">नाम</span><span class="dv">${v.name||'—'}</span></div>
-      <div class="detail-row"><span class="dl">पिता/पति</span><span class="dv">${v.parent||'—'}</span></div>
+      <div class="detail-row"><span class="dl">नाम</span><span class="dv">${v.name||'—'}${v.nameEn?' <small>('+v.nameEn+')</small>':''}</span></div>
+      <div class="detail-row"><span class="dl">पिता/पति</span><span class="dv">${v.parent||'—'}${v.fatherEn?' <small>('+v.fatherEn+')</small>':''}</span></div>
       <div class="detail-row"><span class="dl">EPIC नंबर</span><span class="dv">${v.epic||'—'}</span></div>
       <div class="detail-row"><span class="dl">घर नं.</span><span class="dv">${v.houseCanonical||'—'}</span></div>
       <div class="detail-row"><span class="dl">आयु</span><span class="dv">${v.age!=null?v.age+' वर्ष':'—'}</span></div>
@@ -492,6 +511,28 @@ function initInstall(){
   });
 }
 
+function openEnVoter(epic){
+  if(!window.EN_VOTERS)return;
+  const v=window.EN_VOTERS.find(x=>x.e===epic);
+  if(!v)return;
+  const detail=$('voter-detail');
+  detail.innerHTML=`
+    <div class="detail-found"><div class="found-icon">✅</div><div class="found-title">मतदाता विवरण मिला!</div></div>
+    <div class="detail-card">
+      <div class="detail-row"><span class="dl">क्रम संख्या</span><span class="dv">${v.k||'—'}</span></div>
+      <div class="detail-row"><span class="dl">नाम (English)</span><span class="dv">${v.n||'—'}</span></div>
+      <div class="detail-row"><span class="dl">पिता/पति</span><span class="dv">${v.f||'—'}</span></div>
+      <div class="detail-row"><span class="dl">EPIC नंबर</span><span class="dv">${v.e||'—'}</span></div>
+      <div class="detail-row"><span class="dl">आयु</span><span class="dv">${v.a!=null?v.a+' वर्ष':'—'}</span></div>
+      ${v.c?`<div class="detail-row"><span class="dl">समुदाय</span><span class="dv">${v.c}</span></div>`:''}
+    </div>
+    <div class="detail-card voting-call"><div class="call-icon">🗳️</div><div class="call-text"><strong>9 सितंबर 2026 को वोट दें</strong><p>${CONFIG.boothFull}</p></div></div>
+    <div class="detail-card detail-actions">
+      <button class="cta-btn" onclick="App.shareApp()">📲 ऐप शेयर करें</button>
+    </div>`;
+  showScreen('voter-detail-screen');
+}
+
 /* ===== EXPOSED API ===== */
 window.App={
   shareApp:function(){const m=encodeURIComponent(`🗳️ वार्ड 40 — नीतू चौहान\n\n📍 बूथ: ${CONFIG.boothFull}\n🕐 9 सितंबर 2026 · सुबह 7AM – शाम 6PM\n\nवोटर लिस्ट: ${APP_URL}`);if(navigator.share)navigator.share({title:'वार्ड 40 — नीतू चौहान',text:decodeURIComponent(m)}).catch(()=>{});else window.open('https://wa.me/?text='+m,'_blank');},
@@ -500,7 +541,7 @@ window.App={
   copyLink:function(){navigator.clipboard.writeText(APP_URL).then(()=>alert('✅ लिंक कॉपी हो गया!'));},
   shareSMS:function(){window.open('sms:?body='+encodeURIComponent(`वार्ड 40 — नीतू चौहान\n📍 ${CONFIG.boothFull}\n🕐 9 सितंबर · 7AM–6PM\nवोटर लिस्ट: ${APP_URL}\n🪷 वोट जरूर दें!`),'_blank');},
   copyMessage:function(){navigator.clipboard.writeText($('share-msg').value).then(()=>alert('✅ मैसेज कॉपी हो गया!'));},
-  openVoter:function(id){openVoterDetail(id);}
+  openVoter:function(id){openVoterDetail(id);},openEnVoter:function(epic){openEnVoter(epic);}
 };
 
 /* ===== INIT ===== */
