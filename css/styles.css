@@ -233,6 +233,8 @@ body {
 .poster-cam-btn.secondary { background:var(--primary-light); color:var(--primary-dark); width:44px; height:44px; font-size:1.2rem; }
 .poster-cam-btn:active { transform:scale(0.9); }
 .poster-cam-hint { font-size:0.75rem; color:var(--text-sec); margin-top:8px; text-align:center; }
+.poster-switch-btn { position:absolute; top:4px; right:4px; width:32px; height:32px; border-radius:50%; background:rgba(0,0,0,0.5); color:#fff; border:none; font-size:0.8rem; z-index:2; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:transform 0.15s, background 0.2s; box-shadow:0 2px 8px rgba(0,0,0,0.2); }
+.poster-switch-btn:active { transform:scale(0.9); background:rgba(0,0,0,0.7); }
 
 .poster-name-section { padding:16px 16px 0; }
 .poster-name-input { width:100%; padding:14px 16px; border:2px solid #e8ddf0; border-radius:14px; font-family:inherit; font-size:1rem; font-weight:600; text-align:center; outline:none; background:var(--card); transition:border-color 0.2s; }

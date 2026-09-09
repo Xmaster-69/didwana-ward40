@@ -215,42 +215,48 @@ function renderShare(){
 }
 
 /* ===== POSTER MAKER ===== */
-let posterStream=null,posterBlob=null;
+let posterStream=null,posterBlob=null,posterFacing='user';
 
+function startPosterCamera(){
+  navigator.mediaDevices.getUserMedia({video:{facingMode:posterFacing,width:{ideal:1080},height:{ideal:1080}}})
+    .then(stream=>{posterStream=stream;$('poster-video').srcObject=stream;})
+    .catch(()=>{$('poster-cam-hint').textContent='\u26a0\ufe0f \u0915\u0948\u092e\u0930\u093e \u0909\u092a\u0932\u092c\u094d\u0927 \u0928\u0939\u0940\u0902';});
+}
+function switchPosterCamera(){
+  stopPosterCamera();
+  posterFacing=posterFacing==='user'?'environment':'user';
+  $('poster-video').style.display='';
+  $('poster-captured').classList.add('hidden');
+  $('poster-capture-btn').classList.remove('hidden');
+  $('poster-retake-btn').classList.add('hidden');
+  $('poster-cam-hint').textContent=posterFacing==='user'?'📷 \u0938\u0947\u0932\u094d\u092b\u093c\u0940 \u0915\u0948\u092e\u0930\u093e':'📷 \u092a\u0939\u093e\u0921\u093c \u0915\u0948\u092e\u0930\u093e';
+  startPosterCamera();
+}
 function initPosterCamera(){
   const video=$('poster-video'),captured=$('poster-captured'),hint=$('poster-cam-hint');
   const captureBtn=$('poster-capture-btn'),retakeBtn=$('poster-retake-btn');
   if(!video)return;
-
-  // Reset state
   captured.classList.add('hidden');
   video.style.display='';
   captureBtn.classList.remove('hidden');
   retakeBtn.classList.add('hidden');
-  hint.textContent='📷 अपनी इंक लगी उंगली या सेल्फ़ी लें';
+  hint.textContent='📷 \u0905\u092a\u0928\u0940 \u0907\u0902\u0915 \u0932\u0917\u0940 \u0909\u0902\u0917\u0932\u0940 \u092f\u093e \u0938\u0947\u0932\u094d\u092b\u093c\u0940 \u0932\u0947\u0902';
   $('poster-result').classList.add('hidden');
   $('poster-generate-btn').disabled=true;
-
-  // Pre-fill name from localStorage
   const savedName=Store.get('posterName','');
   const nameInput=$('poster-name-input');
   if(nameInput&&savedName)nameInput.value=savedName;
-
-  // Start camera
-  if(posterStream)return; // already running
-  navigator.mediaDevices.getUserMedia({video:{facingMode:'user',width:{ideal:640},height:{ideal:640}}})
-    .then(stream=>{posterStream=stream;video.srcObject=stream;})
-    .catch(()=>{hint.textContent='⚠️ कैमरा उपलब्ध नहीं — कृपया अनुमति दें';});
-
+  if(posterStream)return;
+  startPosterCamera();
   captureBtn.onclick=()=>capturePosterPhoto();
   retakeBtn.onclick=()=>retakePosterPhoto();
+  $('poster-switch-btn').onclick=()=>switchPosterCamera();
   $('poster-generate-btn').onclick=()=>generatePoster();
   $('poster-download-btn').onclick=()=>downloadPosterImage();
   $('poster-share-btn').onclick=()=>sharePosterImage();
   $('poster-retry-btn').onclick=()=>{posterBlob=null;$('poster-result').classList.add('hidden');retakePosterPhoto();};
   nameInput.oninput=()=>checkPosterReady();
 }
-
 function stopPosterCamera(){
   if(posterStream){posterStream.getTracks().forEach(t=>t.stop());posterStream=null;}
 }
@@ -258,9 +264,9 @@ function stopPosterCamera(){
 function capturePosterPhoto(){
   const video=$('poster-video'),captured=$('poster-captured'),canvas=$('poster-capture-canvas');
   const captureBtn=$('poster-capture-btn'),retakeBtn=$('poster-retake-btn'),hint=$('poster-cam-hint');
-  canvas.width=video.videoWidth||640;canvas.height=video.videoHeight||640;
+  canvas.width=video.videoWidth||1080;canvas.height=video.videoHeight||1080;
   const ctx=canvas.getContext('2d');
-  ctx.translate(canvas.width,0);ctx.scale(-1,1);ctx.drawImage(video,0,0,canvas.width,canvas.height);ctx.setTransform(1,0,0,1,0,0);
+  if(posterFacing==='user'){ctx.translate(canvas.width,0);ctx.scale(-1,1);ctx.drawImage(video,0,0,canvas.width,canvas.height);ctx.setTransform(1,0,0,1,0,0);}else{ctx.drawImage(video,0,0,canvas.width,canvas.height);}
   captured.src=canvas.toDataURL('image/jpeg',0.92);
   captured.classList.remove('hidden');
   video.style.display='none';
@@ -277,14 +283,11 @@ function retakePosterPhoto(){
   $('poster-video').style.display='';
   $('poster-capture-btn').classList.remove('hidden');
   $('poster-retake-btn').classList.add('hidden');
-  $('poster-cam-hint').textContent='📷 अपनी इंक लगी उंगली या सेल्फ़ी लें';
+  $('poster-cam-hint').textContent=posterFacing==='user'?'📷 \u0938\u0947\u0932\u094d\u092b\u093c\u0940 \u0915\u0948\u092e\u0930\u093e':'📷 \u092a\u0939\u093e\u0921\u093c \u0915\u0948\u092e\u0930\u093e';
   $('poster-result').classList.add('hidden');
-  navigator.mediaDevices.getUserMedia({video:{facingMode:'user',width:{ideal:640},height:{ideal:640}}})
-    .then(stream=>{posterStream=stream;$('poster-video').srcObject=stream;})
-    .catch(()=>{});
+  startPosterCamera();
   checkPosterReady();
 }
-
 function checkPosterReady(){
   const captured=$('poster-captured'),name=$('poster-name-input'),btn=$('poster-generate-btn');
   btn.disabled=!(captured&&!captured.classList.contains('hidden')&&name.value.trim().length>0);
@@ -316,11 +319,9 @@ function drawPoster(voterImg,voterName){
   ctx.globalAlpha=1;
 
   // === 3. DECORATIVE BORDER FRAME ===
-  // Outer gold border
   ctx.strokeStyle='rgba(255,193,7,0.5)';ctx.lineWidth=8;ctx.strokeRect(30,30,W-60,H-60);
-  // Inner border
   ctx.strokeStyle='rgba(255,255,255,0.15)';ctx.lineWidth=2;ctx.strokeRect(50,50,W-100,H-100);
-  // Corner flourishes
+  ctx.strokeStyle='rgba(255,193,7,0.12)';ctx.lineWidth=1;ctx.strokeRect(60,60,W-120,H-120);
   const drawCorner=(x,y,flip)=>{
     ctx.save();ctx.translate(x,y);ctx.scale(flip?1:-1,1);
     ctx.beginPath();ctx.moveTo(0,0);ctx.quadraticCurveTo(25,0,25,25);ctx.strokeStyle='rgba(255,193,7,0.6)';ctx.lineWidth=3;ctx.stroke();
@@ -330,7 +331,6 @@ function drawPoster(voterImg,voterName){
   drawCorner(70,70,false);drawCorner(W-70,70,true);drawCorner(70,H-70,false);drawCorner(W-70,H-70,true);
 
   // === 4. DECORATIVE BANDS ===
-  // Top band
   const topBand=ctx.createLinearGradient(0,80,W,80);
   topBand.addColorStop(0,'rgba(255,193,7,0)');topBand.addColorStop(0.3,'rgba(255,193,7,0.15)');topBand.addColorStop(0.7,'rgba(255,193,7,0.15)');topBand.addColorStop(1,'rgba(255,193,7,0)');
   ctx.fillStyle=topBand;ctx.fillRect(70,80,W-140,3);
@@ -340,29 +340,31 @@ function drawPoster(voterImg,voterName){
   ctx.beginPath();ctx.ellipse(bx,by,200,38,0,0,Math.PI*2);
   ctx.fillStyle='rgba(255,193,7,0.9)';ctx.fill();
   ctx.fillStyle='#1a0533';ctx.font='bold 22px "Noto Sans Devanagari", sans-serif';ctx.textAlign='center';
-  ctx.fillText('🗳️ मतदान मुहिम 2026 · वार्ड 40',bx,by+7);
+  ctx.fillText('❗ मतदान मुहिम 2026 · वार्ड 40',bx,by+7);
 
-  // === 6. TITLE "मैंने वोट दिया!" WITH GLOW ===
+  // === 6. TITLE WITH DEPTH GLOW ===
   ctx.textAlign='center';
-  // Glow
+  ctx.fillStyle='rgba(255,193,7,0.3)';ctx.font='bold 80px "Noto Sans Devanagari", sans-serif';
+  ctx.fillText('मैंने वोट दिया!',W/2+2,282);
   ctx.shadowColor='rgba(255,193,7,0.5)';ctx.shadowBlur=30;
-  ctx.fillStyle='#ffeb3b';ctx.font='bold 80px "Noto Sans Devanagari", sans-serif';
-  ctx.fillText('मैंने वोट दिया!',W/2,280);
+  ctx.fillStyle='#ffeb3b';ctx.fillText('मैंने वोट दिया!',W/2,280);
   ctx.shadowBlur=0;
 
-  // Lotus SVG-style path
   drawLotus(ctx,W/2,370,60);
-
-  // === 7. DECORATIVE DIVIDER ===
   drawDivider(ctx,W/2,430,400,'rgba(255,193,7,0.5)');
 
-  // === 8. VOTER PHOTO — PREMIUM GLOW FRAME ===
-  const cx=W/2,cy=680,cr=190;
+  // === 7. VOTER PHOTO - LARGER 240px PREMIUM FRAME ===
+  const cx=W/2,cy=720,cr=240;
 
-  // Outer glow rings
-  for(let r=4;r>=1;r--){
-    ctx.beginPath();ctx.arc(cx,cy,cr+20+r*8,0,Math.PI*2);
-    ctx.strokeStyle=`rgba(255,193,7,${0.08*r})`;ctx.lineWidth=2;ctx.stroke();
+  // Warm radial glow
+  const warmGlow=ctx.createRadialGradient(cx,cy,cr*0.3,cx,cy,cr+80);
+  warmGlow.addColorStop(0,'rgba(255,193,7,0.10)');warmGlow.addColorStop(0.6,'rgba(255,193,7,0.04)');warmGlow.addColorStop(1,'rgba(255,193,7,0)');
+  ctx.fillStyle=warmGlow;ctx.fillRect(cx-cr-80,cy-cr-80,(cr+80)*2,(cr+80)*2);
+
+  // Outer glow rings (5)
+  for(let r=5;r>=1;r--){
+    ctx.beginPath();ctx.arc(cx,cy,cr+22+r*9,0,Math.PI*2);
+    ctx.strokeStyle=`rgba(255,193,7,${0.06*r+0.02})`;ctx.lineWidth=2;ctx.stroke();
   }
 
   // Photo clip
@@ -371,70 +373,79 @@ function drawPoster(voterImg,voterName){
   const scale=Math.max(cr*2/voterImg.width,cr*2/voterImg.height);
   const sw=voterImg.width*scale,sh=voterImg.height*scale;
   ctx.drawImage(voterImg,cx-sw/2,cy-sh/2,sw,sh);
-  // Vignette
   const vig=ctx.createRadialGradient(cx,cy,cr*0.5,cx,cy,cr);
   vig.addColorStop(0,'rgba(0,0,0,0)');vig.addColorStop(1,'rgba(0,0,0,0.3)');
   ctx.fillStyle=vig;ctx.fillRect(cx-cr,cy-cr,cr*2,cr*2);
   ctx.restore();
 
-  // Gold ring border
+  // Inner white glow ring
+  ctx.beginPath();ctx.arc(cx,cy,cr-2,0,Math.PI*2);
+  ctx.strokeStyle='rgba(255,255,255,0.15)';ctx.lineWidth=2;ctx.stroke();
+
+  // Gold ring border (thicker)
   ctx.beginPath();ctx.arc(cx,cy,cr+4,0,Math.PI*2);
-  ctx.strokeStyle='#ffc107';ctx.lineWidth=5;ctx.stroke();
-  ctx.beginPath();ctx.arc(cx,cy,cr+10,0,Math.PI*2);
-  ctx.strokeStyle='rgba(255,255,255,0.3)';ctx.lineWidth=2;ctx.stroke();
+  ctx.strokeStyle='#ffc107';ctx.lineWidth=6;ctx.stroke();
+  ctx.beginPath();ctx.arc(cx,cy,cr+12,0,Math.PI*2);
+  ctx.strokeStyle='rgba(255,255,255,0.25)';ctx.lineWidth=2;ctx.stroke();
+  ctx.beginPath();ctx.arc(cx,cy,cr+18,0,Math.PI*2);
+  ctx.strokeStyle='rgba(100,180,255,0.15)';ctx.lineWidth=1.5;ctx.stroke();
 
-  // ✅ Verified badge
+  // Gold sparkle dots
+  [0.3,0.9,1.5,2.1,2.8,3.6,4.4,5.2].forEach(a=>{
+    const sx=cx+Math.cos(a)*(cr+35+Math.sin(a*3)*12);
+    const sy=cy+Math.sin(a)*(cr+35+Math.cos(a*2)*12);
+    ctx.beginPath();ctx.arc(sx,sy,2.5+Math.random()*1.5,0,Math.PI*2);
+    ctx.fillStyle=`rgba(255,193,7,${0.35+Math.random()*0.3})`;ctx.fill();
+  });
+
+  // Verified badge (larger)
   const bx2=cx+cr-20,by2=cy+cr-20;
-  ctx.beginPath();ctx.arc(bx2,by2,28,0,Math.PI*2);ctx.fillStyle='#4caf50';ctx.fill();
+  ctx.beginPath();ctx.arc(bx2,by2,32,0,Math.PI*2);ctx.fillStyle='#4caf50';ctx.fill();
   ctx.strokeStyle='#fff';ctx.lineWidth=3;ctx.stroke();
-  ctx.fillStyle='#fff';ctx.font='bold 28px sans-serif';ctx.textAlign='center';
-  ctx.fillText('✓',bx2,by2+10);
+  ctx.fillStyle='#fff';ctx.font='bold 32px sans-serif';ctx.textAlign='center';
+  ctx.fillText('✓',bx2,by2+12);
 
-  // === 9. VOTER NAME — GOLD + SHADOW ===
+  // === 8. VOTER NAME + GOLD UNDERLINE ===
   ctx.textAlign='center';
   ctx.shadowColor='rgba(0,0,0,0.3)';ctx.shadowBlur=10;
   ctx.fillStyle='#fff';ctx.font='bold 58px "Noto Sans Devanagari", sans-serif';
-  ctx.fillText(voterName,W/2,950);
+  ctx.fillText(voterName,W/2,1000);
   ctx.shadowBlur=0;
+  ctx.fillStyle='rgba(255,193,7,0.4)';
+  ctx.fillRect(W/2-100,1015,200,3);
 
-  // === 10. WARD INFO ===
+  // === 9. WARD INFO ===
   ctx.font='30px "Noto Sans Devanagari", sans-serif';ctx.fillStyle='rgba(255,255,255,0.85)';
-  ctx.fillText('वार्ड 40 · डीडवाना नगर पालिका',W/2,1010);
+  ctx.fillText('वार्ड 40 · डीडवाना नगर पालिका',W/2,1060);
 
-  // === 11. GOLD DIVIDER ===
-  drawDivider(ctx,W/2,1060,360,'rgba(255,193,7,0.4)');
+  // === 10. GOLD DIVIDER ===
+  drawDivider(ctx,W/2,1100,360,'rgba(255,193,7,0.4)');
 
-  // === 12. CALL TO ACTION — BOLD ===
-  ctx.shadowColor='rgba(255,193,7,0.4)';ctx.shadowBlur=20;
+  // === 11. CALL TO ACTION ===
+  ctx.shadowColor='rgba(255,193,7,0.4)';ctx.shadowBlur=25;
   ctx.fillStyle='#ffc107';ctx.font='bold 50px "Noto Sans Devanagari", sans-serif';
-  ctx.fillText('आपकी बारी है!',W/2,1140);
+  ctx.fillText('आपकी बारी है!',W/2,1170);
   ctx.shadowBlur=0;
   ctx.fillStyle='#fff';ctx.font='bold 34px "Noto Sans Devanagari", sans-serif';
-  ctx.fillText('9 सितंबर 2026 · सुबह 7AM – शाम 6PM',W/2,1200);
+  ctx.fillText('9 सितंबर 2026 · सुबह 7AM – शाम 6PM',W/2,1225);
 
-  // === 13. BOOTH INFO ===
+  // === 12. BOOTH INFO ===
   ctx.font='26px "Noto Sans Devanagari", sans-serif';ctx.fillStyle='rgba(255,255,255,0.75)';
-  ctx.fillText('📍 नेहरू बाल स्कूल, लाडनू रोड, डीडवाना',W/2,1270);
+  ctx.fillText('📍 नेहरू बाल स्कूल, लाडनू रोड, डीडवाना',W/2,1290);
 
-  // === 14. CANDIDATE BRANDING SECTION ===
-  // Bottom panel
-  const panelGrad=ctx.createLinearGradient(0,1360,0,H-60);
+  // === 13. CANDIDATE BRANDING ===
+  const panelGrad=ctx.createLinearGradient(0,1390,0,H-60);
   panelGrad.addColorStop(0,'rgba(0,0,0,0)');panelGrad.addColorStop(0.15,'rgba(0,0,0,0.25)');panelGrad.addColorStop(1,'rgba(0,0,0,0.4)');
-  ctx.fillStyle=panelGrad;ctx.fillRect(0,1360,W,H-1420);
+  ctx.fillStyle=panelGrad;ctx.fillRect(0,1390,W,H-1450);
 
-  // Lotus icon
-  drawLotus(ctx,W/2,1420,45);
-
-  // Candidate name
+  drawLotus(ctx,W/2,1450,45);
   ctx.fillStyle='#fff';ctx.font='bold 44px "Noto Sans Devanagari", sans-serif';
-  ctx.fillText('नीतू चौहान',W/2,1490);
+  ctx.fillText('नीतू चौहान',W/2,1520);
   ctx.font='26px "Noto Sans Devanagari", sans-serif';ctx.fillStyle='rgba(255,255,255,0.8)';
-  ctx.fillText('भारतीय जनता पार्टी (भाजपा) · कमल 🪷',W/2,1540);
+  ctx.fillText('भारतीय जनता पार्टी (भाजपा) · कमल 🌷',W/2,1570);
+  drawDivider(ctx,W/2,1610,300,'rgba(255,193,7,0.3)');
 
-  // Bottom gold divider
-  drawDivider(ctx,W/2,1580,300,'rgba(255,193,7,0.3)');
-
-  // === 15. APP WATERMARK ===
+  // === 14. WATERMARK ===
   ctx.font='18px sans-serif';ctx.fillStyle='rgba(255,255,255,0.3)';
   ctx.fillText(APP_URL,W/2,H-80);
 
@@ -446,43 +457,6 @@ function drawPoster(voterImg,voterName){
     $('poster-result').classList.remove('hidden');
     $('poster-result').scrollIntoView({behavior:'smooth'});
   },'image/jpeg',0.92);
-}
-
-/* ===== POSTER HELPER: Draw lotus shape ===== */
-function drawLotus(ctx,cx,cy,size){
-  ctx.save();ctx.translate(cx,cy);
-  const petals=[
-    {a:-90,s:1},{a:-60,s:0.85},{a:-120,s:0.85},
-    {a:-40,s:0.65},{a:-140,s:0.65},{a:-20,s:0.45},{a:-160,s:0.45}
-  ];
-  petals.forEach(p=>{
-    ctx.save();ctx.rotate(p.a*Math.PI/180);
-    ctx.beginPath();ctx.moveTo(0,0);
-    ctx.bezierCurveTo(-size*0.3*p.s,-size*0.5*p.s, size*0.3*p.s,-size*0.5*p.s, 0,-size*p.s);
-    ctx.fillStyle='rgba(255,193,7,0.8)';ctx.fill();
-    ctx.strokeStyle='rgba(255,255,255,0.3)';ctx.lineWidth=1;ctx.stroke();
-    ctx.restore();
-  });
-  // Center dot
-  ctx.beginPath();ctx.arc(0,0,size*0.12,0,Math.PI*2);
-  ctx.fillStyle='#ffc107';ctx.fill();
-  ctx.restore();
-}
-
-/* ===== POSTER HELPER: Decorative divider ===== */
-function drawDivider(ctx,cx,y,width,color){
-  ctx.save();
-  const left=cx-width/2,right=cx+width/2;
-  // Line
-  ctx.strokeStyle=color;ctx.lineWidth=2;
-  ctx.beginPath();ctx.moveTo(left,y);ctx.lineTo(right,y);ctx.stroke();
-  // Center diamond
-  ctx.fillStyle=color;
-  ctx.beginPath();ctx.moveTo(cx,y-6);ctx.lineTo(cx+6,y);ctx.lineTo(cx,y+6);ctx.lineTo(cx-6,y);ctx.closePath();ctx.fill();
-  // End dots
-  ctx.beginPath();ctx.arc(left,y,3,0,Math.PI*2);ctx.fill();
-  ctx.beginPath();ctx.arc(right,y,3,0,Math.PI*2);ctx.fill();
-  ctx.restore();
 }
 function downloadPosterImage(){
   if(!posterBlob)return;
